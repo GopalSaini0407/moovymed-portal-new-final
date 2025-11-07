@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
   const [title, setTitle] = useState("");
@@ -11,14 +13,14 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
   const [loading, setLoading] = useState(false);
   const [fileError, setFileError] = useState("");
 
-  const token = localStorage.getItem("token");
+  const language = useLanguage();
 
   // Fetch existing tags
   const fetchTags = async () => {
     try {
-      const res = await axios.get("https://app.moovymed.de/api/v1/tags", {
+      const res = await api.get("/tags", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          "X-Locale": language,
         },
       });
       setTags(res.data.data || []);
@@ -29,7 +31,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
 
   useEffect(() => {
     fetchTags();
-  }, []);
+  }, [language]);
 
   // Handle file selection with validation
   const handleFileChange = (e) => {
@@ -64,13 +66,12 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
   const handleAddTag = async () => {
     if (!newTag.trim()) return;
     try {
-      await axios.post(
-        "https://app.moovymed.de/api/v1/tag/create",
+      await api.post(
+        "/tag/create",
         { tag: newTag },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            "X-Locale": language,
           },
         }
       );
@@ -108,13 +109,12 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
         formData.append(`tags[${i}]`, tagName)
       );
 
-      await axios.post(
-        "https://app.moovymed.de/api/v1/category-content/create",
+      await api.post(
+        "/category-content/create",
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+            "X-Locale": language,
           },
         }
       );

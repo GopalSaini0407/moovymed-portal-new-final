@@ -5,6 +5,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import whiteLogo from "../../assets/whiteLogo.svg";
 import AuthNavbar from "../../components/navbar/AuthNavbar";
+import  {useLanguage}  from "../../hooks/useLanguage";
+import api from "../../api/axiosInstance"; // ✅ axios instance
 
 const VerifyOTPForm = () => {
   const navigate = useNavigate();
@@ -12,6 +14,7 @@ const VerifyOTPForm = () => {
   const [otpError, setOtpError] = useState("");
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState("");
+  const language = useLanguage();
 
   useEffect(() => {
     // Retrieve ID from localStorage (saved in forgot-password step)
@@ -26,37 +29,50 @@ const VerifyOTPForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!otp) {
       setOtpError("OTP is required");
       return;
     }
-
+  
     if (otp.length !== 6) {
       setOtpError("OTP must be 6 digits");
       return;
     }
-
+  
     try {
       setLoading(true);
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/user/forget-password/verify-otp",
-        { id, otp }
+  
+      // ✅ Using Axios instance with headers
+      const response = await api.post(
+        "/user/forget-password/verify-otp",
+        { id, otp }, // request body
+        {
+          headers: {
+            "X-Locale": language,
+            "Content-Type": "application/json",
+          },
+        }
       );
-
-      if (response.data?.status === "success" || response.data?.message) {
-        toast.success("OTP verified successfully!");
+  
+      const data = response.data;
+  
+      if (data?.status === "success" || data?.message) {
+        toast.success(data.message || "OTP verified successfully!");
         navigate("/reset-password");
       } else {
-        toast.error(response.data?.message || "Invalid OTP");
+        toast.error(data?.message || "Invalid OTP");
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Failed to verify OTP");
+      console.error("OTP verification error:", error);
+      toast.error(
+        error.response?.data?.message || "Failed to verify OTP. Please try again."
+      );
     } finally {
       setLoading(false);
     }
   };
-
+  
   const handleOtpChange = (e) => {
     const value = e.target.value.replace(/\D/g, "").slice(0, 6);
     setOtp(value);

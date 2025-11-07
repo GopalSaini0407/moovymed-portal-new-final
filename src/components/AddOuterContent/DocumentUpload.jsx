@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../../api/axiosInstance";
+import { useLanguage } from "../../hooks/useLanguage";
 
 const DocumentUpload = ({ onClose }) => {
   const [title, setTitle] = useState("");
@@ -12,8 +14,8 @@ const DocumentUpload = ({ onClose }) => {
   const [newTag, setNewTag] = useState("");
   const [loading, setLoading] = useState(false);
   const [fileError, setFileError] = useState("");
-
-  const token = localStorage.getItem("token");
+  
+  const language = useLanguage();
 
   // Show toast notification
   const showToast = (message, type = "success") => {
@@ -48,14 +50,12 @@ const DocumentUpload = ({ onClose }) => {
   // Fetch existing categories
   const fetchCategories = async () => {
     try {
-      const res = await axios.post(
-        "https://app.moovymed.de/api/v1/categories",
+      const res = await api.post(
+        "/categories",
         {},
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "X-Locale": "en",
+            "X-Locale": language,
           },
         }
       );
@@ -69,9 +69,9 @@ const DocumentUpload = ({ onClose }) => {
   // Fetch existing tags
   const fetchTags = async () => {
     try {
-      const res = await axios.get("https://app.moovymed.de/api/v1/tags", {
+      const res = await api.get("/tags", {
         headers: {
-          Authorization: `Bearer ${token}`,
+          "X-Locale": language,
         },
       });
       setTags(res.data.data || []);
@@ -83,7 +83,7 @@ const DocumentUpload = ({ onClose }) => {
   useEffect(() => {
     fetchCategories();
     fetchTags();
-  }, []);
+  }, [language]);
 
   // Handle file selection with validation
   const handleFileChange = (e) => {
@@ -118,13 +118,12 @@ const DocumentUpload = ({ onClose }) => {
   const handleAddTag = async () => {
     if (!newTag.trim()) return;
     try {
-      await axios.post(
-        "https://app.moovymed.de/api/v1/tag/create",
+      await api.post(
+        "/tag/create",
         { tag: newTag },
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
+            "X-Locale": language,
           },
         }
       );
@@ -168,13 +167,12 @@ const DocumentUpload = ({ onClose }) => {
         formData.append(`tags[${i}]`, tagName)
       );
 
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/category-content/create",
+      const response = await api.post(
+        "/category-content/create",
         formData,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "multipart/form-data",
+            "X-Locale": language,
           },
         }
       );

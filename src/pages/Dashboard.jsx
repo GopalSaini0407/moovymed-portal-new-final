@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import DocumentUploadModal from "../components/content/DocumentUploadModal";
+import DocumentUploadModal from "../components/AddOuterContent/DocumentUploadModal";
 import Categories from "./Categories";
 import UserGreeting from "../components/UserGreeting";
 import MainLayout from "../layouts/MainLayout";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 const Dashboard = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -17,21 +19,17 @@ const Dashboard = () => {
 
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
+  
+  const language = useLanguage();
 
   // Fetch all categories for search
   const fetchAllCategories = async () => {
     try {
-      const language = localStorage.getItem("language") || "en";
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/categories",
-        {},
+      const response = await api.post(
+        "/categories",
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "X-Locale": language,
-          },
-        }
+          headers: {"X-Locale": language },
+        },
       );
 
       if (response.data && response.data.data) {
@@ -72,7 +70,7 @@ const Dashboard = () => {
   // Fetch categories on component mount
   useEffect(() => {
     fetchAllCategories();
-  }, []);
+  }, [language]);
 
   const handleSearch = (e) => {
     setSearchValue(e.target.value);

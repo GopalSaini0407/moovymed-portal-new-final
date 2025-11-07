@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { useNavigate, Link } from "react-router-dom";
 import AuthNavbar from "../../components/navbar/AuthNavbar";
 import whiteLogo from "../../assets/whiteLogo.svg";
+import  {useLanguage}  from "../../hooks/useLanguage";
+import api from "../../api/axiosInstance"; // ✅ axios instance
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -16,6 +18,7 @@ const RegisterForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("");
+  const language = useLanguage();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,47 +31,52 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // Basic validation
     if (!form.username || !form.name || !form.email || !form.password) {
       toast.warn("Please fill all fields");
       return;
     }
-
+  
     if (!validateEmail(form.email)) {
       setEmailError("Invalid email format");
       return;
     }
-
+  
     if (form.password !== form.password_confirmation) {
       toast.error("Passwords do not match");
       return;
     }
-
+  
     setLoading(true);
     try {
-      const response = await fetch("https://app.moovymed.de/api/v1/user/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        toast.success("Registration successful! Please login.");
+      // ✅ Axios POST request
+      const response = await api.post(
+        "/user/register",
+        form, // data
+        {
+          headers: {
+            "X-Locale": language,
+          },
+        }
+      );
+  
+      const data = response.data; // Axios automatically parses JSON
+  
+      if (response.status === 200) {
+        toast.success(data.message || "Registration successful! Please login.");
         navigate("/login");
       } else {
         toast.error(data.message || "Registration failed. Try again.");
       }
     } catch (err) {
-      toast.error("Something went wrong. Please try again.");
-      console.error(err);
+      console.error("Registration error:", err);
+      toast.error(err.response?.data?.message || "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     <div className="min-h-screen w-full flex flex-col" style={{ background:"linear-gradient(135deg, rgba(79, 177, 231, 1) 0%, rgba(255, 0, 117, 1) 100%)" }}>
       <AuthNavbar />

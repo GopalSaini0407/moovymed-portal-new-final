@@ -3,6 +3,8 @@ import axios from "axios";
 import { FaArrowLeft, FaCheck } from "react-icons/fa";
 import { toast } from "react-toastify";
 import MainLayout from "../layouts/MainLayout";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function UserProfile() {
   const [profile, setProfile] = useState({
@@ -12,29 +14,20 @@ export default function UserProfile() {
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
 
-  // ✅ Get token from localStorage
-  const token = localStorage.getItem("token");
-
-  // Axios instance with token header
-  const axiosInstance = axios.create({
-    baseURL: "https://app.moovymed.de/api/v1",
-    headers: {
-      Authorization: token ? `Bearer ${token}` : "",
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-  });
+  const language = useLanguage();
 
   // ✅ Fetch user profile (GET)
   const fetchProfile = async () => {
-    if (!token) {
+    if (!api) {
       toast.error("No token found! Please login again.");
       return;
     }
 
     setLoading(true);
     try {
-      const res = await axiosInstance.get("/user/profile");
+      const res = await api.get("/user/profile",{
+        headers: { "X-Locale": language },
+      });
 
       if (res.data?.data) {
         setProfile({
@@ -62,10 +55,13 @@ export default function UserProfile() {
 
     setSaving(true);
     try {
-      const res = await axiosInstance.post("/user/profile", {
+      const res = await api.post("/user/profile", {
         email: profile.email,
         name: profile.name,
-      });
+      },{
+        headers: { "X-Locale": language },
+      }
+    );
 
       if (res.data?.message) {
         toast.success(res.data.message);
@@ -83,7 +79,7 @@ export default function UserProfile() {
   // Fetch on mount
   useEffect(() => {
     fetchProfile();
-  }, []);
+  }, [language]);
 
   return (
     <MainLayout>

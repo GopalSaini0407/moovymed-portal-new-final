@@ -1,4 +1,6 @@
 import React, { useState, useRef } from "react";
+import api from "../../api/axiosInstance";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export default function FeedbackForm({ onCancel }) {
   const [title, setTitle] = useState("");
@@ -7,6 +9,8 @@ export default function FeedbackForm({ onCancel }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const titleRef = useRef(null);
+
+  const language = useLanguage();
 
   const errors = {
     title: title.trim() === "" ? "Value required." : "",
@@ -28,31 +32,29 @@ export default function FeedbackForm({ onCancel }) {
       feedback: feedback.trim(),
     };
 
-    // ✅ Token from localStorage
-    const token = localStorage.getItem("token");
-
     try {
-      const response = await fetch("https://app.moovymed.de/api/v1/user/feedback", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/x-www-form-urlencoded",
-          "X-Requested-With": "XMLHttpRequest",
-          "X-Locale": "en",
-          ...(token && { Authorization: `Bearer ${token}` }), // ✅ Add token dynamically
+      setLoading(true);
+    
+      const res = await api.post(
+        "/user/feedback",
+        {
+          title,   
+          feedback,
         },
-        body: JSON.stringify(payload),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        setMessage(data.message || "Feedback sent successfully!");
+        {
+          headers: {
+            "X-Locale": language,
+          },
+        }
+      );
+    
+      if (res.status === 200) {
+        setMessage(res.data.message || "Feedback sent successfully!");
         setTitle("");
         setFeedback("");
         setTouched({ title: false, feedback: false });
       } else {
-        setMessage(data.message || "Something went wrong. Please try again.");
+        setMessage(res.data.message || "Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Error submitting feedback:", error);
@@ -60,6 +62,7 @@ export default function FeedbackForm({ onCancel }) {
     } finally {
       setLoading(false);
     }
+    
   }
 
   return (

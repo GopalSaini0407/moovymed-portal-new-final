@@ -1,15 +1,18 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 const UserGreeting = () => {
   const [user, setUser] = useState(null);
+  const language = useLanguage();
 
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get("https://app.moovymed.de/api/v1/user/profile", {
-          headers: { Authorization: `Bearer ${token}` },
+        const response = await api.get("/user/profile", {
+          headers: {"X-Locale": language,
+          },
         });
         setUser(response.data.data);
       } catch (error) {
@@ -17,7 +20,7 @@ const UserGreeting = () => {
       }
     };
     fetchProfile();
-  }, []);
+  }, [language]);
 
   if (!user) return null;
 

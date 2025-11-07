@@ -4,10 +4,13 @@ import { toast } from "react-toastify";
 import AuthNavbar from "../../components/navbar/AuthNavbar";
 import { useTranslation } from "react-i18next";
 import whiteLogo from "../../assets/whiteLogo.svg";
+import  {useLanguage}  from "../../hooks/useLanguage";
+import api from "../../api/axiosInstance"; // ✅ axios instance
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const language = useLanguage();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -17,9 +20,7 @@ const LoginForm = () => {
   // Redirect if already logged in
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/"); // redirect to dashboard if already logged in
-    }
+    if (token) navigate("/"); // redirect to dashboard
   }, [navigate]);
 
   const handleSubmit = async (e) => {
@@ -38,34 +39,36 @@ const LoginForm = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("https://app.moovymed.de/api/v1/user/login", {
-        method: "POST",
+      const params = new URLSearchParams();
+      params.append("username", username);
+      params.append("password", password);
+
+      // Axios login call
+      const res = await api.post("/user/login", params, {
         headers: {
-          "Content-Type": "application/json",
+          "X-Locale": language,
         },
-        body: JSON.stringify({ username, password }),
       });
 
-      const data = await response.json();
-      setLoading(false);
+      const data = res.data;
 
-      if (response.ok && data.access_token) {
-        // ✅ Store token in localStorage
+      if (res.status === 200 && data.access_token) {
+        // Store tokens
         localStorage.setItem("token", data.access_token);
-        localStorage.setItem("token_type", data.token_type || "bearer");
+        localStorage.setItem("refresh_token", data.access_token); // same as access_token
         localStorage.setItem("expires_in", data.expires_in || "");
+        localStorage.setItem("token_type", data.token_type || "bearer");
 
         toast.success(t("toast.login-success") || "Login successful!");
         navigate("/"); // redirect to dashboard
       } else {
-        toast.error(
-          data.message || t("toast.login-failed") || "Invalid username or password"
-        );
+        toast.error(data.message || t("toast.login-failed") || "Invalid credentials");
       }
-    } catch (error) {
-      console.error("Login error:", error);
-      setLoading(false);
+    } catch (err) {
+      console.error("Login error:", err);
       toast.error(t("toast.server-error") || "Server error. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -76,20 +79,20 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="min-h-screen w-full flex flex-col" style={{ background:"linear-gradient(135deg, rgba(79, 177, 231, 1) 0%, rgba(255, 0, 117, 1) 100%)" }}>
-      {/* Navbar */}
+    <div
+      className="min-h-screen w-full flex flex-col"
+      style={{
+        background:
+          "linear-gradient(135deg, rgba(79, 177, 231, 1) 0%, rgba(255, 0, 117, 1) 100%)",
+      }}
+    >
       <AuthNavbar />
 
-      {/* Main Content */}
       <main className="flex-grow flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <img
-              src={whiteLogo}
-              alt="Logo"
-              className="h-12 filter brightness-0 invert"
-            />
+            <img src={whiteLogo} alt="Logo" className="h-12 filter brightness-0 invert" />
           </div>
 
           {/* Login Form */}

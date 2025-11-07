@@ -1,39 +1,29 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 const Categories = ({ filteredCategories, searchActive }) => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [language, setLanguage] = useState(localStorage.getItem("language") || "en");
   const [hoveredCategory, setHoveredCategory] = useState(null);
   const [tooltipPosition, setTooltipPosition] = useState({ x: 0, y: 0 });
   const navigate = useNavigate();
 
-  // 🔄 Listen for language changes (localStorage update)
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setLanguage(localStorage.getItem("language") || "en");
-    };
+  const language = useLanguage();
 
-    window.addEventListener("storage", handleStorageChange);
-    return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
-
+ 
+ 
   // 📦 Fetch Categories
   const fetchCategories = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/categories",
-        {},
+      const response = await api.post(
+        "categories",
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "X-Locale": language,
-          },
-        }
+          headers: { "X-Locale": language },
+        },
+       
       );
 
       if (response.data && response.data.data) {

@@ -12,16 +12,34 @@ import FeedbackButton from "../feedback/FeedbackButton";
 import LanguageSwitcher from "./LanguageSwitcher";
 import SearchModal from "../../components/SearchModal";
 import LogoMain from "../../assets/LogoMain.svg";
+import api from "../../api/axiosInstance";
+import { useLanguage } from "../../hooks/useLanguage";
 
 export default function DashboardNavbar() {
   const navigate = useNavigate();
   const [showSearchModal, setShowSearchModal] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const language = useLanguage();
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    navigate("/login");
+  // ✅ Logout function
+  const handleLogout = async () => {
+    try {
+      await api.get("/user/logout",{
+        headers: {
+          "X-Locale": language,
+        },
+      }); // Logout API call
+    } catch (err) {
+      console.error("Logout API failed:", err);
+    } finally {
+      // Clear local storage
+      localStorage.removeItem("token");
+      localStorage.removeItem("refresh_token");
+      localStorage.removeItem("expires_in");
+      localStorage.removeItem("token_type");
+      localStorage.removeItem("user"); // optional
+      navigate("/login");
+    }
   };
 
   return (
@@ -38,13 +56,11 @@ export default function DashboardNavbar() {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-4">
-              {/* Feedback */}
               <div className="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-full transition cursor-pointer">
                 <FiMessageSquare className="w-5 h-5 mr-2" />
                 <FeedbackButton />
               </div>
 
-              {/* Settings */}
               <button
                 onClick={() => navigate("/settings")}
                 className="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-full transition"
@@ -53,7 +69,6 @@ export default function DashboardNavbar() {
                 Settings
               </button>
 
-              {/* Search */}
               <span
                 onClick={() => setShowSearchModal(true)}
                 className="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-full transition cursor-pointer"
@@ -71,7 +86,6 @@ export default function DashboardNavbar() {
                 Logout
               </button>
 
-              {/* Language Switcher */}
               <LanguageSwitcher />
             </div>
 
@@ -81,11 +95,7 @@ export default function DashboardNavbar() {
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="text-blue-600 focus:outline-none"
               >
-                {mobileMenuOpen ? (
-                  <FiX className="w-6 h-6" />
-                ) : (
-                  <FiMenu className="w-6 h-6" />
-                )}
+                {mobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
               </button>
             </div>
           </div>
@@ -131,10 +141,7 @@ export default function DashboardNavbar() {
       </header>
 
       {/* Search Modal */}
-      <SearchModal
-        isOpen={showSearchModal}
-        onClose={() => setShowSearchModal(false)}
-      />
+      <SearchModal isOpen={showSearchModal} onClose={() => setShowSearchModal(false)} />
     </>
   );
 }

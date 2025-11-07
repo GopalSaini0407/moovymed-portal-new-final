@@ -3,6 +3,8 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import EditContentForm from "../components/EditContentForm";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function ContentDetail() {
   const { id } = useParams();
@@ -11,13 +13,15 @@ export default function ContentDetail() {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const language = useLanguage();
 
   const fetchContent = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get(
-        `https://app.moovymed.de/api/v1/category-content/get/${id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+      const res = await api.get(
+        `/category-content/get/${id}`,
+        { 
+          headers: { "X-Locale":language } ,
+        },
       );
       setContent(res.data.data.contentData);
       setTags(res.data.data.contentTags);
@@ -30,15 +34,17 @@ export default function ContentDetail() {
 
   useEffect(() => {
     if (id) fetchContent();
-  }, [id]);
+  }, [id,language]);
 
   const handleDelete = async () => {
     if (!window.confirm("Are you sure you want to delete this content?")) return;
     try {
-      const token = localStorage.getItem("token");
-      await axios.get(
-        `https://app.moovymed.de/api/v1/category-content/delete/${id}`,
-        { headers: { Authorization: `Bearer ${token}` } }
+
+      await api.get(
+        `/category-content/delete/${id}`,
+        { 
+          headers: { "X-Locale":language } ,
+        },
       );
       alert("🗑️ Deleted Successfully!");
       navigate(-1);

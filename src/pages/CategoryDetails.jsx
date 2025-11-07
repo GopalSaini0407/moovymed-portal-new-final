@@ -3,6 +3,8 @@ import axios from "axios";
 import MainLayout from "../layouts/MainLayout";
 import AddContentForm from "../components/AddContentForm";
 import { useParams, useNavigate } from "react-router-dom";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 const CategoryDetails = () => {
   const [contents, setContents] = useState([]);
@@ -17,21 +19,16 @@ const CategoryDetails = () => {
   const { id } = useParams();
   const categoryId = id;
   const navigate = useNavigate();
+  const language = useLanguage();
 
   // Fetch category info
   const fetchCategoryDetails = async () => {
     try {
-      const token = localStorage.getItem("token");
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/categories",
-        {},
+      const response = await api.post(
+        "/categories",
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "X-Locale": "en",
-          },
-        }
+          headers: { "X-Locale": language },
+        },
       );
 
       const allCategories = response.data.data || response.data;
@@ -45,17 +42,11 @@ const CategoryDetails = () => {
   // Fetch category contents
   const fetchCategoryContents = async (page = 1) => {
     try {
-      const token = localStorage.getItem("token");
-
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/category-contents",
+      const response = await api.post(
+        "/category-contents",
         { category_id: categoryId, page },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "X-Locale": "en",
-          },
+          headers: {"X-Locale":language },
         }
       );
 
@@ -75,7 +66,7 @@ const CategoryDetails = () => {
   useEffect(() => {
     fetchCategoryDetails();
     fetchCategoryContents();
-  }, []);
+  }, [language]);
 
   const handlePageChange = (page) => {
     setLoading(true);

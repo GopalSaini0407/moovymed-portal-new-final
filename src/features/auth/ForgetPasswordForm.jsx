@@ -3,6 +3,8 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import AuthNavbar from "../../components/navbar/AuthNavbar";
 import whiteLogo from "../../assets/whiteLogo.svg";
+import  {useLanguage}  from "../../hooks/useLanguage";
+import api from "../../api/axiosInstance"; // ✅ axios instance
 
 const ForgetPasswordForm = () => {
   const navigate = useNavigate();
@@ -10,47 +12,50 @@ const ForgetPasswordForm = () => {
   const [loading, setLoading] = useState(false);
   const [emailError, setEmailError] = useState("Value required.");
 
+  const language = useLanguage();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     if (!email) {
       setEmailError("Value required.");
       return;
     }
-
+  
     setLoading(true);
     try {
       const formData = new URLSearchParams();
       formData.append("email", email);
-
-      // ✅ Correct endpoint according to your API
-      const response = await fetch("https://app.moovymed.de/api/v1/user/forget-password", {
-        method: "POST",
+  
+      // ✅ Axios POST request
+      const response = await api.post("/user/forget-password", formData, {
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-          Accept: "application/json",
+          "X-Locale": language,
+          "Content-Type": "application/x-www-form-urlencoded", // important for URLSearchParams
         },
-        body: formData.toString(),
       });
-
-      const data = await response.json();
-
-      if (!response.ok) throw new Error(data.message || "Failed to send OTP");
-
+  
+      const data = response.data; // Axios automatically parses JSON
+  
+      if (!response.status || !data.user_id) {
+        throw new Error(data.message || "Failed to send OTP");
+      }
+  
       // ✅ Save user_id for next step (OTP verification)
       localStorage.setItem("reset_user_id", data.user_id);
-
+  
       toast.success(data.message || "OTP has been sent to your registered email.");
-
+  
       // ✅ Navigate to OTP verification page
       navigate("/verify-otp");
     } catch (err) {
+      console.error("Forgot password error:", err);
       toast.error(err.message || "Something went wrong");
     } finally {
       setLoading(false);
     }
   };
-
+  
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);

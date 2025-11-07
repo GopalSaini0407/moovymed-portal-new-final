@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function SearchModal({ isOpen, onClose }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -10,21 +12,19 @@ export default function SearchModal({ isOpen, onClose }) {
   const [categories, setCategories] = useState([]);
   const [categoriesLoading, setCategoriesLoading] = useState(false);
 
-  const token = localStorage.getItem("token");
+  const language = useLanguage();
+
   const navigate = useNavigate();
 
   // Fetch categories
   const fetchCategories = async () => {
     setCategoriesLoading(true);
     try {
-      const res = await axios.post(
-        "https://app.moovymed.de/api/v1/categories",
-        {},
+      const res = await api.post(
+        "/categories",
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "X-Locale": "en",
+            "X-Locale": language,
           },
         }
       );
@@ -55,14 +55,12 @@ export default function SearchModal({ isOpen, onClose }) {
         payload.category_id = categoryId;
       }
 
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/category-contents",
+      const response = await api.post(
+        "/category-contents",
         payload,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-            "X-Locale": "en",
+            "X-Locale": language,
           },
         }
       );
@@ -96,7 +94,7 @@ export default function SearchModal({ isOpen, onClose }) {
       setSelectedCategory("");
       fetchCategories();
     }
-  }, [isOpen]);
+  }, [isOpen,language]);
 
   // Handle result click - navigate to content detail
   const handleResultClick = (item) => {

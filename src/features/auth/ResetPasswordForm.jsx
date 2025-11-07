@@ -4,6 +4,8 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import whiteLogo from "../../assets/whiteLogo.svg";
 import AuthNavbar from "../../components/navbar/AuthNavbar";
+import  {useLanguage}  from "../../hooks/useLanguage";
+import api from "../../api/axiosInstance"; // ✅ axios instance
 
 const ResetPasswordForm = () => {
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ const ResetPasswordForm = () => {
   const [passwordError, setPasswordError] = useState("");
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState("");
+  const language = useLanguage();
 
   useEffect(() => {
     // ✅ Get user ID from localStorage (set in verify-otp step)
@@ -35,50 +38,61 @@ const ResetPasswordForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     // 🧠 Validation
     if (!form.password || !form.password_confirmation) {
       toast.warn("Please fill all fields");
       return;
     }
-
+  
     if (form.password !== form.password_confirmation) {
       setPasswordError("Passwords do not match");
       return;
     }
-
+  
     if (form.password.length < 6) {
       setPasswordError("Password must be at least 6 characters");
       return;
     }
-
+  
     try {
       setLoading(true);
-
-      // 🧩 API Call
-      const response = await axios.post(
-        "https://app.moovymed.de/api/v1/user/reset-password",
+  
+      // 🧩 API Call using Axios instance
+      const response = await api.post(
+        "/user/reset-password",
         {
-          id, // Pass the same user ID used in verify OTP
+          id, // same user ID saved from OTP verification
           password: form.password,
           password_confirmation: form.password_confirmation,
+        },
+        {
+          headers: {
+            "X-Locale": language,
+            "Content-Type": "application/json",
+          },
         }
       );
-
-      if (response.data?.status === "success") {
-        toast.success("Password reset successfully!");
+  
+      const data = response.data;
+  
+      if (data?.status === "success") {
+        toast.success(data.message || "Password reset successfully!");
         localStorage.removeItem("reset_user_id"); // clear saved ID
         navigate("/login");
       } else {
-        toast.error(response.data?.message || "Password reset failed!");
+        toast.error(data?.message || "Password reset failed!");
       }
     } catch (error) {
-      toast.error(error.response?.data?.message || "Something went wrong!");
+      console.error("Reset password error:", error);
+      toast.error(
+        error.response?.data?.message || "Something went wrong! Please try again."
+      );
     } finally {
       setLoading(false);
     }
   };
-
+  
   return (
     <>
     <AuthNavbar/>

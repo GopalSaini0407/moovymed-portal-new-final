@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { FaArrowLeft, FaTimes, FaEdit, FaPlus } from "react-icons/fa";
 import axios from "axios";
 import MainLayout from "../layouts/MainLayout";
+import api from "../api/axiosInstance";
+import { useLanguage } from "../hooks/useLanguage";
 
 export default function SettingsTags() {
   const [tags, setTags] = useState([]);
@@ -9,15 +11,14 @@ export default function SettingsTags() {
   const [showModal, setShowModal] = useState(false);
   const [newTag, setNewTag] = useState("");
 
-  const BASE_URL = "https://app.moovymed.de/api/v1";
-  const token = localStorage.getItem("token"); // ✅ token from localStorage
+  const language = useLanguage();
 
   // ✅ Fetch tags on component mount
   const fetchTags = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(`${BASE_URL}/tags`, {
-        headers: { Authorization: `Bearer ${token}` },
+      const res = await api.get(`/tags`, {
+        headers: {"X-Locale": language },
       });
       setTags(res.data.data || []);
     } catch (error) {
@@ -30,7 +31,7 @@ export default function SettingsTags() {
 
   useEffect(() => {
     fetchTags();
-  }, []);
+  }, [language]);
 
   // ✅ Create new tag (from Modal)
   const handleAddTag = async (e) => {
@@ -38,10 +39,12 @@ export default function SettingsTags() {
     if (!newTag.trim()) return alert("Please enter a tag name");
 
     try {
-      const res = await axios.post(
-        `${BASE_URL}/tag/create`,
+      const res = await api.post(
+        `/tag/create`,
         { tag: newTag },
-        { headers: { Authorization: `Bearer ${token}` } }
+        { 
+          headers: { "X-Locale": language },
+         }
       );
       setTags((prev) => [...prev, res.data.data]);
       setShowModal(false);
@@ -58,10 +61,12 @@ export default function SettingsTags() {
     if (!updatedTag || updatedTag === oldTag) return;
 
     try {
-      await axios.post(
-        `${BASE_URL}/tag/update/${id}`,
+      await api.post(
+        `/tag/update/${id}`,
         { tag: updatedTag },
-        { headers: { Authorization: `Bearer ${token}` } }
+        {
+          headers: { "X-Locale": language },
+           }
       );
       setTags((prev) =>
         prev.map((t) => (t.id === id ? { ...t, tag: updatedTag } : t))
@@ -77,8 +82,9 @@ export default function SettingsTags() {
     if (!window.confirm("Are you sure you want to delete this tag?")) return;
 
     try {
-      await axios.get(`${BASE_URL}/tag/delete/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
+      await api.get(`/tag/delete/${id}`, {
+
+          headers: { "X-Locale": language },
       });
       setTags((prev) => prev.filter((t) => t.id !== id));
     } catch (error) {
