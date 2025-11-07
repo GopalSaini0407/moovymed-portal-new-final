@@ -1,0 +1,153 @@
+{
+ 
+    "login": {
+      "title": "Login",
+      "welcome": "We’ll guide you through the login. Let’s start with your email. Then we’ll know if you need to login, or want to register.",
+      "username": "Username",
+      "username-placeholder": "Enter here",
+      "password": "Password",
+      "password-placeholder": "Enter here",
+      "forget-password": "Forget Password?",
+      "button": "Login",
+      "logging-in": "Logging in...",
+      "no-account": "Don't have an account?",
+      "create-one": "Create one"
+    },
+    "footer": {
+      "legal": "Legal",
+      "privacy": "Privacy"
+    },
+    "toast": {
+      "missing-credentials": "Please enter username and password",
+      "login-success": "Login successful!",
+      "login-failed": "Login failed",
+      "invalid-credentials": "Invalid credentials",
+      "value-required": "Value required."
+    },
+
+  
+  "recover-password": {
+    "title": "Recover Password",
+    "email-placeholder": "Enter email here",
+    "send-email": "Send Email",
+    "sign-in": "Sign In"
+  },
+  "reset-password": {
+    "title": "Reset Password",
+    "new-password": "New Password",
+    "new-password-placeholder": "Enter here",
+    "confirm-password": "Confirm Password",
+    "confirm-password-placeholder": "Enter here",
+    "save": "Save"
+  },
+  "home": {
+    "title": "Home",
+    "categories": "Categories",
+    "filter-by-tag": "Filter by tag",
+    "sections": {
+      "findings": "FINDINGS",
+      "images": "IMAGES",
+      "medications": "MEDICATIONS",
+      "moovies": "MOOVIES",
+      "passports": "PASSPORTS / IDS",
+      "communication": "COMMUNICATION",
+      "finances": "FINANCES",
+      "medical-network": "MEDICAL NETWORK",
+      "legal-documents": "LEGAL DOCUMENTS",
+      "medical-library": "MEDICAL LIBRARY",
+      "emergency-info": "EMERGENCY INFORMATION"
+    },
+    "more-info": "More Info"
+  },
+  "findings": {
+    "title": "Findings",
+    "search-placeholder": "Search here",
+    "edit": "Edit",
+    "test-image": "Test Image",
+    "lorem": "Lorem ipsum",
+    "allergy": "Allergy"
+  },
+  "delete": {
+    "title": "Delete",
+    "confirm": "Are you sure to delete?",
+    "warning": "This step cannot be reversed",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "add-document": {
+    "title": "Add document",
+    "description": "Upload any file and use the categories to keep track of things.",
+    "add-content": "Add Content",
+    "add-title": "Add Title",
+    "title-placeholder": "Add here",
+    "add-notes": "Add Notes",
+    "notes-placeholder": "Add here",
+    "choose-category": "Choose Category",
+    "image": "Image",
+    "add-tag": "Add Tag",
+    "tag-placeholder": "Add here",
+    "keywords-note": "Choose one or more keywords from the list of disciplines or come up with your own or combine them.",
+    "cancel": "Cancel",
+    "upload": "Upload"
+  },
+  "edit-document": {
+    "title": "Edit document",
+    "description": "Upload any file and use the categories to keep track of things.",
+    "edit-content": "Edit Content",
+    "add-title": "Add Title",
+    "test-image": "Test image",
+    "add-notes": "Add Notes",
+    "notes-placeholder": "Lorem Ipsum",
+    "choose-category": "Choose Category",
+    "image": "Image",
+    "add-tag": "Add Tag",
+    "tag-example": "Allergy",
+    "add-tags": "Add tags",
+    "keywords-note": "Choose one or more keywords from the list of disciplines or come up with your own or combine them.",
+    "save": "Save"
+  },
+  "feedback": {
+    "title": "Your feedback",
+    "description": "Send us here directly your wishes, improvement suggestions or error messages. We are very grateful for every hint. Alternatively you can also reach us by Email to support@moovymed.de.",
+    "title-label": "Title",
+    "title-placeholder": "Title",
+    "feedback-label": "Your Feedback",
+    "feedback-placeholder": "Lorem Ipsum",
+    "keywords-note": "Choose one or more keywords from the list of disciplines or come up with your own or combine them.",
+    "cancel": "Cancel",
+    "send": "Send"
+  },
+  "settings": {
+    "title": "Settings",
+    "tag-settings": "Tag Settings",
+    "tag-description": "Manage and edit your tags here.",
+    "user-profile": "User Profile",
+    "user-description": "Manage and edit your tags here."
+  },
+  "tag-settings": {
+    "title": "Tag Settings",
+    "description": "Manage and edit your tags here.",
+    "add-tags": "Add Tags",
+    "tags": [
+      "Allergies",
+      "Dermatology",
+      "Surgery",
+      "General Medicine/Family doctor"
+    ]
+  },
+  "add-tag": {
+    "title": "Add Tag",
+    "new-tag-name": "New Tag Name",
+    "placeholder": "Title",
+    "cancel": "Cancel",
+    "add": "Add"
+  },
+  "user-profile": {
+    "title": "User Profile",
+    "description": "Manage your profile",
+    "name": "Name",
+    "email": "viveksaini121006@gmail.com",
+    "save": "Save",
+    "logout": "Logout"
+  }
+}

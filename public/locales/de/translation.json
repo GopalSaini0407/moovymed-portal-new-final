@@ -1,0 +1,147 @@
+{
+    "login": {
+      "title": "Anmeldung",
+      "welcome": "Wir führen dich durch den Anmeldeprozess. Lass uns mit deiner E-Mail-Adresse beginnen. Dann wissen wir, ob du dich anmelden oder registrieren möchtest.",
+      "username": "Benutzername",
+      "username-placeholder": "Hier eingeben",
+      "password": "Passwort",
+      "password-placeholder": "Hier eingeben",
+      "forget-password": "Passwort vergessen?",
+      "button": "Anmelden",
+      "logging-in": "Anmeldung läuft...",
+      "no-account": "Du hast noch kein Konto?",
+      "create-one": "Konto erstellen"
+    },
+    "footer": {
+      "legal": "Rechtliches",
+      "privacy": "Datenschutz"
+    },
+    "toast": {
+      "missing-credentials": "Bitte Benutzername und Passwort eingeben",
+      "login-success": "Anmeldung erfolgreich!",
+      "login-failed": "Anmeldung fehlgeschlagen",
+      "invalid-credentials": "Ungültige Anmeldedaten",
+      "value-required": "Wert erforderlich."
+    },
+  "recover-password": {
+    "title": "Passwort wiederherstellen",
+    "email-placeholder": "E-Mail-Adresse hier eingeben",
+    "send-email": "E-Mail senden",
+    "sign-in": "Anmelden"
+  },
+  "reset-password": {
+    "title": "Passwort zurücksetzen",
+    "new-password": "Neues Passwort",
+    "new-password-placeholder": "Hier eintragen",
+    "confirm-password": "Passwort bestätigen",
+    "confirm-password-placeholder": "Hier eintragen",
+    "save": "Speichern"
+  },
+  "home": {
+    "categories": "Kategorien",
+    "filter-by-tag": "Nach Schlagworten filtern",
+    "sections": {
+      "findings": "Ergebnisse",
+      "images": "ABBILDUNGEN",
+      "medications": "MEDIKAMENTE",
+      "moovies": "FILME",
+      "passports": "PÄSSE / AUSWEISE",
+      "communication": "KOMMUNIKATION",
+      "finances": "FINANZEN",
+      "medical-network": "MEDIZINISCHES NETZWERK",
+      "legal-documents": "Rechtsdokumente",
+      "medical-library": "MEDIZINISCHE BIBLIOTHEK",
+      "emergency-info": "NOTFALLINFORMATIONEN"
+    },
+    "more-info": "Mehr Infos"
+  },
+  "findings": {
+    "title": "Ergebnisse",
+    "search-placeholder": "Hier suchen",
+    "edit": "Bearbeiten",
+    "test-image": "Testbild",
+    "lorem": "Lorem ipsum",
+    "allergy": "Allergie"
+  },
+  "delete": {
+    "confirm": "Sind Sie sicher, dass Sie löschen möchten?",
+    "warning": "Dieser Schritt kann nicht rückgängig gemacht werden.",
+    "yes": "Ja",
+    "no": "NEIN"
+  },
+  "add-document": {
+    "title": "Dokument hinzufügen",
+    "description": "Laden Sie beliebige Dateien hoch und nutzen Sie die Kategorien, um den Überblick zu behalten.",
+    "add-content": "Inhalte hinzufügen",
+    "add-title": "Titel hinzufügen",
+    "title-placeholder": "Hier hinzufügen",
+    "add-notes": "Notizen hinzufügen",
+    "notes-placeholder": "Hier hinzufügen",
+    "choose-category": "Kategorie auswählen",
+    "add-tag": "Tag hinzufügen",
+    "tag-placeholder": "Hier hinzufügen",
+    "keywords-note": "Wählen Sie ein oder mehrere Schlüsselwörter aus der Liste der Fachgebiete aus, denken Sie sich eigene aus oder kombinieren Sie diese.",
+    "cancel": "Stornieren",
+    "upload": "Hochladen"
+  },
+  "edit-document": {
+    "title": "Dokument bearbeiten",
+    "description": "Laden Sie beliebige Dateien hoch und nutzen Sie die Kategorien, um den Überblick zu behalten.",
+    "edit-content": "Inhalt bearbeiten",
+    "add-title": "Titel hinzufügen",
+    "test-image": "Testbild",
+    "add-notes": "Notizen hinzufügen",
+    "notes-placeholder": "Lorem Ipsum",
+    "choose-category": "Kategorie auswählen",
+    "image": "Bild",
+    "add-tag": "Tag hinzufügen",
+    "tag-example": "Allergie",
+    "add-tags": "Tags hinzufügen",
+    "keywords-note": "Wählen Sie ein oder mehrere Schlüsselwörter aus der Liste der Fachgebiete aus, denken Sie sich eigene aus oder kombinieren Sie diese.",
+    "save": "Speichern"
+  },
+  "feedback": {
+    "title": "Ihr Feedback",
+    "description": "Senden Sie uns Ihre Wünsche, Verbesserungsvorschläge oder Fehlermeldungen direkt an diese Adresse. Wir sind für jeden Hinweis dankbar. Alternativ erreichen Sie uns auch per E-Mail unter support@moovymed.de.",
+    "title-label": "Titel",
+    "title-placeholder": "Titel",
+    "feedback-label": "Ihr Feedback",
+    "feedback-placeholder": "Lorem Ipsum",
+    "keywords-note": "Wählen Sie ein oder mehrere Schlüsselwörter aus der Liste der Fachgebiete aus, denken Sie sich eigene aus oder kombinieren Sie diese.",
+    "cancel": "Stornieren",
+    "send": "Schicken"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "tag-settings": "Tag-Einstellungen",
+    "tag-description": "Hier können Sie Ihre Tags verwalten und bearbeiten.",
+    "user-profile": "Benutzerprofil",
+    "user-description": "Hier können Sie Ihre Tags verwalten und bearbeiten."
+  },
+  "tag-settings": {
+    "title": "Tag-Einstellungen",
+    "description": "Hier können Sie Ihre Tags verwalten und bearbeiten.",
+    "add-tags": "Tags hinzufügen",
+    "tags": [
+      "Allergien",
+      "Dermatologie",
+      "Chirurgie",
+      "Allgemeinmedizin/Hausarzt"
+    ]
+  },
+  "add-tag": {
+    "title": "Tag hinzufügen",
+    "new-tag-name": "Neuer Tag-Name",
+    "placeholder": "Titel",
+    "cancel": "Stornieren",
+    "add": "Hinzufügen"
+  },
+  "user-profile": {
+    "title": "Benutzerprofil",
+    "description": "Benutzerprofil",
+    "name": "Name",
+    "email": "viveksaini121006@gmail.com",
+    "save": "Speichern",
+    "logout": "Abmelden"
+  }
+}
