@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
+import toast from "react-hot-toast";
 
 const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
-  const [file, setFile] = useState(null); // single file
+  const [file, setFile] = useState(null);
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
   const [newTag, setNewTag] = useState("");
@@ -14,6 +16,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
   const [fileError, setFileError] = useState("");
 
   const language = useLanguage();
+  const { t } = useTranslation();
 
   // Fetch existing tags
   const fetchTags = async () => {
@@ -43,18 +46,23 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
       return;
     }
 
-    // Check file type
-    const allowedTypes = ["image/jpeg", "image/jpg", "image/png", "image/gif", "application/pdf"];
+    const allowedTypes = [
+      "image/jpeg",
+      "image/jpg",
+      "image/png",
+      "image/gif",
+      "application/pdf",
+    ];
     const maxSize = 10 * 1024 * 1024; // 10MB
 
     if (!allowedTypes.includes(selectedFile.type)) {
-      setFileError("Only JPEG, PNG, GIF images and PDF files are allowed");
+      setFileError(t("add-content.file.error-type"));
       setFile(null);
       return;
     }
 
     if (selectedFile.size > maxSize) {
-      setFileError("File size must be less than 10MB");
+      setFileError(t("add-content.file.error-size"));
       setFile(null);
       return;
     }
@@ -77,10 +85,10 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
       );
       setNewTag("");
       fetchTags();
-      alert("Tag added successfully!");
+      alert(t("add-content.tags.add-success"));
     } catch (error) {
       console.error("Error creating tag:", error);
-      alert("Failed to create tag");
+      alert(t("add-content.tags.add-failed"));
     }
   };
 
@@ -95,12 +103,10 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
       formData.append("notes", notes);
       formData.append("category_id", categoryId);
 
-      // ✅ Append single file
       if (file) {
         formData.append("media_file", file);
       }
 
-      // ✅ Append tags
       const selectedTagNames = tags
         .filter((t) => selectedTags.includes(t.id.toString()))
         .map((t) => t.tag);
@@ -109,34 +115,27 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
         formData.append(`tags[${i}]`, tagName)
       );
 
-      await api.post(
-        "/category-content/create",
-        formData,
-        {
-          headers: {
-            "X-Locale": language,
-          },
-        }
-      );
+      await api.post("/category-content/create", formData, {
+        headers: {
+          "X-Locale": language,
+        },
+      });
+      toast.success(t("add-content.alerts.success"));
 
-      alert("Content added successfully!");
+      // alert(t("add-content.alerts.success"));
       onSuccess();
       onClose();
     } catch (error) {
       console.error("Error adding content:", error);
-      alert("Failed to add content.");
+      alert(t("add-content.alerts.failed"));
     } finally {
       setLoading(false);
     }
   };
 
-  // Get file icon based on type
   const getFileIcon = (file) => {
-    if (file.type.startsWith('image/')) {
-      return "🖼️";
-    } else if (file.type === 'application/pdf') {
-      return "📄";
-    }
+    if (file.type.startsWith("image/")) return "🖼️";
+    if (file.type === "application/pdf") return "📄";
     return "📎";
   };
 
@@ -145,7 +144,9 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
       <div className="bg-white rounded-2xl w-full max-w-4xl p-6 shadow-xl relative">
         {/* Header */}
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-bold text-gray-800">Add New Content</h3>
+          <h3 className="text-xl font-bold text-gray-800">
+            {t("add-content.title")}
+          </h3>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 text-2xl font-light"
@@ -155,45 +156,45 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* First Row - Title and Notes side by side */}
+          {/* First Row - Title and Notes */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Title */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Title *
+                {t("add-content.labels.title")}
               </label>
               <input
                 type="text"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 required
+                placeholder={t("add-content.placeholders.title")}
                 className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                placeholder="Enter content title"
               />
             </div>
 
             {/* Notes */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Notes *
+                {t("add-content.labels.notes")}
               </label>
               <textarea
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 required
                 rows="1"
+                placeholder={t("add-content.placeholders.notes")}
                 className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
-                placeholder="Enter your notes here..."
               />
             </div>
           </div>
 
-          {/* Second Row - File Upload and Tags side by side */}
+          {/* Second Row - File Upload and Tags */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* File Upload */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Media File
+                {t("add-content.labels.media-file")}
               </label>
               <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-blue-400 transition-all duration-200">
                 <input
@@ -203,21 +204,19 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
                   className="hidden"
                   id="file-upload"
                 />
-                <label
-                  htmlFor="file-upload"
-                  className="cursor-pointer block"
-                >
+                <label htmlFor="file-upload" className="cursor-pointer block">
                   <div className="text-3xl mb-2">📁</div>
                   <p className="text-gray-600 font-medium mb-1">
-                    {file ? "Change File" : "Choose a file"}
+                    {file
+                      ? t("add-content.file.change")
+                      : t("add-content.file.choose")}
                   </p>
                   <p className="text-xs text-gray-500">
-                    JPG, PNG, GIF, PDF (Max 10MB)
+                    {t("add-content.file.types")}
                   </p>
                 </label>
               </div>
 
-              {/* File Preview */}
               {file && (
                 <div className="mt-3 p-3 bg-blue-50 rounded-lg border border-blue-200">
                   <div className="flex items-center space-x-3">
@@ -241,7 +240,6 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
                 </div>
               )}
 
-              {/* File Error */}
               {fileError && (
                 <p className="mt-2 text-sm text-red-600 flex items-center">
                   <span className="mr-1">⚠️</span>
@@ -253,7 +251,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
             {/* Tag Selection */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">
-                Select Tags
+                {t("add-content.labels.select-tags")}
               </label>
               <select
                 multiple
@@ -266,28 +264,28 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
                 className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 h-32"
               >
                 {tags.map((tag) => (
-                  <option key={tag.id} value={tag.id} className="py-2">
+                  <option key={tag.id} value={tag.id}>
                     {tag.tag}
                   </option>
                 ))}
               </select>
               <p className="text-xs text-gray-500 mt-1">
-                Hold Ctrl/Cmd to select multiple tags
+                {t("add-content.tags.select-hint")}
               </p>
             </div>
           </div>
 
-          {/* Third Row - Add New Tag full width */}
+          {/* Third Row - Add New Tag */}
           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Add New Tag
+              {t("add-content.labels.add-new-tag")}
             </label>
             <div className="flex space-x-3">
               <input
                 type="text"
                 value={newTag}
                 onChange={(e) => setNewTag(e.target.value)}
-                placeholder="Enter new tag name"
+                placeholder={t("add-content.placeholders.new-tag")}
                 className="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               />
               <button
@@ -295,7 +293,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
                 onClick={handleAddTag}
                 className="bg-green-500 text-white px-5 py-3 rounded-xl hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 font-medium"
               >
-                Add
+                {t("add-content.buttons.add-tag")}
               </button>
             </div>
           </div>
@@ -307,7 +305,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
               onClick={onClose}
               className="px-6 py-3 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-all duration-200 font-medium"
             >
-              Cancel
+              {t("add-content.buttons.cancel")}
             </button>
             <button
               type="submit"
@@ -320,14 +318,31 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
             >
               {loading ? (
                 <span className="flex items-center">
-                  <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  <svg
+                    className="animate-spin -ml-1 mr-2 h-4 w-4 text-white"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                  >
+                    <circle
+                      className="opacity-25"
+                      cx="12"
+                      cy="12"
+                      r="10"
+                      stroke="currentColor"
+                      strokeWidth="4"
+                    ></circle>
+                    <path
+                      className="opacity-75"
+                      fill="currentColor"
+                      d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0
+                     c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                    ></path>
                   </svg>
-                  Saving...
+                  {t("add-content.buttons.saving")}
                 </span>
               ) : (
-                "Save Content"
+                t("add-content.buttons.save")
               )}
             </button>
           </div>

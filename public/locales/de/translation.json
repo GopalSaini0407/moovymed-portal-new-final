@@ -217,12 +217,87 @@
   "toast-tag-error": "Fehler beim Erstellen des Tags",
   "toast-category-error": "Fehler beim Laden der Kategorien",
   "toast-no-category": "Bitte wählen Sie eine Kategorie aus"
-}
+},
 
-
-
-
-
+  "add-content": {
+    "title": "Neuen Inhalt hinzufügen",
+    "labels": {
+      "title": "Titel *",
+      "notes": "Notizen *",
+      "media-file": "Mediendatei",
+      "select-tags": "Tags auswählen",
+      "add-new-tag": "Neuen Tag hinzufügen"
+    },
+    "placeholders": {
+      "title": "Inhaltstitel eingeben",
+      "notes": "Notizen hier eingeben...",
+      "new-tag": "Neuen Tag-Namen eingeben"
+    },
+    "file": {
+      "choose": "Datei auswählen",
+      "change": "Datei ändern",
+      "types": "JPG, PNG, GIF, PDF (max. 10 MB)",
+      "error-type": "Nur JPEG-, PNG-, GIF-Bilder und PDF-Dateien sind erlaubt",
+      "error-size": "Dateigröße muss kleiner als 10 MB sein"
+    },
+    "tags": {
+      "select-hint": "Strg/Cmd gedrückt halten, um mehrere Tags auszuwählen",
+      "add-success": "Tag erfolgreich hinzugefügt!",
+      "add-failed": "Tag konnte nicht erstellt werden"
+    },
+    "buttons": {
+      "add-tag": "Hinzufügen",
+      "cancel": "Abbrechen",
+      "save": "Inhalt speichern",
+      "saving": "Speichern..."
+    },
+    "alerts": {
+      "success": "Inhalt erfolgreich hinzugefügt!",
+      "failed": "Fehler beim Hinzufügen des Inhalts."
+    }
+  },
+  
+    "edit-content": {
+      "title": "Inhalt bearbeiten",
+      "labels": {
+        "title": "Titel *",
+        "notes": "Notizen *",
+        "media-file": "Mediendatei",
+        "select-tags": "Tags auswählen",
+        "add-new-tag": "Neuen Tag hinzufügen"
+      },
+      "placeholders": {
+        "title": "Inhaltstitel eingeben",
+        "notes": "Geben Sie hier Ihre Notizen ein...",
+        "new-tag": "Neuen Tagnamen eingeben"
+      },
+      "file": {
+        "choose": "Datei auswählen",
+        "change": "Datei ändern",
+        "types": "JPG, PNG, GIF, PDF (max. 10MB)",
+        "error-type": "Es sind nur JPEG-, PNG-, GIF-Bilder und PDF-Dateien erlaubt",
+        "error-size": "Dateigröße muss kleiner als 10MB sein",
+        "existing-file": "Vorhandene Datei",
+        "current-image": "Aktuelles Bild"
+      },
+      "tags": {
+        "select-hint": "Halten Sie Strg/Cmd, um mehrere Tags auszuwählen",
+        "add-success": "Tag erfolgreich hinzugefügt!",
+        "add-failed": "Tag konnte nicht erstellt werden"
+      },
+      "buttons": {
+        "add-tag": "Hinzufügen",
+        "cancel": "Abbrechen",
+        "update": "Inhalt aktualisieren",
+        "updating": "Wird aktualisiert..."
+      },
+      "alerts": {
+        "success": "Inhalt erfolgreich aktualisiert!",
+        "failed": "Aktualisierung fehlgeschlagen!"
+      }
+    }
+  
+  
 
 
 }

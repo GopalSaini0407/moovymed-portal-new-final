@@ -224,7 +224,89 @@
   "toast-tag-error": "Failed to create tag",
   "toast-category-error": "Failed to load categories",
   "toast-no-category": "Please select a category"
-}
+},
+
+  "add-content": {
+    "title": "Add New Content",
+    "labels": {
+      "title": "Title *",
+      "notes": "Notes *",
+      "media-file": "Media File",
+      "select-tags": "Select Tags",
+      "add-new-tag": "Add New Tag"
+    },
+    "placeholders": {
+      "title": "Enter content title",
+      "notes": "Enter your notes here...",
+      "new-tag": "Enter new tag name"
+    },
+    "file": {
+      "choose": "Choose a file",
+      "change": "Change File",
+      "types": "JPG, PNG, GIF, PDF (Max 10MB)",
+      "error-type": "Only JPEG, PNG, GIF images and PDF files are allowed",
+      "error-size": "File size must be less than 10MB"
+    },
+    "tags": {
+      "select-hint": "Hold Ctrl/Cmd to select multiple tags",
+      "add-success": "Tag added successfully!",
+      "add-failed": "Failed to create tag"
+    },
+    "buttons": {
+      "add-tag": "Add",
+      "cancel": "Cancel",
+      "save": "Save Content",
+      "saving": "Saving..."
+    },
+    "alerts": {
+      "success": "Content added successfully!",
+      "failed": "Failed to add content."
+    }
+  },
+  
+    "edit-content": {
+      "title": "Edit Content",
+      "labels": {
+        "title": "Title *",
+        "notes": "Notes *",
+        "media-file": "Media File",
+        "select-tags": "Select Tags",
+        "add-new-tag": "Add New Tag"
+      },
+      "placeholders": {
+        "title": "Enter content title",
+        "notes": "Enter your notes here...",
+        "new-tag": "Enter new tag name"
+      },
+      "file": {
+        "choose": "Choose a file",
+        "change": "Change File",
+        "types": "JPG, PNG, GIF, PDF (Max 10MB)",
+        "error-type": "Only JPEG, PNG, GIF images and PDF files are allowed",
+        "error-size": "File size must be less than 10MB",
+        "existing-file": "Existing file",
+        "current-image": "Current Image"
+      },
+      "tags": {
+        "select-hint": "Hold Ctrl/Cmd to select multiple tags",
+        "add-success": "Tag added successfully!",
+        "add-failed": "Failed to create tag"
+      },
+      "buttons": {
+        "add-tag": "Add",
+        "cancel": "Cancel",
+        "update": "Update Content",
+        "updating": "Updating..."
+      },
+      "alerts": {
+        "success": "Content updated successfully!",
+        "failed": "Update failed!"
+      }
+    }
+  
+  
+
+
 
 
 
