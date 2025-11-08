@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 const Categories = ({ filteredCategories, searchActive }) => {
   const [categories, setCategories] = useState([]);
@@ -12,6 +13,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
   const navigate = useNavigate();
 
   const language = useLanguage();
+  const { t } = useTranslation();
 
  
  
@@ -66,7 +68,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
   if (loading) {
     return (
       <div className="text-center py-10 text-gray-500">
-        Loading categories...
+      {t("categories.loading")}
       </div>
     );
   }
@@ -76,8 +78,8 @@ const Categories = ({ filteredCategories, searchActive }) => {
       <div className="bg-white rounded-2xl shadow-sm p-6">
         <div className="text-center py-8 text-gray-500">
           <div className="text-4xl mb-3">😕</div>
-          <p>No categories found</p>
-          <p className="text-sm mt-2">Try different search terms</p>
+          <p>{t("categories.no-categories")}</p>
+          <p className="text-sm mt-2">{t("categories.try-different")}</p>
         </div>
       </div>
     );
@@ -87,7 +89,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
     <div className="bg-white rounded-2xl shadow-sm p-6 relative">
       {!searchActive && (
         <div className="text-center mb-6">
-          <span className="text-sm font-medium text-gray-700">Categories</span>
+          <span className="text-sm font-medium text-gray-700">{t("categories.title")}</span>
         </div>
       )}
 
@@ -112,7 +114,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
             </div>
             {category.content_count !== null && (
               <div className="text-blue-600 text-xs font-semibold">
-                {category.content_count} item(s)
+                {category.content_count} {t("categories.single-item")}(s)
               </div>
             )}
             
@@ -158,7 +160,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
                 {hoveredCategory.content_count !== null && (
                   <div className="mt-2 pt-2 border-t border-blue-400">
                     <span className="text-blue-200 text-xs font-semibold">
-                      {hoveredCategory.content_count} items available
+                      {hoveredCategory.content_count} {t("categories.multiple-items")}
                     </span>
                   </div>
                 )}

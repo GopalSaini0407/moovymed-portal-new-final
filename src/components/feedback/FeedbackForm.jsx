@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import api from "../../api/axiosInstance";
 import { useLanguage } from "../../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 export default function FeedbackForm({ onCancel }) {
   const [title, setTitle] = useState("");
@@ -11,6 +12,7 @@ export default function FeedbackForm({ onCancel }) {
   const titleRef = useRef(null);
 
   const language = useLanguage();
+  const { t } = useTranslation();
 
   const errors = {
     title: title.trim() === "" ? "Value required." : "",
@@ -74,14 +76,15 @@ export default function FeedbackForm({ onCancel }) {
       {/* Content */}
       <div className="space-y-4">
         <p className="text-md text-gray-600 text-left">
-          Send us your wishes, improvement suggestions, or error messages.  
-          We’re grateful for every hint.  
-          Alternatively, you can also email us at{" "}
-          <a href="mailto:support@moovymed.de" className="underline text-indigo-600">
+          {t("feedback.description")}{" "}
+          <a
+            href="mailto:support@moovymed.de"
+            className="underline text-indigo-600"
+          >
             support@moovymed.de
           </a>.
         </p>
-
+    
         {/* Title field */}
         <div className="flex flex-col">
           <label
@@ -90,12 +93,12 @@ export default function FeedbackForm({ onCancel }) {
               errors.title && touched.title ? "text-red-600" : "text-gray-700"
             }`}
           >
-            Title <span aria-hidden className="text-red-600">*</span>
+            {t("feedback.form.title-label")}
           </label>
           <input
             id="inputTitle"
             ref={titleRef}
-            placeholder="Title"
+            placeholder={t("feedback.form.title-placeholder")}
             required
             aria-required
             aria-invalid={!!(errors.title && touched.title)}
@@ -109,10 +112,12 @@ export default function FeedbackForm({ onCancel }) {
             }`}
           />
           {errors.title && touched.title && (
-            <p className="mt-1 text-sm text-red-600">{errors.title}</p>
+            <p className="mt-1 text-sm text-red-600">
+              {t("feedback.form.title-required")}
+            </p>
           )}
         </div>
-
+    
         {/* Feedback field */}
         <div className="flex flex-col">
           <label
@@ -123,11 +128,11 @@ export default function FeedbackForm({ onCancel }) {
                 : "text-gray-700"
             }`}
           >
-            Your feedback <span aria-hidden className="text-red-600">*</span>
+            {t("feedback.form.content-label")}
           </label>
           <textarea
             id="inputFeedback"
-            placeholder="Content"
+            placeholder={t("feedback.form.content-placeholder")}
             required
             aria-required
             aria-invalid={!!(errors.feedback && touched.feedback)}
@@ -142,10 +147,12 @@ export default function FeedbackForm({ onCancel }) {
             }`}
           />
           {errors.feedback && touched.feedback && (
-            <p className="mt-1 text-sm text-red-600">{errors.feedback}</p>
+            <p className="mt-1 text-sm text-red-600">
+              {t("feedback.form.content-required")}
+            </p>
           )}
         </div>
-
+    
         {/* Response message */}
         {message && (
           <div
@@ -159,7 +166,7 @@ export default function FeedbackForm({ onCancel }) {
           </div>
         )}
       </div>
-
+    
       {/* Actions */}
       <div className="pt-4 border-t flex justify-end gap-3 mt-4">
         <button
@@ -167,7 +174,7 @@ export default function FeedbackForm({ onCancel }) {
           onClick={onCancel}
           className="inline-flex items-center rounded-md px-4 py-2 text-sm font-semibold text-gray-600 hover:bg-gray-100 focus:outline-none"
         >
-          Cancel
+          {t("feedback.buttons.cancel")}
         </button>
         <button
           type="submit"
@@ -178,9 +185,10 @@ export default function FeedbackForm({ onCancel }) {
           } focus:outline-none focus:ring-2 focus:ring-indigo-400`}
           disabled={!isValid || loading}
         >
-          {loading ? "Sending..." : "Send"}
+          {loading ? "Sending..." : t("feedback.buttons.send")}
         </button>
       </div>
     </form>
+    
   );
 }

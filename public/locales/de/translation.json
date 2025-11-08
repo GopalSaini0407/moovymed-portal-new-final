@@ -69,25 +69,53 @@
   "confirm-password": "Passwort bestätigen",
   "button": "Passwort zurücksetzen"
 },
+"navbar": {
+  "feedback": "Rückmeldung",
+  "settings": "Einstellungen",
+  "search": "Suchen",
+  "logout": "Abmelden",
+  "german": "Deutsch",
+  "english": "Englisch"
+},
+"welcome": {
+  "greeting": "Hallo, {{name}}",
+  "message": "Willkommen zurück!"
+},
+"dashboard": {
+  "add-content": "Inhalt hinzufügen",
+  "category-search-title": "Kategoriesuche",
+  "category-search-description": "Kategorien nach Name oder Beschreibung suchen",
+  "search-placeholder": "Kategorien suchen...",
+  "clear": "Löschen",
+  "loading": "Wird geladen..."
+},
+"categories": {
+  "title": "Kategorien",
+  "single-item": "Artikel",
+  "multiple-items": "verfügbar",
+  "no-categories": "Keine Kategorien gefunden",
+  "try-different": "Versuchen Sie es mit anderen Suchbegriffen",
+  "loading": "Kategorien werden geladen..."
+},
 
-  "home": {
-    "categories": "Kategorien",
-    "filter-by-tag": "Nach Schlagworten filtern",
-    "sections": {
-      "findings": "Ergebnisse",
-      "images": "ABBILDUNGEN",
-      "medications": "MEDIKAMENTE",
-      "moovies": "FILME",
-      "passports": "PÄSSE / AUSWEISE",
-      "communication": "KOMMUNIKATION",
-      "finances": "FINANZEN",
-      "medical-network": "MEDIZINISCHES NETZWERK",
-      "legal-documents": "Rechtsdokumente",
-      "medical-library": "MEDIZINISCHE BIBLIOTHEK",
-      "emergency-info": "NOTFALLINFORMATIONEN"
-    },
-    "more-info": "Mehr Infos"
+"feedback": {
+  "title": "Feedback geben",
+  "description": "Senden Sie uns Ihre Wünsche, Verbesserungsvorschläge oder Fehlermeldungen. Wir sind für jeden Hinweis dankbar. Alternativ können Sie uns auch eine E-Mail an support@moovymed.de senden.",
+  "form": {
+    "title-label": "Titel *",
+    "title-placeholder": "Titel",
+    "title-required": "Wert erforderlich.",
+    "content-label": "Ihr Feedback *",
+    "content-placeholder": "Inhalt",
+    "content-required": "Bitte geben Sie Ihr Feedback ein."
   },
+  "buttons": {
+    "cancel": "Abbrechen",
+    "send": "Senden"
+  }
+},
+
+
   "findings": {
     "title": "Ergebnisse",
     "search-placeholder": "Hier suchen",
@@ -133,17 +161,7 @@
     "keywords-note": "Wählen Sie ein oder mehrere Schlüsselwörter aus der Liste der Fachgebiete aus, denken Sie sich eigene aus oder kombinieren Sie diese.",
     "save": "Speichern"
   },
-  "feedback": {
-    "title": "Ihr Feedback",
-    "description": "Senden Sie uns Ihre Wünsche, Verbesserungsvorschläge oder Fehlermeldungen direkt an diese Adresse. Wir sind für jeden Hinweis dankbar. Alternativ erreichen Sie uns auch per E-Mail unter support@moovymed.de.",
-    "title-label": "Titel",
-    "title-placeholder": "Titel",
-    "feedback-label": "Ihr Feedback",
-    "feedback-placeholder": "Lorem Ipsum",
-    "keywords-note": "Wählen Sie ein oder mehrere Schlüsselwörter aus der Liste der Fachgebiete aus, denken Sie sich eigene aus oder kombinieren Sie diese.",
-    "cancel": "Stornieren",
-    "send": "Schicken"
-  },
+
   "settings": {
     "title": "Einstellungen",
     "tag-settings": "Tag-Einstellungen",

@@ -71,26 +71,55 @@
   "confirm-password": "Confirm Password",
   "button": "Reset Password"
 },
+"navbar": {
+  "feedback": "Feedback",
+  "settings": "Settings",
+  "search": "Search",
+  "logout": "Logout",
+  "german": "German",
+  "english": "English"
+},
 
-  "home": {
-    "title": "Home",
-    "categories": "Categories",
-    "filter-by-tag": "Filter by tag",
-    "sections": {
-      "findings": "FINDINGS",
-      "images": "IMAGES",
-      "medications": "MEDICATIONS",
-      "moovies": "MOOVIES",
-      "passports": "PASSPORTS / IDS",
-      "communication": "COMMUNICATION",
-      "finances": "FINANCES",
-      "medical-network": "MEDICAL NETWORK",
-      "legal-documents": "LEGAL DOCUMENTS",
-      "medical-library": "MEDICAL LIBRARY",
-      "emergency-info": "EMERGENCY INFORMATION"
-    },
-    "more-info": "More Info"
+"welcome": {
+  "greeting": "Hello, {{name}}",
+  "message": "Welcome back!"
+},
+
+"dashboard": {
+  "add-content": "Add content",
+  "category-search-title": "Category Search",
+  "category-search-description": "Search categories by name or description",
+  "search-placeholder": "Search categories...",
+  "clear": "Clear",
+  "loading": "Loading..."
+},
+"categories": {
+  "title": "Categories",
+  "single-item": "item",
+  "multiple-items": "items available",
+  "no-categories": "No categories found",
+  "try-different": "Try different search terms",
+  "loading": "Loading categories..."
+},
+
+"feedback": {
+  "title": "Give Feedback",
+  "description": "Send us your wishes, improvement suggestions, or error messages. We’re grateful for every hint. Alternatively, you can also email us at support@moovymed.de.",
+  "form": {
+    "title-label": "Title *",
+    "title-placeholder": "Title",
+    "title-required": "Value required.",
+    "content-label": "Your feedback *",
+    "content-placeholder": "Content",
+    "content-required": "Please enter your feedback."
   },
+  "buttons": {
+    "cancel": "Cancel",
+    "send": "Send"
+  }
+},
+
+
   "findings": {
     "title": "Findings",
     "search-placeholder": "Search here",
@@ -138,17 +167,7 @@
     "keywords-note": "Choose one or more keywords from the list of disciplines or come up with your own or combine them.",
     "save": "Save"
   },
-  "feedback": {
-    "title": "Your feedback",
-    "description": "Send us here directly your wishes, improvement suggestions or error messages. We are very grateful for every hint. Alternatively you can also reach us by Email to support@moovymed.de.",
-    "title-label": "Title",
-    "title-placeholder": "Title",
-    "feedback-label": "Your Feedback",
-    "feedback-placeholder": "Lorem Ipsum",
-    "keywords-note": "Choose one or more keywords from the list of disciplines or come up with your own or combine them.",
-    "cancel": "Cancel",
-    "send": "Send"
-  },
+
   "settings": {
     "title": "Settings",
     "tag-settings": "Tag Settings",
