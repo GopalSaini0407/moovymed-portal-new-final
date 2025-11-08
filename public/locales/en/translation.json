@@ -216,7 +216,7 @@
   "add-new-tag-placeholder": "Enter new tag name",
   "add-tag-button": "Add",
   "cancel-button": "Cancel",
-  "save-button": "Save Content",
+  "save-button": "Save",
   "saving": "Saving...",
   "toast-success": "Content added successfully! 🎉",
   "toast-error": "Failed to add content. Please try again.",

@@ -209,7 +209,7 @@
   "add-new-tag-placeholder": "Neuen Tag-Namen eingeben",
   "add-tag-button": "Hinzufügen",
   "cancel-button": "Abbrechen",
-  "save-button": "Inhalt speichern",
+  "save-button": "speichern",
   "saving": "Speichern...",
   "toast-success": "Inhalt erfolgreich hinzugefügt! 🎉",
   "toast-error": "Fehler beim Hinzufügen des Inhalts. Bitte versuchen Sie es erneut.",

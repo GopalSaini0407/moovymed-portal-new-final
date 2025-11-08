@@ -26,7 +26,6 @@ export default function FeedbackButton() {
       >
         <FeedbackForm
           onSubmit={(data) => {
-            console.log("Submitted:", data);
             setIsModalOpen(false);
           }}
           onCancel={() => setIsModalOpen(false)}

@@ -1,41 +1,21 @@
 import React from "react";
 import DocumentUpload from "./DocumentUpload";
 import { useTranslation } from "react-i18next";
+import Model from "../model/Model";
 
 export default function DocumentUploadModal({ open, onClose }) {
-  if (!open) return null;
   const { t } = useTranslation();
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4"
-      onClick={onClose}
+    <Model
+      isOpen={open}
+      onClose={onClose}
+      title={t("document-upload.title")}
+      size="lg" // 👈 You can change: sm | md | lg | xl | full
     >
-      <div
-        className="bg-white rounded-2xl shadow-xl w-full max-w-4xl mx-4 overflow-hidden flex flex-col max-h-[90vh]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Header */}
-        <div className="flex justify-between items-center border-b p-6 sticky top-0 bg-white z-10">
-        <h2 className="text-xl font-bold text-gray-800">
-  {t("document-upload.title")}
-</h2>
-          <button
-            onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl font-light transition-colors"
-            aria-label="Close"
-          >
-            ×
-          </button>
-        </div>
-
-        {/* Body - Scrollable */}
-        <div className="flex-1 overflow-y-auto">
-          <div className="p-6">
-            <DocumentUpload onClose={onClose} />
-          </div>
-        </div>
+      <div className="max-h-[75vh] overflow-y-auto">
+        <DocumentUpload onClose={onClose} />
       </div>
-    </div>
+    </Model>
   );
 }

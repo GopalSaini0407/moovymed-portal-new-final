@@ -175,7 +175,7 @@ const CategoryDetails = () => {
           </h2>
           <button
             onClick={() => setIsModalOpen(true)}
-            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
+            className="bg-blue-500 text-white md:px-4 md:py-2 text-sm md:text-md px-2 py-1 rounded-lg hover:bg-blue-600 transition"
           >
             {t("category-details.buttons.add-content")}
           </button>

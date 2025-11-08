@@ -39,7 +39,7 @@ const Model = ({
                  onClick={onClose}
                className="absolute top-5 right-3 text-gray-500 hover:text-gray-700 text-xl"
              >
-              <AiOutlineClose size={20} className="text-gray-600 hover:text-gray-800" />
+              <AiOutlineClose size={25} className="text-red-600 hover:text-red-800" />
             </button>
 
             {/* Title */}

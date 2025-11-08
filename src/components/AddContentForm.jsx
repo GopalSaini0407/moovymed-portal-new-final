@@ -151,7 +151,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 text-2xl font-light"
           >
-            ×
+          <span className="text-4xl text-red-500">x</span>
           </button>
         </div>
 

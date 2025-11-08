@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import EditContentForm from "../components/EditContentForm";
+import MediaModal from "../components/MediaModal"; // Import
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
@@ -13,6 +14,9 @@ export default function ContentDetail() {
   const [tags, setTags] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const [mediaModalOpen, setMediaModalOpen] = useState(false); // New
+  const [selectedMedia, setSelectedMedia] = useState(null); // New
+
   const language = useLanguage();
   const { t } = useTranslation();
 
@@ -51,33 +55,41 @@ export default function ContentDetail() {
   const renderMedia = (media) => {
     if (!media) return null;
 
+    const handleClick = (file) => {
+      setSelectedMedia(file);
+      setMediaModalOpen(true);
+    };
+
     const renderFile = (file, index) => {
       if (file.endsWith(".mp4")) {
         return (
           <video
             key={index}
             controls
-            className="w-60 h-60 rounded-2xl border shadow-sm"
+            className="w-60 h-60 rounded-2xl border shadow-sm cursor-pointer"
+            onClick={() => handleClick(file)}
           >
             <source src={file} type="video/mp4" />
           </video>
         );
       } else if (file.endsWith(".pdf")) {
         return (
-          <iframe
+          <div
             key={index}
-            src={file}
-            title={`${t("content-detail.media-types.pdf")}-${index}`}
-            className="w-60 h-60 border rounded-2xl shadow-sm"
-          ></iframe>
+            className="w-60 h-60 border-amber-50 rounded-2xl shadow-sm flex items-center justify-center text-gray-700 font-semibold cursor-pointer bg-gray-100"
+            onClick={() => handleClick(file)}
+          >
+            📄 PDF
+          </div>
         );
       } else {
         return (
           <img
             key={index}
             src={file}
-            alt={`${t("content-detail.media-types.image")}-${index}`}
-            className="w-60 h-60 object-cover rounded-2xl border shadow-sm"
+            alt={`media-${index}`}
+            className="w-60 h-60 object-cover rounded-2xl shadow-sm cursor-pointer"
+            onClick={() => handleClick(file)}
           />
         );
       }
@@ -111,10 +123,7 @@ export default function ContentDetail() {
         {/* 🔹 Top Box - Details */}
         <div
           className="rounded-2xl shadow-sm p-6"
-          style={{
-            backdropFilter: "blur(20px)",
-            backgroundColor: "rgba(255, 255, 255, 0.75)",
-          }}
+          style={{ backdropFilter: "blur(20px)", backgroundColor: "rgba(255, 255, 255, 0.75)" }}
         >
           {/* Back Button */}
           <button
@@ -145,7 +154,8 @@ export default function ContentDetail() {
                 key={tag.id}
                 className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full"
               >
-                {t("content-detail.tags-prefix")}{tag.tag}
+                {t("content-detail.tags-prefix")}
+                {tag.tag}
               </span>
             ))}
           </div>
@@ -170,19 +180,15 @@ export default function ContentDetail() {
         {/* 🔹 Bottom Box - Image / Media Section */}
         <div
           className="rounded-2xl shadow-sm p-6 flex justify-center"
-          style={{
-            backdropFilter: "blur(20px)",
-            backgroundColor: "rgba(255, 255, 255, 0.75)",
-          }}
+          style={{ backdropFilter: "blur(20px)", backgroundColor: "rgba(255, 255, 255, 0.75)" }}
         >
           {renderMedia(content.media_file)}
         </div>
       </div>
 
-      {/* Edit Modal */}
-      {editModalOpen && (
-        <EditContentForm id={id} onClose={() => setEditModalOpen(false)} onSuccess={fetchContent} />
-      )}
+      {/* Modals */}
+      {editModalOpen && <EditContentForm id={id} onClose={() => setEditModalOpen(false)} onSuccess={fetchContent} />}
+      {mediaModalOpen && <MediaModal fileUrl={selectedMedia} isOpen={mediaModalOpen} onClose={() => setMediaModalOpen(false)} />}
     </MainLayout>
   );
 }

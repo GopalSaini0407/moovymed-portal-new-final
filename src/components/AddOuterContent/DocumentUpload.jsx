@@ -164,62 +164,10 @@ const DocumentUpload = ({ onClose }) => {
 
   return (
     <div className="space-y-6">
+      
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Category + Title */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              {t("document-upload.select-category-label")}
-            </label>
-            <select
-              value={selectedCategoryId}
-              onChange={(e) => setSelectedCategoryId(e.target.value)}
-              required
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500"
-            >
-              <option value="">{t("document-upload.select-category-placeholder")}</option>
-              {categories.map((c) => (
-                <option key={c.id} value={c.id}>
-                  {c.category_name}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          <div className="md:col-span-2">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              {t("document-upload.title-label")}
-            </label>
-            <input
-              type="text"
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder={t("document-upload.title-placeholder")}
-              required
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-        </div>
-
-        {/* Notes */}
-        <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
-            {t("document-upload.notes-label")}
-          </label>
-          <textarea
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-            rows="3"
-            required
-            placeholder={t("document-upload.notes-placeholder")}
-            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 resize-none"
-          />
-        </div>
-
-        {/* File + Tags */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* File Upload */}
-          <div>
+         {/* File Upload */}
+         <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               {t("document-upload.media-file-label")}
             </label>
@@ -265,6 +213,60 @@ const DocumentUpload = ({ onClose }) => {
               </p>
             )}
           </div>
+        {/* Title */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+
+          <div className="md:col-span-1">
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              {t("document-upload.title-label")}
+            </label>
+            <input
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              placeholder={t("document-upload.title-placeholder")}
+              required
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+           {/* Notes */}
+        <div className="md:col-span-1">
+          <label className="block text-sm font-semibold text-gray-700 mb-2">
+            {t("document-upload.notes-label")}
+          </label>
+          <textarea
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
+            rows="1"
+            required
+            placeholder={t("document-upload.notes-placeholder")}
+            className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 resize-none"
+          />
+        </div>
+        </div>
+        {/* Category */}
+        <div>
+            <label className="block text-sm font-semibold text-gray-700 mb-2">
+              {t("document-upload.select-category-label")}
+            </label>
+            <select
+              value={selectedCategoryId}
+              onChange={(e) => setSelectedCategoryId(e.target.value)}
+              required
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500"
+            >
+              <option value="">{t("document-upload.select-category-placeholder")}</option>
+              {categories.map((c) => (
+                <option key={c.id} value={c.id}>
+                  {c.category_name}
+                </option>
+              ))}
+            </select>
+          </div>
+        {/* File + Tags */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+         
 
           {/* Tags */}
           <div>
@@ -277,7 +279,7 @@ const DocumentUpload = ({ onClose }) => {
               onChange={(e) =>
                 setSelectedTags(Array.from(e.target.selectedOptions, (opt) => opt.value))
               }
-              className="w-full border border-gray-300 rounded-xl px-4 py-3 h-40 focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500"
             >
               {tags.map((tag) => (
                 <option key={tag.id} value={tag.id}>
@@ -289,14 +291,12 @@ const DocumentUpload = ({ onClose }) => {
               {t("document-upload.select-tags-helper")}
             </p>
           </div>
-        </div>
-
-        {/* Add New Tag */}
+           {/* Add New Tag */}
         <div>
           <label className="block text-sm font-semibold text-gray-700 mb-2">
             {t("document-upload.add-new-tag-label")}
           </label>
-          <div className="flex space-x-3">
+          <div className="">
             <input
               type="text"
               value={newTag}
@@ -307,13 +307,16 @@ const DocumentUpload = ({ onClose }) => {
             <button
               type="button"
               onClick={handleAddTag}
-              className="bg-green-500 text-white px-5 py-3 rounded-xl hover:bg-green-600 font-medium"
+              className="bg-green-500 text-white mt-2 px-5 py-3 rounded-xl hover:bg-green-600 font-medium"
             >
               {t("document-upload.add-tag-button")}
             </button>
           </div>
         </div>
 
+        </div>
+
+       
         {/* Buttons */}
         <div className="flex justify-end space-x-3 pt-6 border-t border-gray-200">
           <button
