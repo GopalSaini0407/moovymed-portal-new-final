@@ -119,86 +119,117 @@
   }
 },
 
+"settings": {
+  "back": "Back",
+  "title": "Settings",
+  "tag-settings-title": "Tag Settings",
+  "tag-settings-description": "Manage and edit your Tags here.",
+  "user-profile-title": "User Profile",
+  "user-profile-description": "Manage your profile."
+},
 
-  "findings": {
-    "title": "Findings",
-    "search-placeholder": "Search here",
-    "edit": "Edit",
-    "test-image": "Test Image",
-    "lorem": "Lorem ipsum",
-    "allergy": "Allergy"
+
+ "settings-tags": {
+  "back": "Back",
+  "title": "Tag Settings",
+  "description": "Manage and edit your Tags here.",
+  "add-tag": "Add Tag",
+  "loading": "Loading tags...",
+  "no-tags": "No tags found.",
+  "edit-title": "Edit Tag Name",
+  "delete-confirm": "Are you sure you want to delete this tag?",
+  "alert": {
+    "empty-tag": "Please enter a tag name."
   },
-  "delete": {
-    "title": "Delete",
-    "confirm": "Are you sure to delete?",
-    "warning": "This step cannot be reversed",
-    "yes": "Yes",
-    "no": "No"
+  "tooltip": {
+    "edit": "Edit tag",
+    "delete": "Delete tag"
   },
-  "add-document": {
-    "title": "Add document",
-    "description": "Upload any file and use the categories to keep track of things.",
-    "add-content": "Add Content",
-    "add-title": "Add Title",
-    "title-placeholder": "Add here",
-    "add-notes": "Add Notes",
-    "notes-placeholder": "Add here",
-    "choose-category": "Choose Category",
-    "image": "Image",
-    "add-tag": "Add Tag",
-    "tag-placeholder": "Add here",
-    "keywords-note": "Choose one or more keywords from the list of disciplines or come up with your own or combine them.",
+  "error-fetch": "Failed to fetch tags.",
+  "error-create": "Failed to create tag.",
+  "error-update": "Failed to update tag.",
+  "error-delete": "Failed to delete tag.",
+  "toast": {
+    "add-success": "Tag added successfully!",
+    "update-success": "Tag updated successfully!",
+    "delete-success": "Tag deleted successfully!"
+  },
+  "modal": {
+    "title": "Add New Tag",
+    "edit-title": "Edit Tag",
+    "label": "Tag Name",
+    "placeholder": "Enter tag name",
     "cancel": "Cancel",
-    "upload": "Upload"
-  },
-  "edit-document": {
-    "title": "Edit document",
-    "description": "Upload any file and use the categories to keep track of things.",
-    "edit-content": "Edit Content",
-    "add-title": "Add Title",
-    "test-image": "Test image",
-    "add-notes": "Add Notes",
-    "notes-placeholder": "Lorem Ipsum",
-    "choose-category": "Choose Category",
-    "image": "Image",
-    "add-tag": "Add Tag",
-    "tag-example": "Allergy",
-    "add-tags": "Add tags",
-    "keywords-note": "Choose one or more keywords from the list of disciplines or come up with your own or combine them.",
     "save": "Save"
-  },
-
-  "settings": {
-    "title": "Settings",
-    "tag-settings": "Tag Settings",
-    "tag-description": "Manage and edit your tags here.",
-    "user-profile": "User Profile",
-    "user-description": "Manage and edit your tags here."
-  },
-  "tag-settings": {
-    "title": "Tag Settings",
-    "description": "Manage and edit your tags here.",
-    "add-tags": "Add Tags",
-    "tags": [
-      "Allergies",
-      "Dermatology",
-      "Surgery",
-      "General Medicine/Family doctor"
-    ]
-  },
-  "add-tag": {
-    "title": "Add Tag",
-    "new-tag-name": "New Tag Name",
-    "placeholder": "Title",
-    "cancel": "Cancel",
-    "add": "Add"
-  },
-  "user-profile": {
-    "title": "User Profile",
-    "description": "Manage your profile",
-    "name": "Name",
-    "email": "viveksaini121006@gmail.com",
-    "save": "Save",
-    "logout": "Logout"
   }
+},
+"user-profile": {
+  "back": "Back",
+  "title": "User Profile",
+  "description": "Manage your profile.",
+  "email-label": "Email",
+  "name-label": "Name",
+  "name-placeholder": "Enter your name",
+  "save": "Save"
+},
+"search-modal": {
+  "title": "🔍 Search Content",
+  "placeholder": "Search by title or notes...",
+  "filter-label": "Filter by Category",
+  "filter-placeholder": "Select Categories",
+  "loading-categories": "Loading categories...",
+  "empty-prompt-icon": "🔍",
+  "empty-prompt-title": "Type something to search content",
+  "empty-prompt-description": "Search by title or notes across all categories",
+  "searching": "Searching in {{category}}...",
+  "searching-all": "Searching in all categories...",
+  "found-results": "Found {{count}} result(s) for \"{{query}}\"",
+  "found-results-in-category": "Found {{count}} result(s) for \"{{query}}\" in {{category}}",
+  "no-results-icon": "😕",
+  "no-results-title": "No results found for \"{{query}}\"",
+  "no-results-description": "Try different keywords or check the spelling",
+  "browse-categories-title": "Or browse categories:",
+  "browse-category-items": "{{count}} items",
+  "quick-access-title": "Quick Access Categories",
+  "quick-access-item-count": "{{count}} items",
+  "instructions": "💡 Search content by title or notes. Click on any result to view details.",
+  "unknown-category": "Unknown Category"
+},
+
+"document-upload": {
+  "title":"Upload Document",
+  "select-category-label": "Select Category *",
+  "select-category-placeholder": "Choose a category",
+  "title-label": "Title *",
+  "title-placeholder": "Enter content title",
+  "notes-label": "Notes *",
+  "notes-placeholder": "Enter your notes here...",
+  "media-file-label": "Media File",
+  "file-choose": "Choose a file",
+  "file-change": "Change File",
+  "file-types": "JPG, PNG, GIF, PDF (Max 10MB)",
+  "file-error-type": "Only JPEG, PNG, GIF images and PDF files are allowed",
+  "file-error-size": "File size must be less than 10MB",
+  "select-tags-label": "Select Tags",
+  "select-tags-helper": "Hold Ctrl/Cmd to select multiple tags",
+  "add-new-tag-label": "Add New Tag",
+  "add-new-tag-placeholder": "Enter new tag name",
+  "add-tag-button": "Add",
+  "cancel-button": "Cancel",
+  "save-button": "Save Content",
+  "saving": "Saving...",
+  "toast-success": "Content added successfully! 🎉",
+  "toast-error": "Failed to add content. Please try again.",
+  "toast-tag-success": "Tag added successfully!",
+  "toast-tag-error": "Failed to create tag",
+  "toast-category-error": "Failed to load categories",
+  "toast-no-category": "Please select a category"
 }
+
+
+
+
+}
+
+
+

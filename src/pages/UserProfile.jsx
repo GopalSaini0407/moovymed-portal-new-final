@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import MainLayout from "../layouts/MainLayout";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 export default function UserProfile() {
   const [profile, setProfile] = useState({
@@ -13,6 +14,7 @@ export default function UserProfile() {
   });
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const { t } = useTranslation();
 
   const language = useLanguage();
 
@@ -83,116 +85,116 @@ export default function UserProfile() {
 
   return (
     <MainLayout>
- <div className="max-w-3xl mx-auto p-6 rounded-2xl"
-    style={{
-      backdropFilter: "blur(20px)",
-      backgroundColor: "rgba(255, 255, 255, 0.75)",
-    }}
-    >
-      {/* Back Button */}
-      <button
-        onClick={() => window.history.back()}
-        className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 mb-6"
-      >
-        <FaArrowLeft /> Back
-      </button>
+<div
+  className="max-w-3xl mx-auto p-6 rounded-2xl"
+  style={{
+    backdropFilter: "blur(20px)",
+    backgroundColor: "rgba(255, 255, 255, 0.75)",
+  }}
+>
+  {/* Back Button */}
+  <button
+    onClick={() => window.history.back()}
+    className="flex items-center gap-2 text-indigo-600 hover:text-indigo-800 mb-6"
+  >
+    <FaArrowLeft /> {t("user-profile.back")}
+  </button>
 
-      {/* Header */}
+  {/* Header */}
+  <div className="mb-6">
+    <h2 className="text-3xl font-semibold text-gray-900">
+      {t("user-profile.title")}
+    </h2>
+    <p className="text-gray-600 mt-1">{t("user-profile.description")}</p>
+  </div>
+
+  {/* Loader */}
+  {loading ? (
+    <div className="text-center py-10 text-gray-600">
+      {t("user-profile.loading", "Loading profile...")}
+    </div>
+  ) : (
+    <form autoComplete="off" onSubmit={handleSubmit} className="p-6 rounded-xl">
+      {/* Email Field */}
       <div className="mb-6">
-        <h2 className="text-3xl font-semibold text-gray-900">User Profile</h2>
-        <p className="text-gray-600 mt-1">Manage your profile</p>
+        <label
+          htmlFor="email"
+          className="block text-sm font-medium text-gray-700 mb-2"
+        >
+          {t("user-profile.email-label")}
+        </label>
+        <input
+          id="email"
+          type="email"
+          value={profile.email}
+          readOnly
+          className="w-full border border-gray-300 bg-gray-100 text-gray-700 rounded-md px-3 py-2 focus:outline-none"
+        />
       </div>
 
-      {/* Loader */}
-      {loading ? (
-        <div className="text-center py-10 text-gray-600">Loading profile...</div>
-      ) : (
-        <form
-          autoComplete="off"
-          onSubmit={handleSubmit}
-          className=" p-6 rounded-xl"
+      {/* Name Field */}
+      <div className="mb-6">
+        <label
+          htmlFor="name"
+          className="block text-sm border-gray-300 font-medium text-gray-700 mb-2"
         >
-          {/* Email Field */}
-          <div className="mb-6">
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700 mb-2"
-            >
-              Email
-            </label>
-            <input
-              id="email"
-              type="email"
-              value={profile.email}
-              readOnly
-              className="w-full border border-gray-300 bg-gray-100 text-gray-700 rounded-md px-3 py-2 focus:outline-none"
-            />
-          </div>
+          {t("user-profile.name-label")}
+        </label>
+        <input
+          id="name"
+          type="text"
+          placeholder={t("user-profile.name-placeholder")}
+          value={profile.name}
+          onChange={(e) =>
+            setProfile((prev) => ({ ...prev, name: e.target.value }))
+          }
+          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+        />
+      </div>
 
-          {/* Name Field */}
-          <div className="mb-6">
-            <label
-              htmlFor="name"
-              className="block text-sm border-gray-300 font-medium text-gray-700 mb-2"
+      {/* Save Button */}
+      <button
+        type="submit"
+        disabled={saving}
+        className={`flex items-center justify-center gap-2 border border-indigo-500 text-indigo-600 px-5 py-2 rounded-md text-sm font-semibold transition ${
+          saving ? "bg-indigo-100 cursor-not-allowed" : "hover:bg-indigo-50"
+        }`}
+      >
+        {saving ? (
+          <>
+            <svg
+              className="animate-spin h-4 w-4 text-indigo-600"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
             >
-              Name
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Enter your name"
-              value={profile.name}
-              onChange={(e) =>
-                setProfile((prev) => ({ ...prev, name: e.target.value }))
-              }
-              className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
-            />
-          </div>
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 
+                0 5.373 0 12h4z"
+              ></path>
+            </svg>
+            {t("user-profile.saving", "Saving...")}
+          </>
+        ) : (
+          <>
+            <FaCheck /> {t("user-profile.save")}
+          </>
+        )}
+      </button>
+    </form>
+  )}
+</div>
 
-          {/* Save Button */}
-          <button
-            type="submit"
-            disabled={saving}
-            className={`flex items-center justify-center gap-2 border border-indigo-500 text-indigo-600 px-5 py-2 rounded-md text-sm font-semibold transition ${
-              saving
-                ? "bg-indigo-100 cursor-not-allowed"
-                : "hover:bg-indigo-50"
-            }`}
-          >
-            {saving ? (
-              <>
-                <svg
-                  className="animate-spin h-4 w-4 text-indigo-600"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                >
-                  <circle
-                    className="opacity-25"
-                    cx="12"
-                    cy="12"
-                    r="10"
-                    stroke="currentColor"
-                    strokeWidth="4"
-                  ></circle>
-                  <path
-                    className="opacity-75"
-                    fill="currentColor"
-                    d="M4 12a8 8 0 018-8V0C5.373 0 
-                    0 5.373 0 12h4z"
-                  ></path>
-                </svg>
-                Saving...
-              </>
-            ) : (
-              <>
-                <FaCheck /> Save
-              </>
-            )}
-          </button>
-        </form>
-      )}
-    </div>
     </MainLayout>
    
   );

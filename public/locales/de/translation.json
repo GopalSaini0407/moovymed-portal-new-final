@@ -114,85 +114,115 @@
     "send": "Senden"
   }
 },
+"settings": {
+  "back": "Zurück",
+  "title": "Einstellungen",
+  "tag-settings-title": "Tag-Einstellungen",
+  "tag-settings-description": "Verwalten und bearbeiten Sie hier Ihre Tags.",
+  "user-profile-title": "Benutzerprofil",
+  "user-profile-description": "Verwalten Sie Ihr Profil."
+},
 
-
-  "findings": {
-    "title": "Ergebnisse",
-    "search-placeholder": "Hier suchen",
-    "edit": "Bearbeiten",
-    "test-image": "Testbild",
-    "lorem": "Lorem ipsum",
-    "allergy": "Allergie"
+"settings-tags": {
+  "back": "Zurück",
+  "title": "Tag-Einstellungen",
+  "description": "Verwalten und bearbeiten Sie hier Ihre Tags.",
+  "add-tag": "Tag hinzufügen",
+  "loading": "Tags werden geladen...",
+  "no-tags": "Keine Tags gefunden.",
+  "edit-title": "Tag-Namen bearbeiten",
+  "delete-confirm": "Möchten Sie diesen Tag wirklich löschen?",
+  "alert": {
+    "empty-tag": "Bitte geben Sie einen Tag-Namen ein."
   },
-  "delete": {
-    "confirm": "Sind Sie sicher, dass Sie löschen möchten?",
-    "warning": "Dieser Schritt kann nicht rückgängig gemacht werden.",
-    "yes": "Ja",
-    "no": "NEIN"
+  "tooltip": {
+    "edit": "Tag bearbeiten",
+    "delete": "Tag löschen"
   },
-  "add-document": {
-    "title": "Dokument hinzufügen",
-    "description": "Laden Sie beliebige Dateien hoch und nutzen Sie die Kategorien, um den Überblick zu behalten.",
-    "add-content": "Inhalte hinzufügen",
-    "add-title": "Titel hinzufügen",
-    "title-placeholder": "Hier hinzufügen",
-    "add-notes": "Notizen hinzufügen",
-    "notes-placeholder": "Hier hinzufügen",
-    "choose-category": "Kategorie auswählen",
-    "add-tag": "Tag hinzufügen",
-    "tag-placeholder": "Hier hinzufügen",
-    "keywords-note": "Wählen Sie ein oder mehrere Schlüsselwörter aus der Liste der Fachgebiete aus, denken Sie sich eigene aus oder kombinieren Sie diese.",
-    "cancel": "Stornieren",
-    "upload": "Hochladen"
+  "error-fetch": "Fehler beim Laden der Tags.",
+  "error-create": "Fehler beim Erstellen des Tags.",
+  "error-update": "Fehler beim Aktualisieren des Tags.",
+  "error-delete": "Fehler beim Löschen des Tags.",
+  "toast": {
+    "add-success": "Tag erfolgreich hinzugefügt!",
+    "update-success": "Tag erfolgreich aktualisiert!",
+    "delete-success": "Tag erfolgreich gelöscht!"
   },
-  "edit-document": {
-    "title": "Dokument bearbeiten",
-    "description": "Laden Sie beliebige Dateien hoch und nutzen Sie die Kategorien, um den Überblick zu behalten.",
-    "edit-content": "Inhalt bearbeiten",
-    "add-title": "Titel hinzufügen",
-    "test-image": "Testbild",
-    "add-notes": "Notizen hinzufügen",
-    "notes-placeholder": "Lorem Ipsum",
-    "choose-category": "Kategorie auswählen",
-    "image": "Bild",
-    "add-tag": "Tag hinzufügen",
-    "tag-example": "Allergie",
-    "add-tags": "Tags hinzufügen",
-    "keywords-note": "Wählen Sie ein oder mehrere Schlüsselwörter aus der Liste der Fachgebiete aus, denken Sie sich eigene aus oder kombinieren Sie diese.",
+  "modal": {
+    "title": "Neuen Tag hinzufügen",
+    "edit-title": "Tag bearbeiten",
+    "label": "Tag-Name",
+    "placeholder": "Tag-Namen eingeben",
+    "cancel": "Abbrechen",
     "save": "Speichern"
-  },
-
-  "settings": {
-    "title": "Einstellungen",
-    "tag-settings": "Tag-Einstellungen",
-    "tag-description": "Hier können Sie Ihre Tags verwalten und bearbeiten.",
-    "user-profile": "Benutzerprofil",
-    "user-description": "Hier können Sie Ihre Tags verwalten und bearbeiten."
-  },
-  "tag-settings": {
-    "title": "Tag-Einstellungen",
-    "description": "Hier können Sie Ihre Tags verwalten und bearbeiten.",
-    "add-tags": "Tags hinzufügen",
-    "tags": [
-      "Allergien",
-      "Dermatologie",
-      "Chirurgie",
-      "Allgemeinmedizin/Hausarzt"
-    ]
-  },
-  "add-tag": {
-    "title": "Tag hinzufügen",
-    "new-tag-name": "Neuer Tag-Name",
-    "placeholder": "Titel",
-    "cancel": "Stornieren",
-    "add": "Hinzufügen"
-  },
-  "user-profile": {
-    "title": "Benutzerprofil",
-    "description": "Benutzerprofil",
-    "name": "Name",
-    "email": "viveksaini121006@gmail.com",
-    "save": "Speichern",
-    "logout": "Abmelden"
   }
+},
+"user-profile": {
+  "back": "Zurück",
+  "title": "Benutzerprofil",
+  "description": "Verwalten Sie Ihr Profil.",
+  "email-label": "E-Mail",
+  "name-label": "Name",
+  "name-placeholder": "Geben Sie Ihren Namen ein",
+  "save": "Speichern"
+},
+"search-modal": {
+  "title": "🔍 Inhalte suchen",
+  "placeholder": "Nach Titel oder Notizen suchen...",
+  "filter-label": "Nach Kategorie filtern",
+  "filter-placeholder": "Kategorien auswählen",
+  "loading-categories": "Kategorien werden geladen...",
+  "empty-prompt-icon": "🔍",
+  "empty-prompt-title": "Gib etwas ein, um Inhalte zu suchen",
+  "empty-prompt-description": "Suche nach Titel oder Notizen in allen Kategorien",
+  "searching": "Suche in {{category}}...",
+  "searching-all": "Suche in allen Kategorien...",
+  "found-results": "{{count}} Ergebnis(se) für „{{query}}“ gefunden",
+  "found-results-in-category": "{{count}} Ergebnis(se) für „{{query}}“ in {{category}} gefunden",
+  "no-results-icon": "😕",
+  "no-results-title": "Keine Ergebnisse für „{{query}}“ gefunden",
+  "no-results-description": "Versuche andere Suchbegriffe oder überprüfe die Schreibweise",
+  "browse-categories-title": "Oder durchsuche Kategorien:",
+  "browse-category-items": "{{count}} Elemente",
+  "quick-access-title": "Schnellzugriff auf Kategorien",
+  "quick-access-item-count": "{{count}} Elemente",
+  "instructions": "💡 Suche nach Inhalten anhand von Titel oder Notizen. Klicke auf ein Ergebnis, um Details anzuzeigen.",
+  "unknown-category": "Unbekannte Kategorie"
+},
+"document-upload": {
+  "title": "Dokument hochladen",
+  "select-category-label": "Kategorie auswählen *",
+  "select-category-placeholder": "Wähle eine Kategorie",
+  "title-label": "Titel *",
+  "title-placeholder": "Geben Sie den Inhaltstitel ein",
+  "notes-label": "Notizen *",
+  "notes-placeholder": "Geben Sie hier Ihre Notizen ein...",
+  "media-file-label": "Mediendatei",
+  "file-choose": "Datei auswählen",
+  "file-change": "Datei ändern",
+  "file-types": "JPG, PNG, GIF, PDF (max. 10 MB)",
+  "file-error-type": "Nur JPEG-, PNG-, GIF-Bilder und PDF-Dateien sind erlaubt",
+  "file-error-size": "Dateigröße muss kleiner als 10 MB sein",
+  "select-tags-label": "Tags auswählen",
+  "select-tags-helper": "Strg/Cmd gedrückt halten, um mehrere Tags auszuwählen",
+  "add-new-tag-label": "Neuen Tag hinzufügen",
+  "add-new-tag-placeholder": "Neuen Tag-Namen eingeben",
+  "add-tag-button": "Hinzufügen",
+  "cancel-button": "Abbrechen",
+  "save-button": "Inhalt speichern",
+  "saving": "Speichern...",
+  "toast-success": "Inhalt erfolgreich hinzugefügt! 🎉",
+  "toast-error": "Fehler beim Hinzufügen des Inhalts. Bitte versuchen Sie es erneut.",
+  "toast-tag-success": "Tag erfolgreich hinzugefügt!",
+  "toast-tag-error": "Fehler beim Erstellen des Tags",
+  "toast-category-error": "Fehler beim Laden der Kategorien",
+  "toast-no-category": "Bitte wählen Sie eine Kategorie aus"
+}
+
+
+
+
+
+
+
 }

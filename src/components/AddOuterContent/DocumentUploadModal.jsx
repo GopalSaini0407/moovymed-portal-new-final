@@ -1,8 +1,10 @@
 import React from "react";
 import DocumentUpload from "./DocumentUpload";
+import { useTranslation } from "react-i18next";
 
 export default function DocumentUploadModal({ open, onClose }) {
   if (!open) return null;
+  const { t } = useTranslation();
 
   return (
     <div
@@ -15,7 +17,9 @@ export default function DocumentUploadModal({ open, onClose }) {
       >
         {/* Header */}
         <div className="flex justify-between items-center border-b p-6 sticky top-0 bg-white z-10">
-          <h2 className="text-xl font-bold text-gray-800">Upload Document</h2>
+        <h2 className="text-xl font-bold text-gray-800">
+  {t("document-upload.title")}
+</h2>
           <button
             onClick={onClose}
             className="text-gray-400 hover:text-gray-600 text-2xl font-light transition-colors"
