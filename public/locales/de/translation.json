@@ -12,6 +12,25 @@
       "no-account": "Du hast noch kein Konto?",
       "create-one": "Konto erstellen"
     },
+    "register": {
+  "title": "Registrieren",
+  "welcome": "Erstelle dein Konto, um zu beginnen.",
+  "full-name": "Vollständiger Name",
+  "full-name-placeholder": "Gib deinen vollständigen Namen ein",
+  "username": "Benutzername",
+  "username-placeholder": "Gib deinen Benutzernamen ein",
+  "email": "E-Mail",
+  "email-placeholder": "Gib deine E-Mail-Adresse ein",
+  "password": "Passwort",
+  "password-placeholder": "Gib dein Passwort ein",
+  "confirm-password": "Passwort bestätigen",
+  "confirm-password-placeholder": "Gib dein Passwort erneut ein",
+  "button": "Registrieren",
+  "registering": "Registrierung läuft...",
+  "have-account": "Hast du bereits ein Konto?",
+  "login-here": "Hier anmelden"
+},
+
     "footer": {
       "legal": "Rechtliches",
       "privacy": "Datenschutz"
@@ -23,20 +42,34 @@
       "invalid-credentials": "Ungültige Anmeldedaten",
       "value-required": "Wert erforderlich."
     },
-  "recover-password": {
-    "title": "Passwort wiederherstellen",
-    "email-placeholder": "E-Mail-Adresse hier eingeben",
-    "send-email": "E-Mail senden",
-    "sign-in": "Anmelden"
-  },
-  "reset-password": {
-    "title": "Passwort zurücksetzen",
-    "new-password": "Neues Passwort",
-    "new-password-placeholder": "Hier eintragen",
-    "confirm-password": "Passwort bestätigen",
-    "confirm-password-placeholder": "Hier eintragen",
-    "save": "Speichern"
-  },
+    "forgot-password": {
+  "title": "Passwort zurücksetzen",
+  "description": "Gib deine E-Mail-Adresse ein, und wir senden dir einen OTP-Code, um dein Passwort zurückzusetzen.",
+  "email": "E-Mail",
+  "email-placeholder": "Gib deine E-Mail-Adresse ein",
+  "email-required": "Wert erforderlich.",
+  "button": "OTP senden",
+  "remember-password": "Erinnerst du dich an dein Passwort?",
+  "back-to-login": "Zurück zum Login"
+},
+
+"verify-otp": {
+  "title": "OTP überprüfen",
+  "description": "Gib den 6-stelligen OTP-Code ein, der an deine registrierte E-Mail gesendet wurde.",
+  "otp-placeholder": "000000",
+  "button": "OTP überprüfen",
+  "no-otp": "OTP nicht erhalten?",
+  "resend": "Erneut senden"
+},
+
+"reset-password": {
+  "title": "Passwort zurücksetzen",
+  "description": "Geben Sie Ihr neues Passwort ein.",
+  "new-password": "Neues Passwort",
+  "confirm-password": "Passwort bestätigen",
+  "button": "Passwort zurücksetzen"
+},
+
   "home": {
     "categories": "Kategorien",
     "filter-by-tag": "Nach Schlagworten filtern",

@@ -5,9 +5,11 @@ import AuthNavbar from "../../components/navbar/AuthNavbar";
 import whiteLogo from "../../assets/whiteLogo.svg";
 import  {useLanguage}  from "../../hooks/useLanguage";
 import api from "../../api/axiosInstance"; // ✅ axios instance
+import { useTranslation } from "react-i18next";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [form, setForm] = useState({
     username: "",
@@ -34,7 +36,7 @@ const RegisterForm = () => {
   
     // Basic validation
     if (!form.username || !form.name || !form.email || !form.password) {
-      toast.warn("Please fill all fields");
+      toast.warn(t("Please fill all fields"));
       return;
     }
   
@@ -81,91 +83,98 @@ const RegisterForm = () => {
     <div className="min-h-screen w-full flex flex-col" style={{ background:"linear-gradient(135deg, rgba(79, 177, 231, 1) 0%, rgba(255, 0, 117, 1) 100%)" }}>
       <AuthNavbar />
       <main className="flex-grow flex items-center justify-center py-8 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl w-full">
-          {/* Logo */}
-          <div className="flex justify-center mb-8">
-            <img
-              src={whiteLogo}
-              alt="Logo"
-              className="h-12 filter brightness-0 invert"
+  <div className="max-w-2xl w-full">
+    {/* Logo */}
+    <div className="flex justify-center mb-8">
+      <img
+        src={whiteLogo}
+        alt="Logo"
+        className="h-12 filter brightness-0 invert"
+      />
+    </div>
+
+    {/* Register Form */}
+    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+      <div className="p-8">
+        <form onSubmit={handleSubmit} autoComplete="on" className="space-y-6">
+          <div className="text-center">
+            <h5 className="text-2xl font-semibold text-gray-800">
+              {t("register.title")}
+            </h5>
+            <p className="text-sm text-gray-600 leading-relaxed">
+              {t("register.welcome")}
+            </p>
+          </div>
+
+          {/* Grid Fields */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <InputField
+              label={t("register.full-name")}
+              placeholder={t("register.full-name-placeholder")}
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+            />
+            <InputField
+              label={t("register.username")}
+              placeholder={t("register.username-placeholder")}
+              name="username"
+              value={form.username}
+              onChange={handleChange}
+            />
+            <InputField
+              label={t("register.email")}
+              placeholder={t("register.email-placeholder")}
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              error={emailError}
+            />
+            <InputField
+              label={t("register.password")}
+              placeholder={t("register.password-placeholder")}
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
             />
           </div>
 
-          {/* Register Form */}
-          <div className="bg-white rounded-xl shadow-lg overflow-hidden">
-            <div className="p-8">
-              <form onSubmit={handleSubmit} autoComplete="on" className="space-y-6">
-                <div className="text-center">
-                  <h5 className="text-2xl font-semibold text-gray-800">Register</h5>
-                  <p className="text-sm text-gray-600 leading-relaxed">
-                    Create your account to get started.
-                  </p>
-                </div>
+          <InputField
+            label={t("register.confirm-password")}
+            placeholder={t("register.confirm-password-placeholder")}
+            name="password_confirmation"
+            type="password"
+            value={form.password_confirmation}
+            onChange={handleChange}
+          />
 
-                {/* Grid Fields */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <InputField
-                    label="Full Name"
-                    name="name"
-                    value={form.name}
-                    onChange={handleChange}
-                  />
-                  <InputField
-                    label="Username"
-                    name="username"
-                    value={form.username}
-                    onChange={handleChange}
-                  />
-                  <InputField
-                    label="E-Mail"
-                    name="email"
-                    value={form.email}
-                    onChange={handleChange}
-                    error={emailError}
-                  />
-                  <InputField
-                    label="Password"
-                    name="password"
-                    type="password"
-                    value={form.password}
-                    onChange={handleChange}
-                  />
-                </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className={`w-full py-3 px-4 rounded-lg text-white shadow-md text-base font-medium transition ${
+              loading
+                ? "bg-blue-400 cursor-not-allowed"
+                : "bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
+            }`}
+          >
+            {loading ? t("register.registering") : t("register.button")}
+          </button>
 
-                <InputField
-                  label="Confirm Password"
-                  name="password_confirmation"
-                  type="password"
-                  value={form.password_confirmation}
-                  onChange={handleChange}
-                />
-
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className={`w-full py-3 px-4 rounded-lg text-white shadow-md text-base font-medium transition ${
-                    loading
-                      ? "bg-blue-400 cursor-not-allowed"
-                      : "bg-blue-600 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
-                  }`}
-                >
-                  {loading ? "Registering..." : "Register"}
-                </button>
-
-                <div className="text-center text-sm text-gray-600 pt-4">
-                  Already have an account?{" "}
-                  <Link
-                    to="/login"
-                    className="text-blue-600 hover:text-blue-800 underline"
-                  >
-                    Login
-                  </Link>
-                </div>
-              </form>
-            </div>
+          <div className="text-center text-sm text-gray-600 pt-4">
+            {t("register.have-account")}{" "}
+            <Link
+              to="/login"
+              className="text-blue-600 hover:text-blue-800 underline"
+            >
+              {t("register.login-here")}
+            </Link>
           </div>
-        </div>
-      </main>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
 
       <footer className="bg-white bg-opacity-90 py-4 border-t border-gray-200">
         <div className="flex justify-center space-x-4">

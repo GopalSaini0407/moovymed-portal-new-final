@@ -13,6 +13,26 @@
       "no-account": "Don't have an account?",
       "create-one": "Create one"
     },
+
+  "register": {
+  "title": "Register",
+  "welcome": "Create your account to get started.",
+  "full-name": "Full Name",
+  "full-name-placeholder": "Enter your full name",
+  "username": "Username",
+  "username-placeholder": "Enter your username",
+  "email": "E-Mail",
+  "email-placeholder": "Enter your email address",
+  "password": "Password",
+  "password-placeholder": "Enter your password",
+  "confirm-password": "Confirm Password",
+  "confirm-password-placeholder": "Re-enter your password",
+  "button": "Register",
+  "registering": "Registering...",
+  "have-account": "Already have an account?",
+  "login-here": "Login here"
+},
+
     "footer": {
       "legal": "Legal",
       "privacy": "Privacy"
@@ -25,21 +45,33 @@
       "value-required": "Value required."
     },
 
-  
-  "recover-password": {
-    "title": "Recover Password",
-    "email-placeholder": "Enter email here",
-    "send-email": "Send Email",
-    "sign-in": "Sign In"
-  },
-  "reset-password": {
-    "title": "Reset Password",
-    "new-password": "New Password",
-    "new-password-placeholder": "Enter here",
-    "confirm-password": "Confirm Password",
-    "confirm-password-placeholder": "Enter here",
-    "save": "Save"
-  },
+  "forgot-password": {
+  "title": "Reset Password",
+  "description": "Enter your email address and we’ll send you an OTP to reset your password.",
+  "email": "E-Mail",
+  "email-placeholder": "Enter your email address",
+  "email-required": "Value required.",
+  "button": "Send OTP",
+  "remember-password": "Remember your password?",
+  "back-to-login": "Back to Login"
+},
+"verify-otp": {
+  "title": "Verify OTP",
+  "description": "Enter the 6-digit OTP sent to your registered email.",
+  "otp-placeholder": "000000",
+  "button": "Verify OTP",
+  "no-otp": "Didn't receive OTP?",
+  "resend": "Resend"
+},
+
+"reset-password": {
+  "title": "Reset Password",
+  "description": "Enter your new password.",
+  "new-password": "New Password",
+  "confirm-password": "Confirm Password",
+  "button": "Reset Password"
+},
+
   "home": {
     "title": "Home",
     "categories": "Categories",
