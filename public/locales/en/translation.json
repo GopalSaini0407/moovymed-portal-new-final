@@ -302,14 +302,57 @@
         "success": "Content updated successfully!",
         "failed": "Update failed!"
       }
-    }
+    },
   
-  
-
-
-
-
-
+    
+      "category-details": {
+        "loading": "Loading category contents...",
+        "no-records": "No records found.",
+        "top-header": {
+          "back": "← Back",
+          "items-count": "{{count}} item(s)"
+        },
+        "section-titles": {
+          "category-contents": "Category Contents"
+        },
+        "file-types": {
+          "pdf": "PDF Document",
+          "image": "Image",
+          "default": "File"
+        },
+        "pagination": {
+          "previous": "Previous",
+          "next": "Next",
+          "page-info": "Page {{current}} of {{last}}"
+        },
+        "buttons": {
+          "add-content": "+ Add Content"
+        }
+      },
+      
+        "content-detail": {
+          "loading": "Loading...",
+          "no-content": "No content found.",
+          "back": "Back",
+          "buttons": {
+            "edit": "Edit",
+            "delete": "Delete"
+          },
+          "alerts": {
+            "delete-confirm": "Are you sure you want to delete this content?",
+            "delete-success": "🗑️ Deleted Successfully!",
+            "delete-fail": "❌ Delete failed. Check console."
+          },
+          "media-types": {
+            "video": "Video",
+            "pdf": "PDF",
+            "image": "Image"
+          },
+          "tags-prefix": "#"
+        }
+      
+      
+    
 
 }
 

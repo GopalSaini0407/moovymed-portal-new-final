@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import EditContentForm from "../components/EditContentForm";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 export default function ContentDetail() {
   const { id } = useParams();
@@ -14,15 +14,13 @@ export default function ContentDetail() {
   const [loading, setLoading] = useState(true);
   const [editModalOpen, setEditModalOpen] = useState(false);
   const language = useLanguage();
+  const { t } = useTranslation();
 
   const fetchContent = async () => {
     try {
-      const res = await api.get(
-        `/category-content/get/${id}`,
-        { 
-          headers: { "X-Locale":language } ,
-        },
-      );
+      const res = await api.get(`/category-content/get/${id}`, {
+        headers: { "X-Locale": language },
+      });
       setContent(res.data.data.contentData);
       setTags(res.data.data.contentTags);
     } catch (err) {
@@ -34,86 +32,61 @@ export default function ContentDetail() {
 
   useEffect(() => {
     if (id) fetchContent();
-  }, [id,language]);
+  }, [id, language]);
 
   const handleDelete = async () => {
-    if (!window.confirm("Are you sure you want to delete this content?")) return;
+    if (!window.confirm(t("content-detail.alerts.delete-confirm"))) return;
     try {
-
-      await api.get(
-        `/category-content/delete/${id}`,
-        { 
-          headers: { "X-Locale":language } ,
-        },
-      );
-      alert("🗑️ Deleted Successfully!");
+      await api.get(`/category-content/delete/${id}`, {
+        headers: { "X-Locale": language },
+      });
+      alert(t("content-detail.alerts.delete-success"));
       navigate(-1);
     } catch (err) {
       console.error("Error deleting content:", err);
-      alert("❌ Delete failed. Check console.");
+      alert(t("content-detail.alerts.delete-fail"));
     }
   };
 
   const renderMedia = (media) => {
     if (!media) return null;
 
-    if (typeof media === "string") {
-      if (media.endsWith(".mp4")) {
+    const renderFile = (file, index) => {
+      if (file.endsWith(".mp4")) {
         return (
-          <video controls className="w-60 h-60 rounded-2xl border shadow-sm">
-            <source src={media} type="video/mp4" />
+          <video
+            key={index}
+            controls
+            className="w-60 h-60 rounded-2xl border shadow-sm"
+          >
+            <source src={file} type="video/mp4" />
           </video>
         );
-      } else if (media.endsWith(".pdf")) {
+      } else if (file.endsWith(".pdf")) {
         return (
           <iframe
-            src={media}
-            title="PDF"
+            key={index}
+            src={file}
+            title={`${t("content-detail.media-types.pdf")}-${index}`}
             className="w-60 h-60 border rounded-2xl shadow-sm"
           ></iframe>
         );
       } else {
         return (
           <img
-            src={media}
-            alt="media"
+            key={index}
+            src={file}
+            alt={`${t("content-detail.media-types.image")}-${index}`}
             className="w-60 h-60 object-cover rounded-2xl border shadow-sm"
           />
         );
       }
-    }
+    };
 
-    if (Array.isArray(media)) {
-      return (
-        <div className="flex flex-wrap gap-4 justify-center">
-          {media.map((file, index) =>
-            file.endsWith(".mp4") ? (
-              <video
-                key={index}
-                controls
-                className="w-60 h-60 rounded-2xl border shadow-sm"
-              >
-                <source src={file} type="video/mp4" />
-              </video>
-            ) : file.endsWith(".pdf") ? (
-              <iframe
-                key={index}
-                src={file}
-                title={`PDF-${index}`}
-                className="w-60 h-60 border rounded-2xl shadow-sm"
-              ></iframe>
-            ) : (
-              <img
-                key={index}
-                src={file}
-                alt={`media-${index}`}
-                className="w-60 h-60 object-cover rounded-2xl border shadow-sm"
-              />
-            )
-          )}
-        </div>
-      );
-    }
+    if (typeof media === "string") return renderFile(media, 0);
+
+    if (Array.isArray(media))
+      return <div className="flex flex-wrap gap-4 justify-center">{media.map(renderFile)}</div>;
 
     return null;
   };
@@ -121,14 +94,14 @@ export default function ContentDetail() {
   if (loading)
     return (
       <div className="flex justify-center items-center h-screen text-gray-500">
-        Loading...
+        {t("content-detail.loading")}
       </div>
     );
 
   if (!content)
     return (
       <div className="flex justify-center items-center h-screen text-gray-500">
-        No content found.
+        {t("content-detail.no-content")}
       </div>
     );
 
@@ -156,19 +129,13 @@ export default function ContentDetail() {
               stroke="currentColor"
               className="w-5 h-5 mr-1"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M15 19l-7-7 7-7"
-              />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
-            Back
+            {t("content-detail.back")}
           </button>
 
           {/* Title & Notes */}
-          <h2 className="text-2xl font-semibold text-center mb-2">
-            {content.title}
-          </h2>
+          <h2 className="text-2xl font-semibold text-center mb-2">{content.title}</h2>
           <p className="text-gray-500 text-center mb-4">{content.notes}</p>
 
           {/* Tags */}
@@ -178,7 +145,7 @@ export default function ContentDetail() {
                 key={tag.id}
                 className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full"
               >
-                #{tag.tag}
+                {t("content-detail.tags-prefix")}{tag.tag}
               </span>
             ))}
           </div>
@@ -189,13 +156,13 @@ export default function ContentDetail() {
               onClick={() => setEditModalOpen(true)}
               className="px-5 py-2 border border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition"
             >
-              Edit
+              {t("content-detail.buttons.edit")}
             </button>
             <button
               onClick={handleDelete}
               className="px-5 py-2 border border-red-500 text-red-500 rounded-lg hover:bg-red-500 hover:text-white transition"
             >
-              Delete
+              {t("content-detail.buttons.delete")}
             </button>
           </div>
         </div>
@@ -214,11 +181,7 @@ export default function ContentDetail() {
 
       {/* Edit Modal */}
       {editModalOpen && (
-        <EditContentForm
-          id={id}
-          onClose={() => setEditModalOpen(false)}
-          onSuccess={fetchContent}
-        />
+        <EditContentForm id={id} onClose={() => setEditModalOpen(false)} onSuccess={fetchContent} />
       )}
     </MainLayout>
   );

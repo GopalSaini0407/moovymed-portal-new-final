@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import MainLayout from "../layouts/MainLayout";
 import AddContentForm from "../components/AddContentForm";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
+import { useTranslation } from "react-i18next";
 
 const CategoryDetails = () => {
   const [contents, setContents] = useState([]);
@@ -20,6 +20,7 @@ const CategoryDetails = () => {
   const categoryId = id;
   const navigate = useNavigate();
   const language = useLanguage();
+  const { t } = useTranslation();
 
   // Fetch category info
   const fetchCategoryDetails = async () => {
@@ -89,34 +90,23 @@ const CategoryDetails = () => {
 
   // Get file icon based on type
   const getFileIcon = (fileUrl) => {
-    if (isPDF(fileUrl)) {
-      return "📄";
-    } else if (isImage(fileUrl)) {
-      return "🖼️";
-    }
+    if (isPDF(fileUrl)) return "📄";
+    if (isImage(fileUrl)) return "🖼️";
     return "📎";
   };
 
   // Fix tags parsing - handle both string and object formats
   const parseTags = (tags) => {
     if (!tags) return [];
-    
     try {
-      // If tags is already an array, return it
-      if (Array.isArray(tags)) {
-        return tags;
-      }
-      
-      // If tags is a string, try to parse it
+      if (Array.isArray(tags)) return tags;
       if (typeof tags === 'string') {
         const parsed = JSON.parse(tags);
-        // If parsed result is array of objects, extract tag names
         if (Array.isArray(parsed) && parsed.length > 0 && typeof parsed[0] === 'object') {
           return parsed.map(tag => tag.tag || tag.name || '');
         }
         return parsed;
       }
-      
       return [];
     } catch (error) {
       console.error('Error parsing tags:', error);
@@ -128,7 +118,7 @@ const CategoryDetails = () => {
     return (
       <MainLayout>
         <div className="text-center py-10 text-gray-500">
-          Loading category contents...
+          {t("category-details.loading")}
         </div>
       </MainLayout>
     );
@@ -154,7 +144,7 @@ const CategoryDetails = () => {
               onClick={() => navigate(-1)}
               className="text-blue-600 hover:underline text-sm mb-3 inline-block"
             >
-              ← Back to Categories
+              {t("category-details.top-header.back")}
             </button>
 
             <div className="flex items-center justify-center flex-col gap-4">
@@ -171,7 +161,7 @@ const CategoryDetails = () => {
                   {category.category_name}
                 </h1>
                 <div className="text-blue-600 text-xs font-semibold">
-                  {category.content_count} item(s)
+                  {t("category-details.top-header.items-count", { count: category.content_count })}
                 </div>
               </div>
             </div>
@@ -181,13 +171,13 @@ const CategoryDetails = () => {
         {/* Header with Add Button */}
         <div className="flex justify-between items-center mb-6">
           <h2 className="text-lg font-semibold text-gray-700">
-            Category Contents
+            {t("category-details.section-titles.category-contents")}
           </h2>
           <button
             onClick={() => setIsModalOpen(true)}
             className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition"
           >
-            + Add Content
+            {t("category-details.buttons.add-content")}
           </button>
         </div>
 
@@ -215,14 +205,12 @@ const CategoryDetails = () => {
                           className="w-full h-full object-cover rounded-lg"
                           onError={(e) => {
                             e.target.style.display = 'none';
-                            // Show fallback icon when image fails to load
                             const fallback = e.target.parentNode.querySelector('.fallback-icon');
                             if (fallback) fallback.style.display = 'flex';
                           }}
                         />
                       ) : null}
                       
-                      {/* PDF or Fallback Icon */}
                       <div 
                         className={`fallback-icon flex flex-col items-center justify-center w-full h-full rounded-lg ${
                           isPdfFile ? 'bg-red-50 border-2 border-red-200' : 'bg-gray-50 border-2 border-gray-200'
@@ -234,7 +222,7 @@ const CategoryDetails = () => {
                         <div className={`text-xs font-medium ${
                           isPdfFile ? 'text-red-600' : 'text-gray-600'
                         }`}>
-                          {isPdfFile ? 'PDF Document' : 'File'}
+                          {isPdfFile ? t("category-details.file-types.pdf") : t("category-details.file-types.default")}
                         </div>
                       </div>
                     </div>
@@ -245,7 +233,6 @@ const CategoryDetails = () => {
                         {item.title}
                       </h3>
                       
-                      {/* Tags */}
                       {parsedTags.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-2 justify-center">
                           {parsedTags.slice(0, 2).map((tag, tagIndex) => (
@@ -271,7 +258,7 @@ const CategoryDetails = () => {
           </div>
         ) : (
           <div className="text-center text-gray-500 py-10">
-            No records found.
+            {t("category-details.no-records")}
           </div>
         )}
 
@@ -286,11 +273,11 @@ const CategoryDetails = () => {
                 : "bg-blue-500 text-white hover:bg-blue-600"
             }`}
           >
-            Previous
+            {t("category-details.pagination.previous")}
           </button>
 
           <span className="text-sm text-gray-600">
-            Page {pagination.current_page} of {pagination.last_page}
+            {t("category-details.pagination.page-info", { current: pagination.current_page, last: pagination.last_page })}
           </span>
 
           <button
@@ -302,7 +289,7 @@ const CategoryDetails = () => {
                 : "bg-blue-500 text-white hover:bg-blue-600"
             }`}
           >
-            Next
+            {t("category-details.pagination.next")}
           </button>
         </div>
       </div>

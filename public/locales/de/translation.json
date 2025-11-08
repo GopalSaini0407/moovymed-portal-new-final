@@ -295,9 +295,53 @@
         "success": "Inhalt erfolgreich aktualisiert!",
         "failed": "Aktualisierung fehlgeschlagen!"
       }
-    }
-  
-  
-
+    },
+    
+      "category-details": {
+        "loading": "Kategoriedaten werden geladen...",
+        "no-records": "Keine Einträge gefunden.",
+        "top-header": {
+          "back": "← Zurück",
+          "items-count": "{{count}} Eintrag(e)"
+        },
+        "section-titles": {
+          "category-contents": "Kategorieninhalte"
+        },
+        "file-types": {
+          "pdf": "PDF-Dokument",
+          "image": "Bild",
+          "default": "Datei"
+        },
+        "pagination": {
+          "previous": "Zurück",
+          "next": "Weiter",
+          "page-info": "Seite {{current}} von {{last}}"
+        },
+        "buttons": {
+          "add-content": "+ Inhalt hinzufügen"
+        }
+      },
+      
+        "content-detail": {
+          "loading": "Inhalte werden geladen...",
+          "no-content": "Kein Inhalt gefunden.",
+          "back": "Zurück",
+          "buttons": {
+            "edit": "Bearbeiten",
+            "delete": "Löschen"
+          },
+          "alerts": {
+            "delete-confirm": "Sind Sie sicher, dass Sie diesen Inhalt löschen möchten?",
+            "delete-success": "🗑️ Erfolgreich gelöscht!",
+            "delete-fail": "❌ Löschen fehlgeschlagen. Bitte Konsole prüfen."
+          },
+          "media-types": {
+            "video": "Video",
+            "pdf": "PDF",
+            "image": "Bild"
+          },
+          "tags-prefix": "#"
+        }
+      
 
 }
