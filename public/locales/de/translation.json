@@ -203,10 +203,8 @@
   "file-types": "JPG, PNG, GIF, PDF (max. 10 MB)",
   "file-error-type": "Nur JPEG-, PNG-, GIF-Bilder und PDF-Dateien sind erlaubt",
   "file-error-size": "Dateigröße muss kleiner als 10 MB sein",
-  "select-tags-label": "Tags auswählen",
-  "select-tags-helper": "Strg/Cmd gedrückt halten, um mehrere Tags auszuwählen",
-  "add-new-tag-label": "Neuen Tag hinzufügen",
-  "add-new-tag-placeholder": "Neuen Tag-Namen eingeben",
+ "tags-label": "Tags hinzufügen",
+  "tag-placeholder": "Tag hinzufügen und Komma oder Eingabetaste drücken",
   "add-tag-button": "Hinzufügen",
   "cancel-button": "Abbrechen",
   "save-button": "speichern",
@@ -225,13 +223,12 @@
       "title": "Titel *",
       "notes": "Notizen *",
       "media-file": "Mediendatei",
-      "select-tags": "Tags auswählen",
-      "add-new-tag": "Neuen Tag hinzufügen"
+      "tags-label": "Tags hinzufügen"
     },
     "placeholders": {
       "title": "Inhaltstitel eingeben",
       "notes": "Notizen hier eingeben...",
-      "new-tag": "Neuen Tag-Namen eingeben"
+"tag-placeholder": "Tag hinzufügen und Komma oder Eingabetaste drücken"
     },
     "file": {
       "choose": "Datei auswählen",
@@ -263,13 +260,12 @@
         "title": "Titel *",
         "notes": "Notizen *",
         "media-file": "Mediendatei",
-        "select-tags": "Tags auswählen",
-        "add-new-tag": "Neuen Tag hinzufügen"
+       "tags-label": "Tags hinzufügen"
       },
       "placeholders": {
         "title": "Inhaltstitel eingeben",
         "notes": "Geben Sie hier Ihre Notizen ein...",
-        "new-tag": "Neuen Tagnamen eingeben"
+"tag-placeholder": "Tag hinzufügen und Komma oder Eingabetaste drücken"
       },
       "file": {
         "choose": "Datei auswählen",

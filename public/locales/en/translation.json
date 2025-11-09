@@ -210,11 +210,8 @@
   "file-types": "JPG, PNG, GIF, PDF (Max 10MB)",
   "file-error-type": "Only JPEG, PNG, GIF images and PDF files are allowed",
   "file-error-size": "File size must be less than 10MB",
-  "select-tags-label": "Select Tags",
-  "select-tags-helper": "Hold Ctrl/Cmd to select multiple tags",
-  "add-new-tag-label": "Add New Tag",
-  "add-new-tag-placeholder": "Enter new tag name",
-  "add-tag-button": "Add",
+  "tags-label": "add Tags",
+  "tag-placeholder": "Add tag and press comma or enter",
   "cancel-button": "Cancel",
   "save-button": "Save",
   "saving": "Saving...",
@@ -232,13 +229,12 @@
       "title": "Title *",
       "notes": "Notes *",
       "media-file": "Media File",
-      "select-tags": "Select Tags",
-      "add-new-tag": "Add New Tag"
+      "tags-label": "add Tags"
     },
     "placeholders": {
       "title": "Enter content title",
       "notes": "Enter your notes here...",
-      "new-tag": "Enter new tag name"
+      "tag-placeholder": "Add tag and press comma or enter"
     },
     "file": {
       "choose": "Choose a file",
@@ -248,7 +244,6 @@
       "error-size": "File size must be less than 10MB"
     },
     "tags": {
-      "select-hint": "Hold Ctrl/Cmd to select multiple tags",
       "add-success": "Tag added successfully!",
       "add-failed": "Failed to create tag"
     },
@@ -270,13 +265,12 @@
         "title": "Title *",
         "notes": "Notes *",
         "media-file": "Media File",
-        "select-tags": "Select Tags",
-        "add-new-tag": "Add New Tag"
+        "tags-label": "add Tags"
       },
       "placeholders": {
         "title": "Enter content title",
         "notes": "Enter your notes here...",
-        "new-tag": "Enter new tag name"
+        "tag-placeholder": "Add tag and press comma or enter"
       },
       "file": {
         "choose": "Choose a file",
@@ -288,7 +282,6 @@
         "current-image": "Current Image"
       },
       "tags": {
-        "select-hint": "Hold Ctrl/Cmd to select multiple tags",
         "add-success": "Tag added successfully!",
         "add-failed": "Failed to create tag"
       },

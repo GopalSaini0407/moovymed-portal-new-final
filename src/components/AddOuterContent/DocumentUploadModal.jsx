@@ -13,7 +13,7 @@ export default function DocumentUploadModal({ open, onClose }) {
       title={t("document-upload.title")}
       size="lg" // 👈 You can change: sm | md | lg | xl | full
     >
-      <div className="max-h-[75vh] overflow-y-auto">
+      <div className="">
         <DocumentUpload onClose={onClose} />
       </div>
     </Model>
