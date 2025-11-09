@@ -200,8 +200,8 @@ export default function ContentDetail() {
       
       <Model
        isOpen={mediaModalOpen}
-       onClose={() => setmediaModalOpen(false)}
-       title="Edit Document"
+       onClose={() => setMediaModalOpen(false)}
+       title="preview Document"
        size="lg" // sm | md | lg | xl | full
       >
        <MediaModal fileUrl={selectedMedia} isOpen={mediaModalOpen} onClose={() => setMediaModalOpen(false)} />
