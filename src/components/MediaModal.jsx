@@ -23,7 +23,7 @@ export default function MediaModal({ fileUrl, isOpen, onClose }) {
             onClick={handleDownload}
             className="block"
            >
-            <FaDownload className="text-green-500" size={25}/>
+            <FaDownload className="text-green-500 mb-3" size={25}/>
           </button>
       {/* Media Preview */}
       <div className="flex justify-center mb-4">

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
@@ -15,8 +14,6 @@ const Categories = ({ filteredCategories, searchActive }) => {
   const language = useLanguage();
   const { t } = useTranslation();
 
- 
- 
   // 📦 Fetch Categories
   const fetchCategories = async () => {
     try {
@@ -24,8 +21,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
         "categories",
         {
           headers: { "X-Locale": language },
-        },
-       
+        }
       );
 
       if (response.data && response.data.data) {
@@ -49,13 +45,27 @@ const Categories = ({ filteredCategories, searchActive }) => {
 
   const handleMouseEnter = (category, event) => {
     setHoveredCategory(category);
-    
+
     // Calculate tooltip position
     const rect = event.currentTarget.getBoundingClientRect();
-    setTooltipPosition({
-      x: rect.left + rect.width / 2,
-      y: rect.top - 10
-    });
+    const tooltipWidth = 250; // approximate tooltip width in px
+    const padding = 10;
+    const viewportWidth = window.innerWidth;
+
+    let x = rect.left + rect.width / 2;
+    let y = rect.top - 10;
+
+    // ✅ Prevent tooltip overflow on the left
+    if (x - tooltipWidth / 2 < padding) {
+      x = tooltipWidth / 2 + padding;
+    }
+
+    // ✅ Prevent tooltip overflow on the right
+    if (x + tooltipWidth / 2 > viewportWidth - padding) {
+      x = viewportWidth - tooltipWidth / 2 - padding;
+    }
+
+    setTooltipPosition({ x, y });
   };
 
   const handleMouseLeave = () => {
@@ -63,12 +73,13 @@ const Categories = ({ filteredCategories, searchActive }) => {
   };
 
   // Use filtered categories if provided, otherwise use all categories
-  const displayCategories = filteredCategories && searchActive ? filteredCategories : categories;
+  const displayCategories =
+    filteredCategories && searchActive ? filteredCategories : categories;
 
   if (loading) {
     return (
       <div className="text-center py-10 text-gray-500">
-      {t("categories.loading")}
+        {t("categories.loading")}
       </div>
     );
   }
@@ -89,7 +100,9 @@ const Categories = ({ filteredCategories, searchActive }) => {
     <div className="bg-white rounded-2xl shadow-sm p-6 relative">
       {!searchActive && (
         <div className="text-center mb-6">
-          <span className="text-sm font-medium text-gray-700">{t("categories.title")}</span>
+          <span className="text-sm font-medium text-gray-700">
+            {t("categories.title")}
+          </span>
         </div>
       )}
 
@@ -117,8 +130,8 @@ const Categories = ({ filteredCategories, searchActive }) => {
                 {category.content_count} {t("categories.single-item")}(s)
               </div>
             )}
-            
-            {/* Info icon for description */}
+
+            {/* Info icon */}
             <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="bg-blue-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 i
@@ -128,9 +141,9 @@ const Categories = ({ filteredCategories, searchActive }) => {
         ))}
       </div>
 
-      {/* Beautiful Tooltip */}
+      {/* ✨ Beautiful Tooltip */}
       {hoveredCategory && (
-        <div 
+        <div
           className="fixed z-50 transform -translate-x-1/2 -translate-y-full pointer-events-none transition-opacity duration-200"
           style={{
             left: `${tooltipPosition.x}px`,
@@ -139,7 +152,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
         >
           {/* Tooltip Arrow */}
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-4 h-4 rotate-45 bg-gradient-to-br from-blue-500 to-blue-600 border border-blue-400"></div>
-          
+
           {/* Tooltip Content */}
           <div className="bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-2xl shadow-2xl border border-blue-400 p-4 max-w-xs mx-2">
             <div className="flex items-start gap-3">
@@ -160,7 +173,8 @@ const Categories = ({ filteredCategories, searchActive }) => {
                 {hoveredCategory.content_count !== null && (
                   <div className="mt-2 pt-2 border-t border-blue-400">
                     <span className="text-blue-200 text-xs font-semibold">
-                      {hoveredCategory.content_count} {t("categories.multiple-items")}
+                      {hoveredCategory.content_count}{" "}
+                      {t("categories.multiple-items")}
                     </span>
                   </div>
                 )}

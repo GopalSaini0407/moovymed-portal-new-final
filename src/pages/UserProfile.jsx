@@ -128,7 +128,7 @@ export default function UserProfile() {
           type="email"
           value={profile.email}
           readOnly
-          className="w-full border border-gray-300 bg-gray-100 text-gray-700 rounded-md px-3 py-2 focus:outline-none"
+          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
         />
       </div>
 
@@ -148,7 +148,7 @@ export default function UserProfile() {
           onChange={(e) =>
             setProfile((prev) => ({ ...prev, name: e.target.value }))
           }
-          className="w-full border border-gray-300 rounded-md px-3 py-2 focus:ring-2 focus:ring-indigo-400 focus:outline-none"
+          className="w-full border border-gray-300 bg-gray-100 text-gray-700 rounded-md px-3 py-2 focus:outline-none"
         />
       </div>
 
