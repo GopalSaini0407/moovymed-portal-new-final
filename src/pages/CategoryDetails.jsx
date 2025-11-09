@@ -5,6 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
+import Model from "../components/model/Model";
 
 const CategoryDetails = () => {
   const [contents, setContents] = useState([]);
@@ -295,13 +296,21 @@ const CategoryDetails = () => {
       </div>
 
       {/* Add Content Modal */}
-      {isModalOpen && (
-        <AddContentForm
+   
+      <Model
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      title="Add Document"
+      size="lg" // sm | md | lg | xl | full
+      >
+      <AddContentForm
           categoryId={categoryId}
           onClose={() => setIsModalOpen(false)}
           onSuccess={fetchCategoryContents}
         />
-      )}
+
+      </Model>
+      
     </MainLayout>
   );
 };

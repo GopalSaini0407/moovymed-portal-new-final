@@ -6,7 +6,7 @@ import MediaModal from "../components/MediaModal"; // Import
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
-
+import Model from "../components/model/Model";
 export default function ContentDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -187,8 +187,26 @@ export default function ContentDetail() {
       </div>
 
       {/* Modals */}
-      {editModalOpen && <EditContentForm id={id} onClose={() => setEditModalOpen(false)} onSuccess={fetchContent} />}
-      {mediaModalOpen && <MediaModal fileUrl={selectedMedia} isOpen={mediaModalOpen} onClose={() => setMediaModalOpen(false)} />}
+
+      <Model
+       isOpen={editModalOpen}
+       onClose={() => setEditModalOpen(false)}
+       title="Edit Document"
+       size="lg" // sm | md | lg | xl | full
+      >
+      <EditContentForm id={id} onClose={() => setEditModalOpen(false)} onSuccess={fetchContent} />
+
+      </Model>
+      
+      <Model
+       isOpen={mediaModalOpen}
+       onClose={() => setmediaModalOpen(false)}
+       title="Edit Document"
+       size="lg" // sm | md | lg | xl | full
+      >
+       <MediaModal fileUrl={selectedMedia} isOpen={mediaModalOpen} onClose={() => setMediaModalOpen(false)} />
+
+      </Model>
     </MainLayout>
   );
 }

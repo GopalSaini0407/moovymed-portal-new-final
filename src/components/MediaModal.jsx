@@ -16,37 +16,17 @@ export default function MediaModal({ fileUrl, isOpen, onClose }) {
   };
 
   return (
-    <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
-      onClick={onClose}
-    >
-      <div
-        className="relative w-full max-w-3xl bg-white rounded-xl shadow-lg px-4 py-2 md:p-6"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="title flex justify-between items-center pb-2">
-             
-              {/* Download Button */}
-          <button
+   
+    <>
+        {/* Download Button */}
+        <button
             onClick={handleDownload}
             className="block"
            >
             <FaDownload className="text-green-500" size={25}/>
           </button>
-        
-  {/* Close Button */}
-         <button
-          onClick={onClose}
-          className=""
-        >
-        <FaTimes size={25} />
-
-        </button>
-
-        </div>
-      
-        {/* Media Preview */}
-        <div className="flex justify-center mb-4">
+      {/* Media Preview */}
+      <div className="flex justify-center mb-4">
           {isPDF ? (
             <iframe
               src={fileUrl}
@@ -62,7 +42,6 @@ export default function MediaModal({ fileUrl, isOpen, onClose }) {
           )}
         </div>
 
-      </div>
-    </div>
+    </>
   );
 }

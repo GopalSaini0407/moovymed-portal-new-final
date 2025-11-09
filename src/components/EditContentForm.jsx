@@ -143,43 +143,9 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
   return (
     <>
       <Toaster position="top-right" />
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
-        <div className="bg-white rounded-2xl w-full max-w-4xl p-6 shadow-xl relative">
-          {/* Header */}
-          <div className="flex justify-between items-center mb-6">
-            <h3 className="text-xl font-bold text-gray-800">{t("edit-content.title")}</h3>
-            <button onClick={onClose} className="text-gray-400 hover:text-gray-600 text-2xl font-light">×</button>
-          </div>
-
-          <form onSubmit={handleUpdate} className="space-y-6">
-            {/* Title & Notes */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.title")}</label>
-                <input
-                  type="text"
-                  value={title}
-                  onChange={(e) => setTitle(e.target.value)}
-                  required
-                  placeholder={t("edit-content.placeholders.title")}
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                />
-              </div>
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.notes")}</label>
-                <textarea
-                  value={notes}
-                  onChange={(e) => setNotes(e.target.value)}
-                  required
-                  rows="1"
-                  placeholder={t("edit-content.placeholders.notes")}
-                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
-                />
-              </div>
-            </div>
-
-            {/* File & Tags */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <form onSubmit={handleUpdate} className="space-y-6">
+         {/* File & Tags */}
+         <div className="grid grid-cols-1 gap-6">
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.media-file")}</label>
                 <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-blue-400 transition-all duration-200">
@@ -217,25 +183,53 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
                 )}
                 {fileError && <p className="mt-2 text-sm text-red-600 flex items-center"><span className="mr-1">⚠️</span>{fileError}</p>}
               </div>
+            </div>
 
+            {/* Title & Notes */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.title")}</label>
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  required
+                  placeholder={t("edit-content.placeholders.title")}
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.notes")}</label>
+                <textarea
+                  value={notes}
+                  onChange={(e) => setNotes(e.target.value)}
+                  required
+                  rows="1"
+                  placeholder={t("edit-content.placeholders.notes")}
+                  className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 resize-none"
+                />
+              </div>
+            </div>
+
+           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+           <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.select-tags")}</label>
-                <select multiple value={selectedTags} onChange={(e)=> setSelectedTags(Array.from(e.target.selectedOptions,opt=>opt.value))} className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 h-32">
+                <select multiple value={selectedTags} onChange={(e)=> setSelectedTags(Array.from(e.target.selectedOptions,opt=>opt.value))} className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200">
                   {tags.map(tag => <option key={tag.id} value={tag.id}>{tag.tag}</option>)}
                 </select>
                 <p className="text-xs text-gray-500 mt-1">{t("edit-content.tags.select-hint")}</p>
               </div>
-            </div>
-
             {/* Add new tag */}
             <div>
               <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.add-new-tag")}</label>
-              <div className="flex space-x-3">
+              <div className="">
                 <input type="text" value={newTag} onChange={(e)=>setNewTag(e.target.value)} placeholder={t("edit-content.placeholders.new-tag")} className="flex-1 border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"/>
-                <button type="button" onClick={handleAddTag} className="bg-green-500 text-white px-5 py-3 rounded-xl hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 font-medium">{t("edit-content.buttons.add-tag")}</button>
+                <button type="button" onClick={handleAddTag} className="bg-green-500 text-white px-3 py-2 mt-3 rounded-xl hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 transition-all duration-200 font-medium">{t("edit-content.buttons.add-tag")}</button>
               </div>
             </div>
 
+           </div>
+        
             {/* Buttons */}
             <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
               <button type="button" onClick={onClose} className="px-6 py-3 rounded-xl bg-gray-100 text-gray-700 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 transition-all duration-200 font-medium">{t("edit-content.buttons.cancel")}</button>
@@ -244,8 +238,6 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               </button>
             </div>
           </form>
-        </div>
-      </div>
     </>
   );
 };

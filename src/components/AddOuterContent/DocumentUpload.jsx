@@ -307,7 +307,7 @@ const DocumentUpload = ({ onClose }) => {
             <button
               type="button"
               onClick={handleAddTag}
-              className="bg-green-500 text-white mt-2 px-5 py-3 rounded-xl hover:bg-green-600 font-medium"
+              className="bg-green-500 text-white mt-2 px-3 py-2 rounded-xl hover:bg-green-600 font-medium"
             >
               {t("document-upload.add-tag-button")}
             </button>
