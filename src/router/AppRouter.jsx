@@ -55,7 +55,7 @@ const AppRouter = () => {
       <Route path="/settings/tags" element={<ProtectedRoute><SettingsTags /></ProtectedRoute>} />
       <Route path="/settings/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
       <Route path="/category/:id" element={<ProtectedRoute><CategoryDetails /></ProtectedRoute>} />
-      <Route path="/content/:id" element={<ProtectedRoute><ContentDetail /></ProtectedRoute>} />
+      <Route path="/category/:cat_id/content/:id" element={<ProtectedRoute><ContentDetail /></ProtectedRoute>} />
 
       {/* Optional: 404 route */}
       {/* <Route path="*" element={<NotFound />} /> */}

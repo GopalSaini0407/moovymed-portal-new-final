@@ -144,7 +144,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
       {/* ✨ Beautiful Tooltip */}
       {hoveredCategory && (
         <div
-          className="fixed z-50 transform -translate-x-1/2 -translate-y-full pointer-events-none transition-opacity duration-200"
+          className="tool-tip-box fixed z-50 transform -translate-x-1/2 -translate-y-full pointer-events-none transition-opacity duration-200"
           style={{
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y}px`,

@@ -27,10 +27,10 @@ const LanguageSwitcher = () => {
     <select
       value={language}
       onChange={handleLanguageChange}
-      className="border border-gray-300 max-w-[87px] rounded-md px-2 py-1 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
+      className="border border-gray-300 rounded-md px-2 py-1 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400"
     >
-      <option value="en"  className="max-w-[87px]">{t("navbar.english")}</option>
-      <option value="de" className="max-w-[87px]">{t("navbar.german")}</option>
+      <option value="en">{t("navbar.english")}</option>
+      <option value="de">{t("navbar.german")}</option>
     </select>
   </div>
   

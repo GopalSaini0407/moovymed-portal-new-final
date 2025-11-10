@@ -6,6 +6,8 @@ import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import Model from "../components/model/Model";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const CategoryDetails = () => {
   const [contents, setContents] = useState([]);
@@ -38,6 +40,8 @@ const CategoryDetails = () => {
       if (found) setCategory(found);
     } catch (error) {
       console.error("Error fetching category details:", error);
+      // toast.error(t("Error fetching category details:", error));
+
     }
   };
 
@@ -60,6 +64,8 @@ const CategoryDetails = () => {
       });
     } catch (error) {
       console.error("Error fetching category contents:", error);
+      // toast.error(t("Error fetching category details:", error));
+
     } finally {
       setLoading(false);
     }
@@ -111,6 +117,8 @@ const CategoryDetails = () => {
       return [];
     } catch (error) {
       console.error('Error parsing tags:', error);
+      // toast.error(t("Error parsing tags:", error));
+
       return [];
     }
   };
@@ -125,8 +133,8 @@ const CategoryDetails = () => {
     );
   }
 
-  const handleContentClick = (id) => {
-    navigate(`/content/${id}`);
+  const handleContentClick = (cat_id,id) => {
+    navigate(`/category/${cat_id}/content/${id}`);
   };
 
   return (
@@ -195,7 +203,7 @@ const CategoryDetails = () => {
                   <div
                     key={item.id}
                     className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden border border-gray-100"
-                    onClick={() => handleContentClick(item.id)}
+                    onClick={() => handleContentClick(item.category_id,item.id)}
                   >
                     {/* File Display */}
                     <div className="p-4 flex flex-col items-center justify-center h-32">
@@ -300,7 +308,7 @@ const CategoryDetails = () => {
       <Model
       isOpen={isModalOpen}
       onClose={() => setIsModalOpen(false)}
-      title="Add Document"
+      title={t("add-content.title")}
       size="lg" // sm | md | lg | xl | full
       >
       <AddContentForm

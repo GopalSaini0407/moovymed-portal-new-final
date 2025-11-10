@@ -147,6 +147,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
             onChange={handleFileChange}
             className="hidden"
             id="file-upload"
+            required
           />
           <label htmlFor="file-upload" className="cursor-pointer block">
             <div className="text-3xl mb-2">📁</div>
@@ -225,7 +226,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
       {/* Smart Tag Input */}
       <div className="relative" ref={tagDropdownRef}>
         <label className="block text-sm font-semibold text-gray-700 mb-2">
-          {t("add-content.tags-label")}
+          {t("add-content.labels.tags-label")}
         </label>
 
         <div className="flex flex-wrap items-center border border-gray-300 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500">
@@ -250,8 +251,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
             value={tagInput}
             onChange={(e) => setTagInput(e.target.value)}
             onKeyDown={handleTagKeyDown}
-            placeholder={t("add-content.tag-placeholder")}
-
+            placeholder={t("add-content.placeholders.tag-placeholder")}
             className="flex-1 outline-none text-sm py-1 px-1 min-w-[100px]"
           />
 

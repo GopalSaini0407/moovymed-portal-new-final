@@ -224,7 +224,7 @@
 },
 
   "add-content": {
-    "title": "Add New Content",
+    "title": "Add Document",
     "labels": {
       "title": "Title *",
       "notes": "Notes *",
@@ -260,7 +260,7 @@
   },
   
     "edit-content": {
-      "title": "Edit Content",
+      "title": "Edit Document",
       "labels": {
         "title": "Title *",
         "notes": "Notes *",
@@ -342,9 +342,12 @@
             "image": "Image"
           },
           "tags-prefix": "#"
-        }
+        },
       
+        "media-file": {"preview_document": "Preview Document" }
+
       
+
     
 
 }

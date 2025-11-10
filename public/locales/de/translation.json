@@ -218,7 +218,7 @@
 },
 
   "add-content": {
-    "title": "Neuen Inhalt hinzufügen",
+    "title": "Dokument hinzufügen",
     "labels": {
       "title": "Titel *",
       "notes": "Notizen *",
@@ -255,7 +255,7 @@
   },
   
     "edit-content": {
-      "title": "Inhalt bearbeiten",
+      "title": "Dokument bearbeiten",
       "labels": {
         "title": "Titel *",
         "notes": "Notizen *",
@@ -337,7 +337,13 @@
             "image": "Bild"
           },
           "tags-prefix": "#"
-        }
-      
+        },
+        
+          "media-file": {
+            "preview_document": "Dokument anzeigen"
+          }
+     
+        
+        
 
 }

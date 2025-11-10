@@ -212,6 +212,7 @@ const DocumentUpload = ({ onClose }) => {
             onChange={handleFileChange}
             className="hidden"
             id="file-upload"
+            required
           />
           <label htmlFor="file-upload" className="cursor-pointer block">
             <div className="text-4xl mb-3">📁</div>
@@ -326,7 +327,6 @@ const DocumentUpload = ({ onClose }) => {
             onChange={(e) => setTagInput(e.target.value)}
             onKeyDown={handleTagKeyDown}
             placeholder={t("document-upload.tag-placeholder")}
-
             className="flex-1 outline-none text-sm py-1 px-1 min-w-[100px]"
           />
 

@@ -167,6 +167,7 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               onChange={handleFileChange}
               className="hidden"
               id="file-upload-edit"
+              required
             />
             <label htmlFor="file-upload-edit" className="cursor-pointer block">
               <div className="text-3xl mb-2">📁</div>
@@ -241,7 +242,7 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
 
         {/* Tags Input */}
         <div className="relative" ref={tagDropdownRef}>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.tags-label")}</label>
+          <label className="block text-sm font-semibold text-gray-700 mb-2">{t("edit-content.labels.tags-label")}</label>
           <div className="flex flex-wrap items-center border border-gray-300 rounded-xl px-3 py-2 focus-within:ring-2 focus-within:ring-blue-500">
             {selectedTags.map((tag) => (
               <div key={tag} className="flex items-center bg-blue-100 text-blue-700 px-2 py-1 rounded-lg mr-2 mb-2">
@@ -254,7 +255,7 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               value={tagInput}
               onChange={(e) => setTagInput(e.target.value)}
               onKeyDown={handleTagKeyDown}
-              placeholder={t("edit-content.tag-placeholder")}
+              placeholder={t("edit-content.placeholders.tag-placeholder")}
               className="flex-1 outline-none text-sm py-1 px-1 min-w-[100px]"
             />
             <button type="button" onClick={() => setShowTagList(!showTagList)} className="text-gray-500 hover:text-blue-600 p-2">

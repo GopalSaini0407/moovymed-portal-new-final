@@ -7,8 +7,12 @@ import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import Model from "../components/model/Model";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+
 export default function ContentDetail() {
-  const { id } = useParams();
+  const { cat_id,id } = useParams();
+ 
   const navigate = useNavigate();
   const [content, setContent] = useState(null);
   const [tags, setTags] = useState([]);
@@ -16,7 +20,6 @@ export default function ContentDetail() {
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [mediaModalOpen, setMediaModalOpen] = useState(false); // New
   const [selectedMedia, setSelectedMedia] = useState(null); // New
-
   const language = useLanguage();
   const { t } = useTranslation();
 
@@ -29,6 +32,8 @@ export default function ContentDetail() {
       setTags(res.data.data.contentTags);
     } catch (err) {
       console.error("Error fetching content:", err);
+      // toast.error(t("Error fetching content", err));
+
     } finally {
       setLoading(false);
     }
@@ -39,16 +44,17 @@ export default function ContentDetail() {
   }, [id, language]);
 
   const handleDelete = async () => {
-    if (!window.confirm(t("content-detail.alerts.delete-confirm"))) return;
+    // if (!window.confirm(t("content-detail.alerts.delete-confirm"))) return;
     try {
       await api.get(`/category-content/delete/${id}`, {
         headers: { "X-Locale": language },
       });
-      alert(t("content-detail.alerts.delete-success"));
-      navigate(-1);
+      toast.success(t("content-detail.alerts.delete-success"));
+      navigate(`/category/${cat_id}`);
     } catch (err) {
       console.error("Error deleting content:", err);
-      alert(t("content-detail.alerts.delete-fail"));
+      // alert(t("content-detail.alerts.delete-fail"));
+      toast.error(t("content-detail.alerts.delete-fail"));
     }
   };
 
@@ -191,7 +197,7 @@ export default function ContentDetail() {
       <Model
        isOpen={editModalOpen}
        onClose={() => setEditModalOpen(false)}
-       title="Edit Document"
+       title={t("edit-content.title")}
        size="lg" // sm | md | lg | xl | full
       >
       <EditContentForm id={id} onClose={() => setEditModalOpen(false)} onSuccess={fetchContent} />
@@ -201,7 +207,7 @@ export default function ContentDetail() {
       <Model
        isOpen={mediaModalOpen}
        onClose={() => setMediaModalOpen(false)}
-       title="preview Document"
+       title={t("media-file.preview_document")}
        size="lg" // sm | md | lg | xl | full
       >
        <MediaModal fileUrl={selectedMedia} isOpen={mediaModalOpen} onClose={() => setMediaModalOpen(false)} />
