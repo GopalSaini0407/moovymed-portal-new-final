@@ -167,7 +167,6 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               onChange={handleFileChange}
               className="hidden"
               id="file-upload-edit"
-              required
             />
             <label htmlFor="file-upload-edit" className="cursor-pointer block">
               <div className="text-3xl mb-2">📁</div>

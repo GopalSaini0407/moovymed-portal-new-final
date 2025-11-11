@@ -6,12 +6,15 @@ import { useTranslation } from "react-i18next";
 import whiteLogo from "../../assets/whiteLogo.svg";
 import  {useLanguage}  from "../../hooks/useLanguage";
 import api from "../../api/axiosInstance"; // ✅ axios instance
+import { Eye, EyeOff } from "lucide-react";
+import Footer from "../../components/Footer";
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const language = useLanguage();
 
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -32,7 +35,7 @@ const LoginForm = () => {
     }
 
     if (!username || !password) {
-      toast.warn(t("toast.missing-credentials"));
+      toast.error(t("toast.missing-credentials"));
       return;
     }
 
@@ -62,11 +65,11 @@ const LoginForm = () => {
         toast.success(t("toast.login-success") || "Login successful!");
         navigate("/"); // redirect to dashboard
       } else {
-        toast.error(data.message || t("toast.login-failed") || "Invalid credentials");
+        toast.error(t("toast.login-failed") || "Invalid credentials");
       }
     } catch (err) {
       console.error("Login error:", err);
-      toast.error(t("toast.server-error") || "Server error. Please try again.");
+      toast.error(t(err.message||"toast.server-error") || "Server error. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -112,6 +115,8 @@ const LoginForm = () => {
                       name="username"
                       type="text"
                       value={username}
+                      autoComplete="username"
+
                       onChange={handleUsernameChange}
                       className={`peer w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 transition ${
                         usernameError
@@ -149,26 +154,41 @@ const LoginForm = () => {
                   )}
                 </div>
 
-                {/* Password */}
-                <div className="space-y-1">
-                  <div className="relative">
-                    <input
-                      id="password"
-                      name="password"
-                      type="password"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      className="peer w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition"
-                      placeholder=" "
-                    />
-                    <label
-                      htmlFor="password"
-                      className="absolute left-4 top-3 px-1 bg-white text-gray-500 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-xs peer-focus:-translate-y-1/2 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base"
-                    >
-                      {t("login.password")}
-                    </label>
-                  </div>
-                </div>
+              {/* Password */}
+<div className="space-y-1">
+  <div className="relative">
+    <input
+      id="password"
+      name="password"
+      type={passwordVisible ? "text" : "password"}   // 👈 toggle show/hide
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      className="peer w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-200 focus:border-blue-500 transition pr-10"
+      placeholder=" "
+       autoComplete="current-password"
+    />
+    <label
+      htmlFor="password"
+      className="absolute left-4 top-3 px-1 bg-white text-gray-500 transition-all duration-200 pointer-events-none peer-focus:top-0 peer-focus:text-xs peer-focus:-translate-y-1/2 peer-placeholder-shown:top-3 peer-placeholder-shown:text-base"
+    >
+      {t("login.password")}
+    </label>
+
+    {/* 👁️ Eye icon for show/hide password */}
+    <button
+      type="button"
+      onClick={() => setPasswordVisible(!passwordVisible)}
+      className="absolute right-3 top-3 text-gray-500 hover:text-gray-700 focus:outline-none"
+    >
+      {passwordVisible ? (
+        <EyeOff size={20} />
+      ) : (
+        <Eye size={20} />
+      )}
+    </button>
+  </div>
+</div>
+
 
                 {/* Submit */}
                 <div className="pt-2">
@@ -208,6 +228,7 @@ const LoginForm = () => {
           </div>
         </div>
       </main>
+      <Footer/>
     </div>
   );
 };

@@ -6,6 +6,8 @@ import whiteLogo from "../../assets/whiteLogo.svg";
 import  {useLanguage}  from "../../hooks/useLanguage";
 import api from "../../api/axiosInstance"; // ✅ axios instance
 import { useTranslation } from "react-i18next";
+import Footer from "../../components/Footer";
+
 
 const ForgetPasswordForm = () => {
   const navigate = useNavigate();
@@ -216,26 +218,7 @@ const ForgetPasswordForm = () => {
   </div>
 </main>
 
-      {/* Footer */}
-      <footer className="bg-white bg-opacity-90 py-4 border-t border-gray-200">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center space-x-4">
-            <a
-              href="/legal"
-              className="text-sm text-gray-600 hover:text-gray-900 transition"
-            >
-              Legal
-            </a>
-            <span className="text-sm text-gray-600">|</span>
-            <a
-              href="/privacy"
-              className="text-sm text-gray-600 hover:text-gray-900 transition"
-            >
-              Privacy
-            </a>
-          </div>
-        </div>
-      </footer>
+     <Footer/>
     </div>
   );
 };

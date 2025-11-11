@@ -341,8 +341,125 @@
         
           "media-file": {
             "preview_document": "Dokument anzeigen"
-          }
-     
+          },
+          
+            "title-notice": "Impressum",
+            "operatorTitle": "Betreiber und Kontakt",
+            "operator": {
+              "name": "MoovyMed GmbH",
+              "address": ["Werftstr. 12", "76189 Karlsruhe"],
+              "email": "info@moovymed.de",
+              "phone": "+49 721 4763350"
+            },
+            "representationTitle": "Vertretungsberechtigte",
+            "representation": {
+              "text": "Die MoovyMed GmbH wird vertreten durch die Geschäftsführer Dr. Martin Benedict und Martin Taller.",
+              "register": "Registergericht: Amtsgericht Mannheim HRB 748972"
+            },
+            "odrTitle": "Online-Streitbeilegung gemäß Art. 14 Abs. 1 ODR-VO",
+            "odr": {
+              "text": "Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit. Unsere E-Mail-Adresse finden Sie oben im Impressum. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.",
+              "linkText": "Zur EU-Plattform für Online-Streitbeilegung",
+              "link": "https://ec.europa.eu/consumers/odr"
+            },
+            "imageCreditsTitle": "Bildnachweise",
+            "imageCredits": [
+              {
+                "source": "iStock 612016238",
+                "author": "Todor Tsvetkov",
+                "url": "https://www.istockphoto.com/portfolio/filadendron?mediatype=photography"
+              },
+              {
+                "source": "iStock 611776510",
+                "author": "cyano66",
+                "url": "https://www.istockphoto.com/portfolio/cyano66?mediatype=photography"
+              },
+              {
+                "source": "Unsplash hIz3vbUbOoI",
+                "author": "Dan Nelson",
+                "url": "https://unsplash.com/@danny144"
+              }
+            ],
+            
+            
+              "privacy": {
+                "loading": "Datenschutzrichtlinie wird geladen...",
+                "no-records": "Keine Einträge gefunden.",
+                "top-header": {
+                  "back": "← Zurück",
+                  "title": "Datenschutzinformationen von MoovyMed"
+                },
+                "intro": {
+                  "p1": "Als Betreiber der Website www.moovymed.de sind wir im Sinne der geltenden Datenschutzgesetze, insbesondere der Datenschutz-Grundverordnung (\"DSGVO\"), für die personenbezogenen Daten der Nutzer (\"Sie\") dieser Website verantwortlich.",
+                  "p2": "Nachfolgend informieren wir Sie gemäß Art. 13 ff. DSGVO klar und verständlich darüber, welche Daten bei Ihrem Besuch unserer Website verarbeitet werden, auf welcher Rechtsgrundlage und welche Rechte Sie haben."
+                },
+                "sections": {
+                  "1": {
+                    "title": "1. Angaben zum Verantwortlichen",
+                    "address": {
+                      "line1": "MoovyMed GmbH",
+                      "line2": "Werftstr. 12",
+                      "line3": "76189 Karlsruhe"
+                    },
+                    "email": "datenschutz@moovymed.de"
+                  },
+                  "2": {
+                    "title": "2. Informatorische Nutzung unserer Website",
+                    "desc1": "Wenn Sie unsere Website nur besuchen, um sie anzusehen, werden sogenannte Logfiles automatisch von unserem System verarbeitet.",
+                    "collectedDataTitle": "Folgende Daten werden erfasst:",
+                    "dataList": [
+                      "IP-Adresse des anfragenden Rechners (vor der Speicherung gekürzt)",
+                      "Typ und Version des Internetbrowsers",
+                      "Spracheinstellungen",
+                      "Betriebssystem und Oberfläche",
+                      "Aufgerufene Seiten und Zeitpunkt des Besuchs",
+                      "HTTP-Statuscodes und übertragene Datenmenge",
+                      "Referrer-URL",
+                      "Internetdienstanbieter"
+                    ],
+                    "legalBasis": "Die Verarbeitung dieser Daten ist notwendig, um unsere Website bereitzustellen. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse)."
+                  },
+                  "3": {
+                    "title": "3. Nutzung von Angeboten",
+                    "desc": "Sie können sich für unseren Newsletter anmelden oder uns per E-Mail oder Telefon kontaktieren. Wir verarbeiten personenbezogene Daten wie Ihren Namen, Ihre E-Mail-Adresse und den Inhalt Ihrer Nachricht zu diesem Zweck.",
+                    "legalBasis": "Rechtsgrundlage: Art. 6 Abs. 1 lit. a DSGVO (Einwilligung) und Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).",
+                    "note": "Sie können Ihre Einwilligung jederzeit widerrufen oder sich abmelden. Ihre Daten werden dann gelöscht, sofern keine gesetzlichen Aufbewahrungspflichten bestehen."
+                  },
+                  "4": {
+                    "title": "4. Soziale Medien",
+                    "desc": "Wir stellen Symbol-Links zu unseren Social-Media-Konten (Facebook, LinkedIn, Xing) bereit. Es werden keine Daten übertragen, bevor Sie auf den Link klicken. Rechtsgrundlage: Art. 6 Abs. 1 lit. a und f DSGVO."
+                  },
+                  "5": {
+                    "title": "5. Einsatz von Dienstleistern",
+                    "desc": "Wir können Drittanbieter (z. B. Hosting-Provider) unter DSGVO-konformen Verträgen einsetzen. Wenn Daten außerhalb der EU verarbeitet werden, werden geeignete Garantien gemäß Art. 44 ff. DSGVO angewendet."
+                  },
+                  "6": {
+                    "title": "6. Bewerbungen",
+                    "desc": "Bewerbungsdaten (per E-Mail oder Post) werden verarbeitet, um Ihre Eignung für eine Beschäftigung zu beurteilen. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO, Art. 88 Abs. 1 DSGVO in Verbindung mit § 26 BDSG."
+                  },
+                  "7": {
+                    "title": "7. Ihre Rechte",
+                    "rights": [
+                      "Recht auf Auskunft und Berichtigung",
+                      "Recht auf Löschung („Recht auf Vergessenwerden“)",
+                      "Recht auf Einschränkung der Verarbeitung",
+                      "Recht auf Datenübertragbarkeit",
+                      "Recht auf Widerspruch und Widerruf der Einwilligung",
+                      "Recht auf Beschwerde bei einer Aufsichtsbehörde"
+                    ],
+                    "authorityLinkText": "Liste der Behörden",
+                    "authorityLink": "https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html"
+                  },
+                  "cookies": {
+                    "title": "Informationen zu Cookies auf unserer Website",
+                    "desc": "Sie können Cookies in den Einstellungen Ihres Browsers verwalten. Das Blockieren aller Cookies kann die Funktionalität unserer Website beeinträchtigen. Wir verwenden sowohl Erstanbieter- als auch Drittanbieter-Cookies für Funktionalität und Analyse (Google Analytics).",
+                    "legalBasis": "Rechtsgrundlage: Art. 6 Abs. 1 lit. a und f DSGVO."
+                  }
+                },
+                "status": "Stand: März 2023"
+              }
+            
+            
         
         
 

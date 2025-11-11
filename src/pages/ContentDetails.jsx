@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import Model from "../components/model/Model";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
-
+import Footer from "../components/Footer";
 export default function ContentDetail() {
   const { cat_id,id } = useParams();
  
@@ -213,6 +213,7 @@ export default function ContentDetail() {
        <MediaModal fileUrl={selectedMedia} isOpen={mediaModalOpen} onClose={() => setMediaModalOpen(false)} />
 
       </Model>
+      <Footer/>
     </MainLayout>
   );
 }

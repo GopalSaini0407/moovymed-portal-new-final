@@ -15,7 +15,9 @@ import SettingsTags from "../pages/SettingsTags";
 import UserProfile from "../pages/UserProfile";
 import CategoryDetails from "../pages/CategoryDetails";
 import ContentDetail from "../pages/ContentDetails";
-
+import NotFound from "../pages/NotFound";
+import Privancy from "../components/Privancy";
+import LegalNotice from "../components/LegalNotice";
 // 🔒 Protected route wrapper
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -56,9 +58,13 @@ const AppRouter = () => {
       <Route path="/settings/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
       <Route path="/category/:id" element={<ProtectedRoute><CategoryDetails /></ProtectedRoute>} />
       <Route path="/category/:cat_id/content/:id" element={<ProtectedRoute><ContentDetail /></ProtectedRoute>} />
+    
+    {/* footer */}
+      <Route path="/privancy" element={<Privancy />} />
+      <Route path="/legal-notice" element={<LegalNotice />} />
 
       {/* Optional: 404 route */}
-      {/* <Route path="*" element={<NotFound />} /> */}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 };

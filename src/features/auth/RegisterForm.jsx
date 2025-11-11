@@ -6,6 +6,7 @@ import whiteLogo from "../../assets/whiteLogo.svg";
 import  {useLanguage}  from "../../hooks/useLanguage";
 import api from "../../api/axiosInstance"; // ✅ axios instance
 import { useTranslation } from "react-i18next";
+import Footer from "../../components/Footer";
 
 const RegisterForm = () => {
   const navigate = useNavigate();
@@ -175,18 +176,7 @@ const RegisterForm = () => {
     </div>
   </div>
 </main>
-
-      <footer className="bg-white bg-opacity-90 py-4 border-t border-gray-200">
-        <div className="flex justify-center space-x-4">
-          <Link to="/legal" className="text-sm text-gray-600 hover:text-gray-900">
-            Legal
-          </Link>
-          <span className="text-sm text-gray-600">|</span>
-          <Link to="/privacy" className="text-sm text-gray-600 hover:text-gray-900">
-            Privacy
-          </Link>
-        </div>
-      </footer>
+<Footer/>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import AuthNavbar from "../../components/navbar/AuthNavbar";
 import  {useLanguage}  from "../../hooks/useLanguage";
 import api from "../../api/axiosInstance"; // ✅ axios instance
 import { useTranslation } from "react-i18next";
+import Footer from "../../components/Footer";
 
 const ResetPasswordForm = () => {
   const navigate = useNavigate();
@@ -235,7 +236,7 @@ const ResetPasswordForm = () => {
     </div>
   </div>
 </main>
-
+<Footer/>
     </div>
     </>
     

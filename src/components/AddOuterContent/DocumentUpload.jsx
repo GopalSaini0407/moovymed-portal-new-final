@@ -4,7 +4,7 @@ import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import { FiTag } from "react-icons/fi";
 
-const DocumentUpload = ({ onClose }) => {
+const DocumentUpload = ({ onClose,onSuccess}) => {
   const [title, setTitle] = useState("");
   const [notes, setNotes] = useState("");
   const [file, setFile] = useState(null);
@@ -160,7 +160,7 @@ const DocumentUpload = ({ onClose }) => {
       showToast(t("document-upload.toast-no-category"), "error");
       return;
     }
-
+    
     setLoading(true);
     try {
       const formData = new FormData();
@@ -182,8 +182,14 @@ const DocumentUpload = ({ onClose }) => {
         setFile(null);
         setSelectedCategoryId("");
         setSelectedTags([]);
+      
+        // ✅ Call success handler first
+        if (onSuccess) onSuccess();
+      
+        // ✅ Then close modal
         setTimeout(() => onClose?.(), 1500);
-      } else throw new Error("Failed to add content");
+      }
+       else throw new Error("Failed to add content");
     } catch (error) {
       console.error("Error adding content:", error);
       showToast(t("document-upload.toast-error"), "error");
@@ -208,11 +214,12 @@ const DocumentUpload = ({ onClose }) => {
         <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-blue-400 transition-all duration-200">
           <input
             type="file"
+            required
             accept=".jpg,.jpeg,.png,.gif,.pdf"
             onChange={handleFileChange}
             className="hidden"
             id="file-upload"
-            required
+            
           />
           <label htmlFor="file-upload" className="cursor-pointer block">
             <div className="text-4xl mb-3">📁</div>

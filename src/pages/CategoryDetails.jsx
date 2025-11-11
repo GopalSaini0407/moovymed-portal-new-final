@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import Model from "../components/model/Model";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
+import Footer from "../components/Footer";
 
 const CategoryDetails = () => {
   const [contents, setContents] = useState([]);
@@ -318,7 +319,7 @@ const CategoryDetails = () => {
         />
 
       </Model>
-      
+      <Footer/>
     </MainLayout>
   );
 };

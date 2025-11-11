@@ -143,11 +143,12 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
         <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-blue-400 transition-all duration-200">
           <input
             type="file"
+            required
             accept=".jpg,.jpeg,.png,.gif,.pdf,image/*,application/pdf"
             onChange={handleFileChange}
             className="hidden"
             id="file-upload"
-            required
+            
           />
           <label htmlFor="file-upload" className="cursor-pointer block">
             <div className="text-3xl mb-2">📁</div>

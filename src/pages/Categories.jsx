@@ -19,6 +19,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
     try {
       const response = await api.post(
         "categories",
+        {},
         {
           headers: { "X-Locale": language },
         }
@@ -97,7 +98,12 @@ const Categories = ({ filteredCategories, searchActive }) => {
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm p-6 relative">
+    <div className="bg-white rounded-2xl shadow-sm p-6 relative"
+    
+    style={{
+      backdropFilter: "blur(20px)",
+      backgroundColor: "rgba(255, 255, 255, 0.75)",
+    }}>
       {!searchActive && (
         <div className="text-center mb-6">
           <span className="text-sm font-medium text-gray-700">

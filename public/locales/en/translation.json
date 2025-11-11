@@ -37,6 +37,7 @@
       "legal": "Legal",
       "privacy": "Privacy"
     },
+    
     "toast": {
       "missing-credentials": "Please enter username and password",
       "login-success": "Login successful!",
@@ -344,9 +345,126 @@
           "tags-prefix": "#"
         },
       
-        "media-file": {"preview_document": "Preview Document" }
+        "media-file": {"preview_document": "Preview Document" },
 
-      
+        
+          "title-notice": "Legal Notice",
+          "operatorTitle": "Operator and Contact",
+          "operator": {
+            "name": "MoovyMed GmbH",
+            "address": ["Werftstr. 12", "76189 Karlsruhe"],
+            "email": "info@moovymed.de",
+            "phone": "+49 721 4763350"
+          },
+          "representationTitle": "Representation",
+          "representation": {
+            "text": "MoovyMed GmbH is represented by the managing directors Dr. Martin Benedict and Martin Taller.",
+            "register": "Register court: Amtsgericht Mannheim HRB 748972"
+          },
+          "odrTitle": "Online dispute resolution according to Art. 14 Abs. 1 ODR-VO",
+          "odr": {
+            "text": "The European Commission provides a platform for online dispute resolution (OS). You can find our email address in the legal notice above. We are not willing or obliged to participate in dispute resolution proceedings before a consumer arbitration board.",
+            "linkText": "Open EU Online Dispute Resolution",
+            "link": "https://ec.europa.eu/consumers/odr"
+          },
+          "imageCreditsTitle": "Image Credits",
+          "imageCredits": [
+            {
+              "source": "iStock 612016238",
+              "author": "Todor Tsvetkov",
+              "url": "https://www.istockphoto.com/portfolio/filadendron?mediatype=photography"
+            },
+            {
+              "source": "iStock 611776510",
+              "author": "cyano66",
+              "url": "https://www.istockphoto.com/portfolio/cyano66?mediatype=photography"
+            },
+            {
+              "source": "Unsplash hIz3vbUbOoI",
+              "author": "Dan Nelson",
+              "url": "https://unsplash.com/@danny144"
+            }
+          ],
+          
+          
+            "privacy": {
+              "loading": "Loading privacy policy...",
+              "no-records": "No records found.",
+              "top-header": {
+                "back": "← Back",
+                "title": "Data Protection Information from MoovyMed"
+              },
+              "intro": {
+                "p1": "As the operator of the website at www.moovymed.de, we are responsible within the meaning of the applicable data protection law, in particular the General Data Protection Regulation (\"GDPR\"), for the personal data of the users (\"you\") of this website.",
+                "p2": "Below, we inform you clearly (Art. 13 ff. GDPR) about what data is processed when you visit our website, on what legal basis, and what rights you have."
+              },
+              "sections": {
+                "1": {
+                  "title": "1. Information on the Person Responsible",
+                  "address": {
+                    "line1": "MoovyMed GmbH",
+                    "line2": "Werftstr. 12",
+                    "line3": "76189 Karlsruhe"
+                  },
+                  "email": "datenschutz@moovymed.de"
+                },
+                "2": {
+                  "title": "2. Informational Use of Our Website",
+                  "desc1": "When you visit our website only to view it, so-called log files are automatically processed by our system.",
+                  "collectedDataTitle": "The following data is collected:",
+                  "dataList": [
+                    "IP address of the requesting computer (shortened before storage)",
+                    "Type and version of internet browser",
+                    "Language settings",
+                    "Operating system and interface",
+                    "Pages accessed and time of visit",
+                    "HTTP status codes and amount of data transferred",
+                    "Referrer URL",
+                    "Internet Service Provider"
+                  ],
+                  "legalBasis": "The processing of this data is necessary to provide our website. Legal basis: Art. 6 (1) lit. f GDPR (legitimate interest)."
+                },
+                "3": {
+                  "title": "3. Use of Offers",
+                  "desc": "You can register for our newsletter or contact us through email or phone. We process personal data such as your name, email address, and message content for this purpose.",
+                  "legalBasis": "Legal basis: Art. 6 (1) lit. a GDPR (consent) and Art. 6 (1) lit. f GDPR (legitimate interest).",
+                  "note": "You may unsubscribe or withdraw your consent at any time. Your data will then be deleted unless legal retention obligations require otherwise."
+                },
+                "4": {
+                  "title": "4. Social Media",
+                  "desc": "We provide icon links to our social media accounts (Facebook, LinkedIn, Xing). No data is transmitted until you click the link. Legal basis: Art. 6 (1) lit. a and f GDPR."
+                },
+                "5": {
+                  "title": "5. Use of Service Providers",
+                  "desc": "We may use third-party processors (e.g. hosting providers) under GDPR-compliant contracts. If data is processed outside the EU, appropriate safeguards (Art. 44 ff. GDPR) are applied."
+                },
+                "6": {
+                  "title": "6. Applications",
+                  "desc": "Application data (email or post) is processed to evaluate your suitability for employment. Legal basis: Art. 6 (1) lit. b GDPR, Art. 88 (1) GDPR in conjunction with § 26 BDSG."
+                },
+                "7": {
+                  "title": "7. Your Rights",
+                  "rights": [
+                    "Right to information and rectification",
+                    "Right to erasure ('right to be forgotten')",
+                    "Right to restriction of processing",
+                    "Right to data portability",
+                    "Right to object and withdraw consent",
+                    "Right to complain to a supervisory authority"
+                  ],
+                  "authorityLinkText": "list of authorities",
+                  "authorityLink": "https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html"
+                },
+                "cookies": {
+                  "title": "Information about Cookies on our Website",
+                  "desc": "You can manage cookies in your browser settings. Blocking all cookies may affect the functionality of our site. We use both first-party and third-party cookies for functionality and analytics (Google Analytics).",
+                  "legalBasis": "Legal basis: Art. 6 (1) lit. a and f GDPR."
+                }
+              },
+              "status": "Status: March 2023"
+            }
+          
+          
 
     
 
