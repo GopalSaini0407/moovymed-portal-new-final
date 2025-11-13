@@ -7,3 +7,7 @@
       }
   }
 
+
+  button,.btn,a{
+    cursor: pointer !important;
+  }

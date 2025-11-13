@@ -50,7 +50,7 @@ export default function DashboardNavbar() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex items-center">
+            <div className="flex items-center cursor-pointer">
               <a href="/" className="flex items-center">
                 <img src={LogoMain} alt="Logo" className="h-12" />
               </a>
@@ -67,7 +67,7 @@ export default function DashboardNavbar() {
               {/* Settings */}
               <button
                 onClick={() => navigate("/settings")}
-                className="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-full transition"
+                className="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-full transition cursor-pointer"
               >
                 <FiSettings className="w-5 h-5 mr-2" />
                 {t("navbar.settings")}
@@ -85,7 +85,7 @@ export default function DashboardNavbar() {
               {/* Logout */}
               <button
                 onClick={handleLogout}
-                className="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-full transition"
+                className="flex items-center px-4 py-2 text-blue-600 hover:bg-blue-50 rounded-full transition cursor-pointer"
               >
                 <FiLogOut className="w-5 h-5 mr-2" />
                 {t("navbar.logout")}
