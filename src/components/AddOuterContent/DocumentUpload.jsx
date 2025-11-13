@@ -3,6 +3,7 @@ import api from "../../api/axiosInstance";
 import { useLanguage } from "../../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
 import { FiTag } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 const DocumentUpload = ({ onClose,onSuccess}) => {
   const [title, setTitle] = useState("");
@@ -46,6 +47,7 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
     }, 3000);
   };
 
+  
   // ✅ Fetch categories
   const fetchCategories = async () => {
     try {
@@ -196,6 +198,14 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
     } finally {
       setLoading(false);
     }
+
+    if (!file) {
+      setFileError(t("document-upload.file-error-required") || "Please upload a file.");
+      toast.error(t("document-upload.file-error-required") || "Please upload a file.", "error");
+      return;
+    }
+    
+    
   };
 
   const getFileIcon = (file) => {
@@ -204,6 +214,7 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
     return "📎";
   };
 
+  
   return (
     <form onSubmit={handleSubmit} className="space-y-6 relative">
       {/* File Upload */}
@@ -217,7 +228,7 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
             required
             accept=".jpg,.jpeg,.png,.gif,.pdf"
             onChange={handleFileChange}
-            className="hidden"
+            // className="hidden"
             id="file-upload"
             
           />

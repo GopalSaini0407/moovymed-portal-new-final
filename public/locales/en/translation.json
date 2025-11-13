@@ -216,7 +216,7 @@
   "cancel-button": "Cancel",
   "save-button": "Save",
   "saving": "Saving...",
-  "toast-success": "Content added successfully! 🎉",
+  "toast-success": "Content added successfully!",
   "toast-error": "Failed to add content. Please try again.",
   "toast-tag-success": "Tag added successfully!",
   "toast-tag-error": "Failed to create tag",
@@ -228,6 +228,7 @@
     "title": "Add Document",
     "labels": {
       "title": "Title *",
+      "title-error":"",
       "notes": "Notes *",
       "media-file": "Media File",
       "tags-label": "add Tags"
@@ -242,7 +243,8 @@
       "change": "Change File",
       "types": "JPG, PNG, GIF, PDF (Max 10MB)",
       "error-type": "Only JPEG, PNG, GIF images and PDF files are allowed",
-      "error-size": "File size must be less than 10MB"
+      "error-size": "File size must be less than 10MB",
+      "error-required":"Please upload a file."
     },
     "tags": {
       "add-success": "Tag added successfully!",

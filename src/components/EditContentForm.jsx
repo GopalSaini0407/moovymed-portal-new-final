@@ -165,7 +165,8 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               type="file"
               accept=".jpg,.jpeg,.png,.gif,.pdf,image/*,application/pdf"
               onChange={handleFileChange}
-              className="hidden"
+              // className="hidden"
+              // required
               id="file-upload-edit"
             />
             <label htmlFor="file-upload-edit" className="cursor-pointer block">

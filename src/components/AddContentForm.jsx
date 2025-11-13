@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { FiTag } from "react-icons/fi";
 
 const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
@@ -100,8 +100,32 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
   // Submit Form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
 
+    console.log("Submit clicked ✅");
+    if (selectedTags.length === 0) {
+      console.log("No tags selected ❌");
+      toast.error("Please add at least one tag.");
+      return;
+    }
+    // 🧩 Validation checks before API call
+  if (!file) {
+    toast.error(t("add-content.file.error-required") || "Please upload a file.");
+    return;
+  }
+
+  if (!title.trim()) {
+    toast.error(t("add-content.title.required") || "Please enter a title.");
+    console.log("No title entered ❌");
+    return;
+  }
+
+  if (!notes.trim()) {
+    toast.error(t("add-content.notes.required") || "Please enter notes.");
+    console.log("No notes entered ❌");
+    return;
+  }
+
+    setLoading(true);
     try {
       const formData = new FormData();
       formData.append("title", title);
@@ -143,10 +167,10 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
         <div className="border-2 border-dashed border-gray-300 rounded-xl p-4 text-center hover:border-blue-400 transition-all duration-200">
           <input
             type="file"
-            required
+            // required
             accept=".jpg,.jpeg,.png,.gif,.pdf,image/*,application/pdf"
             onChange={handleFileChange}
-            className="hidden"
+            // className="hidden"
             id="file-upload"
             
           />
@@ -203,7 +227,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            required
+            // required
             placeholder={t("add-content.placeholders.title")}
             className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
@@ -217,7 +241,7 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows="1"
-            required
+            // required
             placeholder={t("add-content.placeholders.notes")}
             className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
           />
