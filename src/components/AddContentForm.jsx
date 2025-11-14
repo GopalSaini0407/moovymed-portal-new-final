@@ -101,29 +101,28 @@ const AddContentForm = ({ categoryId, onClose, onSuccess }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Submit clicked ✅");
-    if (selectedTags.length === 0) {
-      console.log("No tags selected ❌");
-      toast.error("Please add at least one tag.");
+        // 🧩 Validation checks before API call
+
+
+    if (!file) {
+      toast.error(t("add-content.file.error-required") || "Please upload a file.");
       return;
     }
-    // 🧩 Validation checks before API call
-  if (!file) {
-    toast.error(t("add-content.file.error-required") || "Please upload a file.");
-    return;
-  }
+    if (!title.trim()) {
+      toast.error(t("add-content.labels.title-error") || "Please enter a title.");
+      return;
+    }
+    if (!notes.trim()) {
+      toast.error(t("add-content.labels.notes-error") || "Please enter notes.");
+      // console.log("No notes entered ❌");
+      return;
+    }
 
-  if (!title.trim()) {
-    toast.error(t("add-content.title.required") || "Please enter a title.");
-    console.log("No title entered ❌");
-    return;
-  }
-
-  if (!notes.trim()) {
-    toast.error(t("add-content.notes.required") || "Please enter notes.");
-    console.log("No notes entered ❌");
-    return;
-  }
+    if (selectedTags.length === 0) {
+      toast.error(t("add-content.labels.tags-error") || "Please add at least one tag");
+      return;
+    }
+ 
 
     setLoading(true);
     try {

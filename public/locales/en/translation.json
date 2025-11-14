@@ -228,10 +228,12 @@
     "title": "Add Document",
     "labels": {
       "title": "Title *",
-      "title-error":"",
+      "title-error":"Please enter a title",
       "notes": "Notes *",
+      "notes-error":"Please enter notes",
       "media-file": "Media File",
-      "tags-label": "add Tags"
+      "tags-label": "add Tags",
+      "tags-error":"Please add at least one tag"
     },
     "placeholders": {
       "title": "Enter content title",

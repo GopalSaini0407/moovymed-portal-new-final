@@ -221,9 +221,12 @@
     "title": "Dokument hinzufügen",
     "labels": {
       "title": "Titel *",
+      "title-error": "Bitte geben Sie einen Titel ein",
       "notes": "Notizen *",
+      "notes-error": "Bitte geben Sie Notizen ein",
       "media-file": "Mediendatei",
-      "tags-label": "Tags hinzufügen"
+      "tags-label": "Tags hinzufügen",
+      "tags-error": "Bitte fügen Sie mindestens einen Tag hinzu"
     },
     "placeholders": {
       "title": "Inhaltstitel eingeben",

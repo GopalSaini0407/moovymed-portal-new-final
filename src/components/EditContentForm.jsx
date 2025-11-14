@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { FiTag } from "react-icons/fi";
 
 const EditContentForm = ({ id, onClose, onSuccess }) => {
@@ -123,6 +123,23 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
   // Update content
   const handleUpdate = async (e) => {
     e.preventDefault();
+
+        // 🧩 Validation checks before API call
+
+  if (!title.trim()) {
+    toast.error(t("add-content.labels.title-error") || "Please enter a title.");
+    return;
+  }
+
+  if (!notes.trim()) {
+    toast.error(t("add-content.labels.notes-error") || "Please enter notes.");
+    // console.log("No notes entered ❌");
+    return;
+  }
+  if (selectedTags.length === 0) {
+    toast.error(t("add-content.labels.tags-error") || "Please add at least one tag");
+    return;
+  }
     setLoading(true);
 
     try {
@@ -155,7 +172,6 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
 
   return (
     <>
-      <Toaster position="top-right" />
       <form onSubmit={handleUpdate} className="space-y-6 relative">
         {/* File Upload */}
         <div>
@@ -165,8 +181,6 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               type="file"
               accept=".jpg,.jpeg,.png,.gif,.pdf,image/*,application/pdf"
               onChange={handleFileChange}
-              // className="hidden"
-              // required
               id="file-upload-edit"
             />
             <label htmlFor="file-upload-edit" className="cursor-pointer block">
@@ -222,7 +236,6 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              required
               placeholder={t("edit-content.placeholders.title")}
               className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none"
             />
@@ -233,7 +246,6 @@ const EditContentForm = ({ id, onClose, onSuccess }) => {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows="1"
-              required
               placeholder={t("edit-content.placeholders.notes")}
               className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
             />

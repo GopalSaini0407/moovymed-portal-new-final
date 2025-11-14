@@ -22,31 +22,6 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
   const { language } = useLanguage();
   const { t } = useTranslation();
 
-  // ✅ Toast Notification
-  const showToast = (message, type = "success") => {
-    const existingToasts = document.querySelectorAll(".custom-toast");
-    existingToasts.forEach((toast) => toast.remove());
-
-    const toast = document.createElement("div");
-    toast.className = `custom-toast fixed top-4 right-4 z-50 px-6 py-3 rounded-xl shadow-lg text-white font-medium transform transition-all duration-300 ${
-      type === "success" ? "bg-green-500" : "bg-red-500"
-    }`;
-    toast.textContent = message;
-
-    document.body.appendChild(toast);
-
-    setTimeout(() => {
-      toast.style.transform = "translateX(0)";
-    }, 100);
-
-    setTimeout(() => {
-      toast.style.transform = "translateX(100%)";
-      setTimeout(() => {
-        toast.remove();
-      }, 300);
-    }, 3000);
-  };
-
   
   // ✅ Fetch categories
   const fetchCategories = async () => {
@@ -55,7 +30,7 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
       setCategories(res.data.data || []);
     } catch (error) {
       console.error("Error fetching categories:", error);
-      showToast(t("document-upload.toast-category-error"), "error");
+      toast.error(t("document-upload.toast-category-error"), "error");
     }
   };
 
@@ -134,10 +109,10 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
       await api.post("/tag/create", { tag: trimmed }, { headers: { "X-Locale": language } });
       setSelectedTags((prev) => [...prev, trimmed]);
       fetchTags(); // refresh tag list
-      showToast(t("document-upload.toast-tag-success"));
+      toast.success(t("document-upload.toast-tag-success"));
     } catch (error) {
       console.error("Error creating tag:", error);
-      showToast(t("document-upload.toast-tag-error"), "error");
+      toast.error(t("document-upload.toast-tag-error"), "error");
     }
     setTagInput("");
   };
@@ -158,11 +133,40 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
   // ✅ Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!selectedCategoryId) {
-      showToast(t("document-upload.toast-no-category"), "error");
+
+        // 🧩 Validation checks before API call
+
+    if (!file) {
+      toast.error(t("add-content.file.error-required") || "Please upload a file.");
       return;
     }
-    
+
+    if (!title.trim()) {
+      toast.error(t("add-content.labels.title-error") || "Please enter a title.");
+      return;
+    }
+
+    if (!notes.trim()) {
+      toast.error(t("add-content.labels.notes-error") || "Please enter notes.");
+      // console.log("No notes entered ❌");
+      return;
+    }
+    if (!selectedCategoryId) {
+      toast.error(t("document-upload.toast-no-category"), "error");
+      return;
+    }
+  
+    if (selectedTags.length === 0) {
+      toast.error(t("add-content.labels.tags-error") || "Please add at least one tag");
+      return;
+    }
+ 
+
+  
+ 
+
+ 
+
     setLoading(true);
     try {
       const formData = new FormData();
@@ -198,13 +202,6 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
     } finally {
       setLoading(false);
     }
-
-    if (!file) {
-      setFileError(t("document-upload.file-error-required") || "Please upload a file.");
-      toast.error(t("document-upload.file-error-required") || "Please upload a file.", "error");
-      return;
-    }
-    
     
   };
 
@@ -225,7 +222,6 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
         <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center hover:border-blue-400 transition-all duration-200">
           <input
             type="file"
-            required
             accept=".jpg,.jpeg,.png,.gif,.pdf"
             onChange={handleFileChange}
             // className="hidden"
@@ -276,7 +272,6 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder={t("document-upload.title-placeholder")}
-            required
             className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500"
           />
         </div>
@@ -289,7 +284,6 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
             value={notes}
             onChange={(e) => setNotes(e.target.value)}
             rows="1"
-            required
             placeholder={t("document-upload.notes-placeholder")}
             className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500 resize-none"
           />
@@ -304,7 +298,7 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
         <select
           value={selectedCategoryId}
           onChange={(e) => setSelectedCategoryId(e.target.value)}
-          required
+          // required
           className="w-full border border-gray-300 rounded-xl px-4 py-3 focus:ring-2 focus:ring-blue-500"
         >
           <option value="">{t("document-upload.select-category-placeholder")}</option>
