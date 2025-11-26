@@ -9,7 +9,7 @@ const Privancy = () => {
     <>
     <AuthNavbar/>
      <main id="main-content" 
-    className="min-h-screen w-full flex flex-col"
+    className="min-h-screen w-full flex flex-col privacy-page"
     style={{
       background:
         "linear-gradient(135deg, rgba(79, 177, 231, 1) 0%, rgba(255, 0, 117, 1) 100%)",

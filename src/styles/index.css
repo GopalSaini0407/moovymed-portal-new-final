@@ -5,6 +5,18 @@
         left: 200px !important;
         width: 100%;
       }
+     .legal-page h1,.privacy-page h2{
+      font-size: 1rem;
+     }
+     .legal-page h2,.privacy-page h3{
+      font-size: 1rem;
+     }
+     .legal-page p,.privacy-page p{
+      font-size: 14px;
+     }
+     .privacy-page .mt-12.border-t.pt-8 h2{
+      font-size: 1rem;
+     }
   }
 
 

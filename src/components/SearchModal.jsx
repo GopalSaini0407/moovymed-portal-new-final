@@ -78,7 +78,10 @@ export default function SearchModal({ isOpen, onClose }) {
   }, [isOpen, language]);
 
   const handleResultClick = (item) => {
-    navigate(`/content/${item.id}`);
+    // navigate(`/content/${item.id}`);
+    // item.category_id,item.id
+    navigate(`/category/${item.category_id}/content/${item.id}`);
+
     onClose();
   };
 
@@ -121,24 +124,8 @@ export default function SearchModal({ isOpen, onClose }) {
       <div className="max-h-[75vh] overflow-y-auto px-1">
         {/* 🔍 Search Input */}
         <div className="space-y-4 mb-6">
-          <div className="relative">
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={t("search-modal.placeholder")}
-              className="w-full border mt-3 border-gray-200 rounded-xl px-4 py-3 text-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              autoFocus
-            />
-            {loading && (
-              <div className="absolute right-4 top-1/2 -translate-y-1/2">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
-              </div>
-            )}
-          </div>
-
-          {/* Category Filter */}
-          <div>
+           {/* Category Filter */}
+           <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               {t("search-modal.filter-label")}
             </label>
@@ -161,6 +148,23 @@ export default function SearchModal({ isOpen, onClose }) {
               </p>
             )}
           </div>
+          <div className="relative">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={t("search-modal.placeholder")}
+              className="w-full border mt-3 border-gray-200 rounded-xl px-4 py-3 text-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              autoFocus
+            />
+            {loading && (
+              <div className="absolute right-4 top-1/2 -translate-y-1/2">
+                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-blue-500"></div>
+              </div>
+            )}
+          </div>
+
+         
         </div>
 
         {/* 🔹 Search Results */}

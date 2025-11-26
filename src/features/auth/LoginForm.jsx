@@ -69,7 +69,7 @@ const LoginForm = () => {
       }
     } catch (err) {
       console.error("Login error:", err);
-      toast.error(t(err.message||"toast.server-error") || "Server error. Please try again.");
+      toast.error(t("toast.invalid-credentials") || "Server error. Please try again.");
     } finally {
       setLoading(false);
     }

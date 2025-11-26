@@ -182,7 +182,7 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
       });
 
       if (res.status === 200 || res.status === 201) {
-        showToast(t("document-upload.toast-success"));
+        toast.success(t("document-upload.toast-success"));
         setTitle("");
         setNotes("");
         setFile(null);
@@ -198,7 +198,7 @@ const DocumentUpload = ({ onClose,onSuccess}) => {
        else throw new Error("Failed to add content");
     } catch (error) {
       console.error("Error adding content:", error);
-      showToast(t("document-upload.toast-error"), "error");
+      toast.error(t("document-upload.toast-error"), "error");
     } finally {
       setLoading(false);
     }

@@ -20,7 +20,7 @@ export default function Footer() {
         </Link>
         <span className="text-sm text-white">|</span>
         <Link
-          to="/privancy"
+          to="/privacy"
           className="text-sm text-white transition"
         >
      {t("footer.privacy")}
