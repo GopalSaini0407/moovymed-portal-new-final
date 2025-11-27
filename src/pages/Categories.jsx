@@ -154,6 +154,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
           style={{
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y}px`,
+            width:"250px"
           }}
         >
           {/* Tooltip Arrow */}
