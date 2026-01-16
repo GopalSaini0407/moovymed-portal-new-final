@@ -9,6 +9,8 @@ import { useTranslation } from "react-i18next";
 import Model from "../components/model/Model";
 import DocumentUpload from "../components/AddOuterContent/DocumentUpload";
 import Footer from "../components/Footer";
+import PlanNotification from "../components/PlanNotification";
+
 const Dashboard = () => {
   const [searchValue, setSearchValue] = useState("");
   const [showUploadModal, setShowUploadModal] = useState(false);
@@ -96,6 +98,10 @@ const Dashboard = () => {
   return (
     <>
       <MainLayout>
+           {/* plan notification */}
+           <div className="plan-notification" style={{ marginTop:"-16px" }}>
+               <PlanNotification expireDays="7 days left"  />
+            </div>
         <div>
           {/* 👋 Greeting */}
           <UserGreeting />
@@ -117,6 +123,7 @@ const Dashboard = () => {
             </button>
           </div>
 
+       
           {/* 🔍 Category Search */}
           <div className="bg-white rounded-2xl shadow-sm p-6 mb-6">
             <div className="mb-4">

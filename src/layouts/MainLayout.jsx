@@ -14,7 +14,7 @@ const MainLayout = ({ children }) => {
       <DashboardNavbar />
 
       {/* Page Content */}
-      <main className="flex-grow p-4">{children}</main>
+      <main className="flex-grow m-4">{children}</main>
     </div>
   );
 };

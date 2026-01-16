@@ -7,7 +7,7 @@ import Register from "../features/auth/RegisterForm";
 import ForgotPassword from "../features/auth/ForgetPasswordForm";
 import VerifyOTP from "../features/auth/VerifyOTPForm";
 import ResetPassword from "../features/auth/ResetPasswordForm";
-
+import Demo from "../components/Demo"
 // Pages
 import Dashboard from "../pages/Dashboard";
 import Settings from "../pages/Settings";
@@ -18,6 +18,7 @@ import ContentDetail from "../pages/ContentDetails";
 import NotFound from "../pages/NotFound";
 import Privacy from "../components/Privacy";
 import LegalNotice from "../components/LegalNotice";
+import MembershipPlan from "../components/MembershipPlan";
 // 🔒 Protected route wrapper
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
@@ -50,6 +51,7 @@ const AppRouter = () => {
       <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
       <Route path="/verify-otp" element={<PublicRoute><VerifyOTP /></PublicRoute>} />
       <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
+      {/* <Route path="/demo" element={<PublicRoute><Demo /></PublicRoute>} /> */}
 
       {/* Protected Routes */}
       <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
@@ -62,6 +64,9 @@ const AppRouter = () => {
     {/* footer */}
       <Route path="/privacy" element={<Privacy />} />
       <Route path="/legal-notice" element={<LegalNotice />} />
+
+      {/* membership plan */}
+      <Route path="/membership" element={<MembershipPlan />} />
 
       {/* Optional: 404 route */}
       <Route path="*" element={<NotFound />} />

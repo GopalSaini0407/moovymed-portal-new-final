@@ -68,7 +68,7 @@ const RegisterForm = () => {
   
       if (response.status === 200) {
         toast.success(data.message || "Registration successful! Please login.");
-        navigate("/login");
+        navigate("/membership");
       } else {
         toast.error(data.message || "Registration failed. Try again.");
       }

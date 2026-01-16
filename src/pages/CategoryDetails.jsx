@@ -203,9 +203,10 @@ const CategoryDetails = () => {
                 return (
                   <div
                     key={item.id}
-                    className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden border border-gray-100"
+                    className="bg-white relative rounded-2xl z-20 shadow-sm hover:shadow-md transition-all duration-200 cursor-pointer overflow-hidden border border-gray-100"
                     onClick={() => handleContentClick(item.category_id,item.id)}
                   >
+
                     {/* File Display */}
                     <div className="p-4 flex flex-col items-center justify-center h-32">
                       {isImageFile && item.media_file ? (
@@ -319,8 +320,11 @@ const CategoryDetails = () => {
         />
 
       </Model>
+    {/* SHARE POPUP */}
+
       <Footer/>
     </MainLayout>
+    
   );
 };
 

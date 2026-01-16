@@ -10,6 +10,7 @@ import Model from "../components/model/Model";
 import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 import Footer from "../components/Footer";
+
 export default function ContentDetail() {
   const { cat_id,id } = useParams();
  
@@ -148,6 +149,8 @@ export default function ContentDetail() {
             </svg>
             {t("content-detail.back")}
           </button>
+                                                         {/* SHARE ICON */}
+        
 
           {/* Title & Notes */}
           <h2 className="text-2xl font-semibold text-center mb-2">{content.title}</h2>
@@ -185,10 +188,11 @@ export default function ContentDetail() {
 
         {/* 🔹 Bottom Box - Image / Media Section */}
         <div
-          className="rounded-2xl shadow-sm p-6 flex justify-center"
+          className="rounded-2xl shadow-sm p-6 flex justify-center relative"
           style={{ backdropFilter: "blur(20px)", backgroundColor: "rgba(255, 255, 255, 0.75)" }}
         >
           {renderMedia(content.media_file)}
+          
         </div>
       </div>
 
@@ -213,6 +217,8 @@ export default function ContentDetail() {
        <MediaModal fileUrl={selectedMedia} isOpen={mediaModalOpen} onClose={() => setMediaModalOpen(false)} />
 
       </Model>
+           {/* SHARE POPUP */}
+
       <Footer/>
     </MainLayout>
   );
