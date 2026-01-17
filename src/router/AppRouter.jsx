@@ -1,76 +1,77 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-// Auth Forms
-import Login from "../features/auth/LoginForm";
-import Register from "../features/auth/RegisterForm";
-import ForgotPassword from "../features/auth/ForgetPasswordForm";
-import VerifyOTP from "../features/auth/VerifyOTPForm";
-import ResetPassword from "../features/auth/ResetPasswordForm";
-import Demo from "../components/Demo"
+/* =======================
+   Lazy Loaded Components
+======================= */
+
+// Auth
+const Login = lazy(() => import("../features/auth/LoginForm"));
+const Register = lazy(() => import("../features/auth/RegisterForm"));
+const ForgotPassword = lazy(() => import("../features/auth/ForgetPasswordForm"));
+const VerifyOTP = lazy(() => import("../features/auth/VerifyOTPForm"));
+const ResetPassword = lazy(() => import("../features/auth/ResetPasswordForm"));
+
 // Pages
-import Dashboard from "../pages/Dashboard";
-import Settings from "../pages/Settings";
-import SettingsTags from "../pages/SettingsTags";
-import UserProfile from "../pages/UserProfile";
-import CategoryDetails from "../pages/CategoryDetails";
-import ContentDetail from "../pages/ContentDetails";
-import NotFound from "../pages/NotFound";
-import Privacy from "../components/Privacy";
-import LegalNotice from "../components/LegalNotice";
-import MembershipPlan from "../components/MembershipPlan";
-// 🔒 Protected route wrapper
+const Dashboard = lazy(() => import("../pages/Dashboard"));
+const Settings = lazy(() => import("../pages/Settings"));
+const SettingsTags = lazy(() => import("../pages/SettingsTags"));
+const UserProfile = lazy(() => import("../pages/UserProfile"));
+const CategoryDetails = lazy(() => import("../pages/CategoryDetails"));
+const ContentDetail = lazy(() => import("../pages/ContentDetails"));
+const NotFound = lazy(() => import("../pages/NotFound"));
+
+// Static Pages
+const Privacy = lazy(() => import("../components/Privacy"));
+const LegalNotice = lazy(() => import("../components/LegalNotice"));
+const MembershipPlan = lazy(() => import("../components/MembershipPlan"));
+
+/* =======================
+   Route Guards
+======================= */
+
 function ProtectedRoute({ children }) {
   const token = localStorage.getItem("token");
-
-  if (!token) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
+  return token ? children : <Navigate to="/login" replace />;
 }
 
-// 🌐 Public route wrapper
 function PublicRoute({ children }) {
   const token = localStorage.getItem("token");
-
-  // If already logged in, redirect to dashboard
-  if (token) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
+  return token ? <Navigate to="/" replace /> : children;
 }
+
+/* =======================
+   App Router
+======================= */
 
 const AppRouter = () => {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-      <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-      <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
-      <Route path="/verify-otp" element={<PublicRoute><VerifyOTP /></PublicRoute>} />
-      <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
-      {/* <Route path="/demo" element={<PublicRoute><Demo /></PublicRoute>} /> */}
+    <Suspense fallback={<div className="p-10 text-center">Loading...</div>}>
+      <Routes>
+        {/* Public Routes */}
+        <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
+        <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
+        <Route path="/forgot-password" element={<PublicRoute><ForgotPassword /></PublicRoute>} />
+        <Route path="/verify-otp" element={<PublicRoute><VerifyOTP /></PublicRoute>} />
+        <Route path="/reset-password" element={<PublicRoute><ResetPassword /></PublicRoute>} />
 
-      {/* Protected Routes */}
-      <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-      <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
-      <Route path="/settings/tags" element={<ProtectedRoute><SettingsTags /></ProtectedRoute>} />
-      <Route path="/settings/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
-      <Route path="/category/:id" element={<ProtectedRoute><CategoryDetails /></ProtectedRoute>} />
-      <Route path="/category/:cat_id/content/:id" element={<ProtectedRoute><ContentDetail /></ProtectedRoute>} />
-    
-    {/* footer */}
-      <Route path="/privacy" element={<Privacy />} />
-      <Route path="/legal-notice" element={<LegalNotice />} />
+        {/* Protected Routes */}
+        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+        <Route path="/settings" element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+        <Route path="/settings/tags" element={<ProtectedRoute><SettingsTags /></ProtectedRoute>} />
+        <Route path="/settings/profile" element={<ProtectedRoute><UserProfile /></ProtectedRoute>} />
+        <Route path="/category/:id" element={<ProtectedRoute><CategoryDetails /></ProtectedRoute>} />
+        <Route path="/category/:cat_id/content/:id" element={<ProtectedRoute><ContentDetail /></ProtectedRoute>} />
 
-      {/* membership plan */}
-      <Route path="/membership" element={<MembershipPlan />} />
+        {/* Static Pages */}
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/legal-notice" element={<LegalNotice />} />
+        <Route path="/membership" element={<MembershipPlan />} />
 
-      {/* Optional: 404 route */}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+        {/* 404 */}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Suspense>
   );
 };
 
