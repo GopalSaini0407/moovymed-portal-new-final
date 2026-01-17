@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTranslation } from "react-i18next";
-import Model from "../components/model/Model"; // 👈 Reusable modal
+import Model from "../components/model/Model";
 
 export default function SearchModal({ isOpen, onClose }) {
   const [searchQuery, setSearchQuery] = useState("");
@@ -17,15 +17,18 @@ export default function SearchModal({ isOpen, onClose }) {
   const language = useLanguage();
   const navigate = useNavigate();
 
-  // 🔹 Fetch categories
   const fetchCategories = async () => {
     setCategoriesLoading(true);
     try {
-      const res = await api.post("/categories", {
-        headers: {
-          "X-Locale": language,
-        },
-      });
+      const res = await api.post(
+        "/categories",
+        {},
+        {
+          headers: {
+            "X-Locale": language,
+          },
+        }
+      );
       setCategories(res.data.data || []);
     } catch (error) {
       console.error("Error fetching categories:", error);
@@ -34,7 +37,6 @@ export default function SearchModal({ isOpen, onClose }) {
     }
   };
 
-  // 🔹 Search function
   const searchContent = async (query, categoryId = "") => {
     if (!query.trim()) {
       setResults([]);
@@ -58,7 +60,6 @@ export default function SearchModal({ isOpen, onClose }) {
     }
   };
 
-  // 🔹 Debounce search
   useEffect(() => {
     if (!isOpen) return;
     const delay = setTimeout(() => {
@@ -67,7 +68,6 @@ export default function SearchModal({ isOpen, onClose }) {
     return () => clearTimeout(delay);
   }, [searchQuery, selectedCategory, isOpen]);
 
-  // 🔹 Reset when opened
   useEffect(() => {
     if (isOpen) {
       setSearchQuery("");
@@ -78,10 +78,7 @@ export default function SearchModal({ isOpen, onClose }) {
   }, [isOpen, language]);
 
   const handleResultClick = (item) => {
-    // navigate(`/content/${item.id}`);
-    // item.category_id,item.id
     navigate(`/category/${item.category_id}/content/${item.id}`);
-
     onClose();
   };
 
@@ -122,10 +119,8 @@ export default function SearchModal({ isOpen, onClose }) {
       size="xl"
     >
       <div className="max-h-[75vh] overflow-y-auto px-1">
-        {/* 🔍 Search Input */}
         <div className="space-y-4 mb-6">
-           {/* Category Filter */}
-           <div>
+          <div>
             <label className="block text-sm font-semibold text-gray-700 mb-2">
               {t("search-modal.filter-label")}
             </label>
@@ -135,7 +130,9 @@ export default function SearchModal({ isOpen, onClose }) {
               className="w-full border border-gray-200 text-md rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               disabled={categoriesLoading}
             >
-              {/* <option value="">{t("search-modal.filter-placeholder")}</option> */}
+              <option value="">
+                {t("search-modal.filter-placeholder")}
+              </option>
               {categories.map((cat) => (
                 <option key={cat.id} value={cat.id}>
                   {cat.category_name} ({cat.content_count})
@@ -148,6 +145,7 @@ export default function SearchModal({ isOpen, onClose }) {
               </p>
             )}
           </div>
+
           <div className="relative">
             <input
               type="text"
@@ -163,17 +161,20 @@ export default function SearchModal({ isOpen, onClose }) {
               </div>
             )}
           </div>
-
-         
         </div>
 
-        {/* 🔹 Search Results */}
         <div>
           {searchQuery.trim() === "" ? (
             <div className="text-center text-gray-500 py-8">
-              <div className="text-4xl mb-3">{t("search-modal.empty-prompt-icon")}</div>
-              <p className="text-lg mb-1">{t("search-modal.empty-prompt-title")}</p>
-              <p className="text-sm">{t("search-modal.empty-prompt-description")}</p>
+              <div className="text-4xl mb-3">
+                {t("search-modal.empty-prompt-icon")}
+              </div>
+              <p className="text-lg mb-1">
+                {t("search-modal.empty-prompt-title")}
+              </p>
+              <p className="text-sm">
+                {t("search-modal.empty-prompt-description")}
+              </p>
             </div>
           ) : loading ? (
             <div className="text-center text-gray-600 py-8">
@@ -181,7 +182,7 @@ export default function SearchModal({ isOpen, onClose }) {
               <p>
                 {selectedCategory
                   ? t("search-modal.searching", {
-                      category: getCategoryName(parseInt(selectedCategory)),
+                      category: getCategoryName(Number(selectedCategory)),
                     })
                   : t("search-modal.searching-all")}
               </p>
@@ -197,8 +198,10 @@ export default function SearchModal({ isOpen, onClose }) {
                     className="border border-gray-200 rounded-xl p-4 hover:bg-blue-50 hover:border-blue-200 cursor-pointer transition"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="text-2xl">{getFileIcon(item.media_file)}</div>
-                      <div className="flex-1">
+                      <div className="text-2xl">
+                        {getFileIcon(item.media_file)}
+                      </div>
+                      <div className="flex-1 max-w-[85%] md:max-w-[90%]">
                         <div className="flex justify-between items-start mb-1">
                           <h3 className="font-semibold text-gray-800 text-lg">
                             {item.title}
@@ -240,16 +243,19 @@ export default function SearchModal({ isOpen, onClose }) {
             </div>
           ) : (
             <div className="text-center text-gray-500 py-8">
-              <div className="text-4xl mb-3">{t("search-modal.no-results-icon")}</div>
+              <div className="text-4xl mb-3">
+                {t("search-modal.no-results-icon")}
+              </div>
               <p className="text-lg mb-1">
                 {t("search-modal.no-results-title", { query: searchQuery })}
               </p>
-              <p className="text-sm">{t("search-modal.no-results-description")}</p>
+              <p className="text-sm">
+                {t("search-modal.no-results-description")}
+              </p>
             </div>
           )}
         </div>
 
-        {/* Instructions */}
         <div className="mt-6 pt-4 border-t border-gray-200">
           <p className="text-xs text-gray-500 text-center">
             {t("search-modal.instructions")}

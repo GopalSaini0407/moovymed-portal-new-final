@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import AuthNavbar from "./navbar/AuthNavbar";
 const MembershipPlan = () => {
   const [selectedPlan, setSelectedPlan] = useState("free");
 
@@ -56,9 +57,11 @@ const MembershipPlan = () => {
   }
 
   return (
+    <>
+    <AuthNavbar/>
     <div
       id="main-content"
-      className="min-h-screen w-full flex flex-col legal-page"
+      className="min-h-screen w-full flex flex-col legal-page p-3"
       style={{
         background:
           "linear-gradient(135deg, rgba(79, 177, 231, 1) 0%, rgba(255, 0, 117, 1) 100%)",
@@ -150,6 +153,8 @@ const MembershipPlan = () => {
         </div>
       </div>
     </div>
+    </>
+   
   );
 };
 

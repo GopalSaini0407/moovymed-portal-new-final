@@ -466,9 +466,22 @@
                 }
               },
               "status": "Status: March 2023"
-            }
+            },
           
-          
+            
+              "content-detail-modal": {
+                "alerts": {
+                  "delete-confirm-title": "Delete Content",
+                  "delete-confirm": "Are you sure you want to delete this content? This action cannot be undone."
+                }
+              },
+              "common": {
+                "cancel": "Cancel",
+                "confirm": "Yes, Delete",
+                "deleting": "Deleting..."
+              }
+            
+            
 
     
 

@@ -41,7 +41,7 @@ const ForgetPasswordForm = () => {
       });
   
       const data = response.data; // Axios automatically parses JSON
-  
+         console.log(data);
       if (!response.status || !data.user_id) {
         throw new Error(data.message || "Failed to send OTP");
       }

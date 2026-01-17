@@ -151,7 +151,7 @@ const CategoryDetails = () => {
         {category && (
           <div className="mb-8">
             <button
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/')}
               className="text-blue-600 hover:underline text-sm mb-3 inline-block"
             >
               {t("category-details.top-header.back")}
