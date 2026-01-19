@@ -467,7 +467,9 @@
                 "content-detail-modal": {
                   "alerts": {
                     "delete-confirm-title": "Inhalt löschen",
-                    "delete-confirm": "Möchten Sie diesen Inhalt wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden."
+                    "delete-confirm": "Möchten Sie diesen Inhalt wirklich löschen? Diese Aktion kann nicht rückgängig gemacht werden.",
+                    "delete-success": "Inhalt wurde erfolgreich gelöscht.",
+                    "delete-fail": "Inhalt konnte nicht gelöscht werden."
                   }
                 },
                 "common": {

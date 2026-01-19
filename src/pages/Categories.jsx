@@ -182,4 +182,4 @@ const Categories = ({ filteredCategories, searchActive }) => {
   );
 };
 
-export default Categories;
+export default React.memo(Categories);

@@ -3,7 +3,7 @@ import { Bell, ArrowUp, RefreshCw, Calendar } from "lucide-react";
 // import MembershipPlan from "./MembershipPlan";
 import { useNavigate } from "react-router-dom";
 
-export default function MembershipDesktopNotification({
+ function MembershipDesktopNotification({
   type = "free",  //  choose plan 
   expiryDate = "",
   purchageDate="",
@@ -102,3 +102,5 @@ export default function MembershipDesktopNotification({
     </div>
   );
 }
+
+export default React.memo(MembershipDesktopNotification)

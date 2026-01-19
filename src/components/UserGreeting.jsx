@@ -36,4 +36,4 @@ const UserGreeting = () => {
   );
 };
 
-export default UserGreeting;
+export default React.memo(UserGreeting);

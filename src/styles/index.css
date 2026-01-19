@@ -1,5 +1,6 @@
 @import "tailwindcss";
 
+
 @media (max-width: 768px) {
     .tool-tip-box{
         left: 200px !important;
