@@ -62,17 +62,21 @@ api.interceptors.response.use(
   (response) => response,
   async (error) => {
     const originalRequest = error.config;
+    const isLoginApi = originalRequest?.url?.includes("/user/login");
+
+    // ✅ LOGIN FAIL → component handle kare (toast)
+    if (error.response?.status === 401 && isLoginApi) {
+      return Promise.reject(error);
+    }
 
     if (error.response?.status === 401) {
       const refreshToken = localStorage.getItem("refresh_token");
 
-      // 🔴 No refresh token → logout immediately
       if (!refreshToken) {
         clearAuthAndRedirect();
         return Promise.reject(error);
       }
 
-      // 🔁 Prevent multiple refresh calls
       if (isRefreshing) {
         return new Promise((resolve, reject) => {
           failedQueue.push({
@@ -100,7 +104,6 @@ api.interceptors.response.use(
         );
 
         const newToken = res.data.access_token;
-
         localStorage.setItem("token", newToken);
 
         api.defaults.headers.Authorization = `Bearer ${newToken}`;
@@ -120,5 +123,6 @@ api.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
 
 export default api;
