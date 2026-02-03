@@ -481,11 +481,76 @@
                 "cancel": "Cancel",
                 "confirm": "Yes, Delete",
                 "deleting": "Deleting..."
-              }
-            
-            
+              },
 
-    
+              
+                "membership": {
+                  "free": {
+                    "title": "Free Membership",
+                    "description": "Upgrade membership to use all features",
+                    "button": "Upgrade"
+                  },
+                  "monthly": {
+                    "title": "Professional Monthly",
+                    "expiryDaysLabel": "Expiry Days",
+                    "purchaseDateLabel": "Date of Purchase",
+                    "expiryDateLabel": "Expiry Date",
+                    "renewButton": "Renew"
+                  },
+                  "yearly": {
+                    "title": "Professional Yearly",
+                    "expiryDaysLabel": "Expiry Days",
+                    "purchaseDateLabel": "Date of Purchase",
+                    "expiryDateLabel": "Expiry Date",
+                    "renewButton": "Renew"
+                  }
+                },
+
+                  "membershipPlans": {
+                    "free": {
+                      "title": "Free Plan",
+                      "price": "$0.00",
+                      "duration": "Lifetime Free",
+                      "features": [
+                        "Access to basic content",
+                        "Limited categories",
+                        "No priority support"
+                      ],
+                      "continueButton": "Continue with Free Plan"
+                    },
+                    "monthly": {
+                      "title": "Monthly Plan",
+                      "price": "$25.00",
+                      "duration": "Per Month",
+                      "features": [
+                        "All premium content",
+                        "Unlimited categories",
+                        "Priority support",
+                        "Early access to new updates"
+                      ],
+                      "continueButton": "Continue with Monthly Plan"
+                    },
+                    "yearly": {
+                      "title": "Yearly Plan",
+                      "price": "$275.00",
+                      "duration": "Per Year",
+                      "features": [
+                        "All premium content",
+                        "Unlimited categories",
+                        "Premium support",
+                        "Early access + Exclusive resources",
+                        "Save 35% compared to monthly"
+                      ],
+                      "badge": "Best Value",
+                      "continueButton": "Continue with Yearly Plan"
+                    }
+                  },
+                  "membershipTitle": {
+                    "chooseMembership": "Choose Your Membership"
+                  }
+                
+                
+              
 
 }
 

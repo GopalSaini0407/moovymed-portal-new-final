@@ -476,10 +476,75 @@
                   "cancel": "Abbrechen",
                   "confirm": "Ja, löschen",
                   "deleting": "Wird gelöscht..."
-                }
-              
-              
-        
+                },
+                
+                  "membership": {
+                    "free": {
+                      "title": "Kostenlose Mitgliedschaft",
+                      "description": "Aktualisieren Sie die Mitgliedschaft, um alle Funktionen zu nutzen",
+                      "button": "Upgrade"
+                    },
+                    "monthly": {
+                      "title": "Professionell Monatlich",
+                      "expiryDaysLabel": "Tage bis Ablauf",
+                      "purchaseDateLabel": "Kaufdatum",
+                      "expiryDateLabel": "Ablaufdatum",
+                      "renewButton": "erneuern"
+                    },
+                    "yearly": {
+                      "title": "Professionell Jährlich",
+                      "expiryDaysLabel": "Tage bis Ablauf",
+                      "purchaseDateLabel": "Kaufdatum",
+                      "expiryDateLabel": "Ablaufdatum",
+                      "renewButton": "erneuern"
+                    }
+                  },
+                
+                  
+                    "membershipPlans": {
+                      "free": {
+                        "title": "Kostenloser Plan",
+                        "price": "0,00 $",
+                        "duration": "Lebenslang Kostenlos",
+                        "features": [
+                          "Zugang zu Basisinhalten",
+                          "Begrenzte Kategorien",
+                          "Keine Prioritätsunterstützung"
+                        ],
+                        "continueButton": "Weiter mit kostenlosem Plan"
+                      },
+                      "monthly": {
+                        "title": "Monatlicher Plan",
+                        "price": "25,00 $",
+                        "duration": "Pro Monat",
+                        "features": [
+                          "Alle Premium-Inhalte",
+                          "Unbegrenzte Kategorien",
+                          "Prioritätsunterstützung",
+                          "Früher Zugriff auf neue Updates"
+                        ],
+                        "continueButton": "Weiter mit monatlichem Plan"
+                      },
+                      "yearly": {
+                        "title": "Jährlicher Plan",
+                        "price": "275,00 $",
+                        "duration": "Pro Jahr",
+                        "features": [
+                          "Alle Premium-Inhalte",
+                          "Unbegrenzte Kategorien",
+                          "Premium-Unterstützung",
+                          "Früher Zugriff + Exklusive Ressourcen",
+                          "35 % sparen im Vergleich zum monatlichen Plan"
+                        ],
+                        "badge": "Bestes Angebot",
+                        "continueButton": "Weiter mit jährlichem Plan"
+                      }
+                    },
+                    "membershipTitle": {
+                      "chooseMembership": "Wählen Sie Ihre Mitgliedschaft"
+                    }
+                  
+                  
         
 
 }
