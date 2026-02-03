@@ -50,8 +50,8 @@ const Categories = ({ filteredCategories, searchActive }) => {
     const padding = 10;
     const viewportWidth = window.innerWidth;
 
-    let x = rect.left + rect.width / 2 + window.scrollX;
-    let y = rect.top + window.scrollY - 450;
+    let x = rect.left + rect.width / 2 + window.scrollX-50;
+    let y = rect.top + window.scrollY - 510;
 
     if (x - tooltipWidth / 2 < padding) {
       x = tooltipWidth / 2 + padding + window.scrollX;
@@ -146,7 +146,7 @@ const Categories = ({ filteredCategories, searchActive }) => {
           style={{
             left: `${tooltipPosition.x}px`,
             top: `${tooltipPosition.y}px`,
-            width: "250px",
+            width: "280px",
           }}
         >
           <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1 w-4 h-4 rotate-45 bg-blue-600 border border-blue-400"></div>
